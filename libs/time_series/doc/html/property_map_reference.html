@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Property Map Reference</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="time_series/reference.html" title="Reference">
+<link rel="prev" href="boost/sequence/traits/size_type.html" title="Struct template size_type">
+<link rel="next" href="ReadablePropertyMap.html" title="Concept ReadablePropertyMap">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="boost/sequence/traits/size_type.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="time_series/reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="ReadablePropertyMap.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="property_map_reference"></a>Property Map Reference</h3></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="property_map_reference.html#property_map_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="property_map_reference.html#header.boost.property_map.concepts.hpp">Header &lt;boost/property_map/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="property_map_reference.html#header.boost.property_map.dereference.hpp">Header &lt;boost/property_map/dereference.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="property_map_reference.html#header.boost.property_map.identity.hpp">Header &lt;boost/property_map/identity.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="property_map_reference.html#header.boost.property_map.traits.value_type.hpp">Header &lt;boost/property_map/traits/value_type.hpp&gt;</a></span></dt>
+</dl></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="property_map_reference.concepts"></a>Concepts</h4></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><a href="ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a></li>
+<li><a href="WritablePropertyMap.html" title="Concept WritablePropertyMap">WritablePropertyMap</a></li>
+<li><a href="ReadWritePropertyMap.html" title="Concept ReadWritePropertyMap">ReadWritePropertyMap</a></li>
+</ul></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.property_map.concepts.hpp"></a>Header &lt;<a href="../../boost/property_map/concepts.hpp" target="_top">boost/property_map/concepts.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> property_maps {
+    <span class="bold"><b>namespace</b></span> concepts {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Func, <span class="bold"><b>typename</b></span> Iter&gt; <span class="bold"><b>struct</b></span> <a href="boost/property_maps/concepts/BasicPropertyMap.html" title="Struct template BasicPropertyMap">BasicPropertyMap</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> UnaryFunc, <span class="bold"><b>typename</b></span> Iter&gt; <span class="bold"><b>struct</b></span> <a href="boost/property_maps/concepts/ReadablePropertyMap.html" title="Struct template ReadablePropertyMap">ReadablePropertyMap</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> BinaryFunc, <span class="bold"><b>typename</b></span> Iter, 
+               <span class="bold"><b>typename</b></span> Value = <span class="bold"><b>typename</b></span> iterator_value&lt;Iter&gt;::type&gt; 
+        <span class="bold"><b>struct</b></span> <a href="boost/property_maps/concepts/WritablePropertyMap.html" title="Struct template WritablePropertyMap">WritablePropertyMap</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> UnaryBinaryFunc, <span class="bold"><b>typename</b></span> Iter&gt; 
+        <span class="bold"><b>struct</b></span> <a href="boost/property_maps/concepts/ReadWritePropertyMap.html" title="Struct template ReadWritePropertyMap">ReadWritePropertyMap</a>;
+    }
+  }
+}<span class="bold"><b>namespace</b></span> boost_concepts {
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.property_map.dereference.hpp"></a>Header &lt;<a href="../../boost/property_map/dereference.hpp" target="_top">boost/property_map/dereference.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> property_maps {
+    <span class="bold"><b>struct</b></span> <a href="boost/property_maps/dereference.html" title="Struct dereference">dereference</a>;
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.property_map.identity.hpp"></a>Header &lt;<a href="../../boost/property_map/identity.hpp" target="_top">boost/property_map/identity.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> property_maps {
+    <span class="bold"><b>struct</b></span> <a href="boost/property_maps/identity.html" title="Struct identity">identity</a>;
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.property_map.traits.value_type.hpp"></a>Header &lt;<a href="../../boost/property_map/traits/value_type.hpp" target="_top">boost/property_map/traits/value_type.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> property_maps {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> F, <span class="bold"><b>typename</b></span> I&gt; <span class="bold"><b>struct</b></span> <a href="boost/property_maps/traits/value_type.html" title="Struct template value_type">value_type</a>;
+    }
+  }
+}</pre>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="boost/sequence/traits/size_type.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="time_series/reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="ReadablePropertyMap.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

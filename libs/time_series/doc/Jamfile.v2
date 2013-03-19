@@ -1,0 +1,151 @@
+# Copyright Eric Niebler 2005. Use, modification, and distribution are
+# subject to the Boost Software License, Version 1.0. (See accompanying
+# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+import doxygen ;
+import quickbook ;
+
+# Use Doxygen to emimt a tagfile with the definition of depends_on<>.
+# That tagfile will be used by Doxygen below when generating the Statistics
+# Library Reference. This is all so that the Doxygen-generated documentation
+# for the features shows the dependency relationships between them.
+# doxygen tagfile
+#     :
+#         ../../../boost/accumulators/framework/depends_on.hpp
+#         ../../../boost/accumulators/framework/extractor.hpp
+#     :
+#         <doxygen:param>MACRO_EXPANSION=YES
+#         <doxygen:param>EXPAND_ONLY_PREDEF=YES
+#         <doxygen:param>GENERATE_TAGFILE=accumulators.tag
+#         <doxygen:param>"PREDEFINED=\"BOOST_ACCUMULATORS_DOXYGEN_INVOKED=1\" \\
+#                                    \"BOOST_PP_REPEAT_FROM_TO(a,b,c,d)=\" \\
+#                                    \"BOOST_PP_ENUM_PARAMS(a,b)=b ## 1, b ## 2, ...\""
+#     ;
+
+doxygen pmdoc
+    :
+        [ glob ../../../boost/property_map/*.hpp ]
+        [ glob ../../../boost/property_map/traits/*.hpp ]
+    :
+        <doxygen:param>EXTRACT_ALL=YES
+        <doxygen:param>"PREDEFINED=\"BOOST_PROPERTY_MAP_DOXYGEN_INVOKED=1\" \\
+                                   \"BOOST_PP_REPEAT_FROM_TO(a,b,c,d)=\" \\
+                                   \"BOOST_PP_REPEAT(a,b,c)=\" \\
+                                   \"BOOST_RRS_IDENTITY(a)=a\" \\
+                                   \"BOOST_CONCEPT_WHERE(a,b)=BOOST_RRS_IDENTITY ## b\""
+        <doxygen:param>HIDE_UNDOC_MEMBERS=NO
+        <doxygen:param>EXTRACT_PRIVATE=NO
+        <doxygen:param>ENABLE_PREPROCESSING=YES
+        <doxygen:param>MACRO_EXPANSION=YES
+        <doxygen:param>EXPAND_ONLY_PREDEF=NO
+        <doxygen:param>SEARCH_INCLUDES=YES
+        <doxygen:param>INCLUDE_PATH=$(BOOST_ROOT)
+        <reftitle>"Property Map Reference"
+    ;
+
+doxygen seqdoc
+    :
+        [ glob ../../../boost/sequence/*.hpp ]
+        [ glob ../../../boost/sequence/traits/*.hpp ]
+    :
+        <doxygen:param>EXTRACT_ALL=YES
+        <doxygen:param>"PREDEFINED=\"BOOST_SEQUENCE_DOXYGEN_INVOKED=1\" \\
+                                   \"BOOST_PP_REPEAT_FROM_TO(a,b,c,d)=\" \\
+                                   \"BOOST_PP_REPEAT(a,b,c)=\" \\
+                                   \"BOOST_RRS_IDENTITY(a)=a\" \\
+                                   \"BOOST_CONCEPT_WHERE(a,b)=BOOST_RRS_IDENTITY ## b\""
+        <doxygen:param>HIDE_UNDOC_MEMBERS=NO
+        <doxygen:param>EXTRACT_PRIVATE=NO
+        <doxygen:param>ENABLE_PREPROCESSING=YES
+        <doxygen:param>MACRO_EXPANSION=YES
+        <doxygen:param>EXPAND_ONLY_PREDEF=NO
+        <doxygen:param>SEARCH_INCLUDES=YES
+        <doxygen:param>INCLUDE_PATH=$(BOOST_ROOT)
+        <reftitle>"Sequence Reference"
+    ;
+
+doxygen rrsdoc
+    :
+        [ glob ../../../boost/range_run_storage/*.hpp ]
+        [ glob ../../../boost/range_run_storage/traits/*.hpp ]
+        [ glob ../../../boost/range_run_storage/algorithm/*.hpp ]
+    :
+        <doxygen:param>EXTRACT_ALL=YES
+        <doxygen:param>"PREDEFINED=\"BOOST_RANGE_RUN_STORAGE_DOXYGEN_INVOKED=1\" \\
+                                   \"BOOST_PP_REPEAT_FROM_TO(a,b,c,d)=\" \\
+                                   \"BOOST_PP_REPEAT(a,b,c)=\" \\
+                                   \"BOOST_RRS_IDENTITY(a)=a\" \\
+                                   \"BOOST_CONCEPT_WHERE(a,b)=BOOST_RRS_IDENTITY ## b\""
+        <doxygen:param>HIDE_UNDOC_MEMBERS=NO
+        <doxygen:param>EXTRACT_PRIVATE=NO
+        <doxygen:param>ENABLE_PREPROCESSING=YES
+        <doxygen:param>MACRO_EXPANSION=YES
+        <doxygen:param>EXPAND_ONLY_PREDEF=NO
+        <doxygen:param>SEARCH_INCLUDES=YES
+        <doxygen:param>INCLUDE_PATH=$(BOOST_ROOT)
+        <reftitle>"Range Run Storage Reference"
+    ;
+
+doxygen tsdoc
+    :
+        [ glob ../../../boost/time_series/*.hpp ]
+        [ glob ../../../boost/time_series/numeric/*.hpp ]
+        [ glob ../../../boost/time_series/python/*.hpp ]
+        ../../../boost/time_series/traits/is_time_series.hpp
+        ../../../boost/time_series/traits/storage_category.hpp
+        ../../../boost/time_series/traits/discretization_type.hpp
+        ../../../boost/time_series/utility/time_series_base.hpp
+        ../../../boost/time_series/utility/series_stl_iterator.hpp
+    :
+        <doxygen:param>EXTRACT_ALL=YES
+        <doxygen:param>"PREDEFINED=\"BOOST_TIME_SERIES_DOXYGEN_INVOKED=1\" \\
+                                   \"BOOST_PP_REPEAT_FROM_TO(a,b,c,d)=\" \\
+                                   \"BOOST_PP_REPEAT(a,b,c)=\" \\
+                                   \"BOOST_RRS_IDENTITY(a)=a\" \\
+                                   \"BOOST_CONCEPT_WHERE(a,b)=BOOST_RRS_IDENTITY ## b\" \\
+                                   \"BOOST_PARAMETER_KEYWORD(a,b)=\\
+                                        namespace a { struct b {}; } \\
+                                        boost::parameter::keyword<a::b> const b;\" \\
+                                   \"BOOST_PP_ENUM_PARAMS(a,b)=b ## 1, b ## 2, ...\" \\
+                                   \"BOOST_TYPEOF_REGISTER_TYPE(x)=\" \\
+                                   \"BOOST_TYPEOF_REGISTER_TEMPLATE(x,y)=\" \\
+                                   \"BOOST_TIME_SERIES_DEFINE_CTORS(a)=\\
+                                        a();\\
+                                        template<typename A1>\\
+                                        a(A1 const &a1);\\
+                                        template<typename A1, typename A2, ...>\\
+                                        a(A1 const &a1, A2 const &a2, ...);\""
+        <doxygen:param>HIDE_UNDOC_MEMBERS=NO
+        <doxygen:param>EXTRACT_PRIVATE=NO
+        <doxygen:param>ENABLE_PREPROCESSING=YES
+        <doxygen:param>MACRO_EXPANSION=YES
+        <doxygen:param>EXPAND_ONLY_PREDEF=NO
+        <doxygen:param>SEARCH_INCLUDES=YES
+        <doxygen:param>INCLUDE_PATH=$(BOOST_ROOT)
+        #<doxygen:param>TAGFILES=range_run_storage.tag
+        <reftitle>"Time Series Reference"
+   ;
+
+xml time_series
+    :
+        time_series.qbk
+    :
+        <dependency>tsdoc
+        <dependency>rrsdoc
+        <dependency>seqdoc
+        <dependency>pmdoc
+        <xsl:param>boost.max.id.length=1024
+        <xsl:param>toc.max.depth=4
+        <xsl:param>toc.section.depth=4
+        <xsl:param>chunk.section.depth=2
+    ;
+
+boostbook standalone
+    :
+        time_series
+    :
+        <xsl:param>boost.max.id.length=1024
+        <xsl:param>toc.max.depth=4
+        <xsl:param>toc.section.depth=4
+        <xsl:param>chunk.section.depth=2
+    ;

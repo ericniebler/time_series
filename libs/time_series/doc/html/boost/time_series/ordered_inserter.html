@@ -1,0 +1,426 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Struct template ordered_inserter</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../time_series/reference.html#header.boost.time_series.ordered_inserter.hpp" title="Header &lt;boost/time_series/ordered_inserter.hpp&gt;">
+<link rel="prev" href="shifted_variable_period_sums.html" title="Function shifted_variable_period_sums">
+<link rel="next" href="make_ordered_inserter.html" title="Function make_ordered_inserter">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="shifted_variable_period_sums.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.ordered_inserter.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="make_ordered_inserter.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.ordered_inserter"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Struct template ordered_inserter</span></h2>
+<p>boost::time_series::ordered_inserter &#8212; A wrapper for an <tt class="computeroutput">OrderedInserter</tt> which itself satisfies the <tt class="computeroutput">OrderedInserter</tt> concept and that provides some conveniences for efficiently populating a <tt class="computeroutput">Mutable_TimeSeries</tt>. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+<span class="bold"><b>struct</b></span> ordered_inserter {
+  <span class="emphasis"><em>// types</em></span>
+  <span class="bold"><b>typedef</b></span> <a href="concepts/Mutable_TimeSeries.html" title="Struct template Mutable_TimeSeries">concepts::Mutable_TimeSeries</a>&lt; Series &gt; series_concept;
+  <span class="bold"><b>typedef</b></span> series_concept::value_type             value_type;    
+  <span class="bold"><b>typedef</b></span> series_concept::run_type               run_type;      
+  <span class="bold"><b>typedef</b></span> series_concept::offset_type            offset_type;   
+  <span class="bold"><b>typedef</b></span> series_concept::ordered_inserter_type  inserter_type; 
+
+  <span class="emphasis"><em>// <a href="ordered_inserter.html#boost.time_series.ordered_inserterconstruct-copy-destruct">construct/copy/destruct</a></em></span>
+  <a href="ordered_inserter.html#id252322-bb">ordered_inserter</a>(Series &amp;);
+  <a href="ordered_inserter.html#id252366-bb">ordered_inserter</a>(Series &amp;, offset_type);
+  ordered_inserter&amp; <a href="ordered_inserter.html#id253102-bb"><span class="bold"><b>operator</b></span>=</a>(<a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> <span class="bold"><b>const</b></span> &amp;);
+  ordered_inserter&amp; <a href="ordered_inserter.html#id253127-bb"><span class="bold"><b>operator</b></span>=</a>(value_type <span class="bold"><b>const</b></span> &amp;);
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset&gt; 
+    ordered_inserter&amp; <a href="ordered_inserter.html#id253154-bb"><span class="bold"><b>operator</b></span>=</a>(std::pair&lt; Value, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset&gt; 
+    ordered_inserter&amp; <a href="ordered_inserter.html#id253356-bb"><span class="bold"><b>operator</b></span>=</a>(compressed_pair&lt; Value, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset&gt; 
+    ordered_inserter&amp; <a href="ordered_inserter.html#id253422-bb"><span class="bold"><b>operator</b></span>=</a>(tuple&lt; Value, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset&gt; 
+    ordered_inserter&amp; <a href="ordered_inserter.html#id253555-bb"><span class="bold"><b>operator</b></span>=</a>(tuple&lt; Value, Offset, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+
+  <span class="emphasis"><em>// <a href="ordered_inserter.html#id255902-bb">public member functions</a></em></span>
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a href="ordered_inserter.html#id255907-bb"><span class="bold"><b>operator</b></span> *</a>() ;
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a href="ordered_inserter.html#id251372-bb"><span class="bold"><b>operator</b></span>++</a>() ;
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a href="ordered_inserter.html#id251398-bb"><span class="bold"><b>operator</b></span>++</a>(<span class="bold"><b>int</b></span>) ;
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a href="ordered_inserter.html#id251499-bb"><span class="bold"><b>operator</b></span>()</a>(value_type <span class="bold"><b>const</b></span> &amp;) ;
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a href="ordered_inserter.html#id251555-bb"><span class="bold"><b>operator</b></span>()</a>(value_type <span class="bold"><b>const</b></span> &amp;, offset_type) ;
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a href="ordered_inserter.html#id252027-bb"><span class="bold"><b>operator</b></span>()</a>(value_type <span class="bold"><b>const</b></span> &amp;, offset_type, offset_type) ;
+  <span class="type"><span class="bold"><b>void</b></span></span> <a href="ordered_inserter.html#id252234-bb">commit</a>() ;
+
+  offset_type offset_;
+  inserter_type inserter_;
+};</pre></div>
+<div class="refsect1" lang="en">
+<a name="id500804"></a><h2>Description</h2>
+<p>A wrapper for an <tt class="computeroutput">OrderedInserter</tt> which itself satisfies the <tt class="computeroutput">OrderedInserter</tt> concept and that provides some conveniences for efficiently populating a <tt class="computeroutput">Mutable_TimeSeries</tt>.</p>
+<p>Since <tt class="computeroutput">ordered_inserter&lt;&gt;</tt> satisfies the <tt class="computeroutput">OrderedInserter</tt> concept, it can be used anywhere an <tt class="computeroutput">OrderedInserter</tt> is required; for example, when calling any of the RangeRunStorage algorithms.</p>
+<p>An <tt class="computeroutput">ordered_inserter&lt;&gt;</tt> also overloads the function call operator so that runs can be inserted using the following convenient syntax: <tt class="computeroutput">inserter(value, offset, end_offset)</tt>. The return value of the predeeding call is a reference to the <tt class="computeroutput">inserter</tt> object, so successive insertion operations can be chained.</p>
+<p>An <tt class="computeroutput">ordered_inserter&lt;&gt;</tt> is also a valid STL output iterator. </p>
+<div class="refsect2" lang="en">
+<a name="id500893"></a><h3>
+<a name="boost.time_series.ordered_inserterconstruct-copy-destruct"></a><tt class="computeroutput">ordered_inserter</tt> construct/copy/destruct</h3>
+<div class="orderedlist"><ol type="1">
+<li>
+<pre class="literallayout"><a name="id252322-bb"></a>ordered_inserter(Series &amp; series);</pre>
+<p>Initializes <tt class="computeroutput">this-&gt;inserter_</tt> to <tt class="computeroutput">range_run_storage::ordered_inserter(series)</tt> </p>
+<p>
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><tt class="computeroutput">series</tt></span></td>
+<td><p>The series into which this inserter writes. </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Postconditions:</span></td>
+<td><p><tt class="computeroutput">this-&gt;offset_ == -inf</tt> </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Notes:</span></td>
+<td><p>implicit </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><a name="id252366-bb"></a>ordered_inserter(Series &amp; series, offset_type offset);</pre>
+<p>Initializes <tt class="computeroutput">this-&gt;inserter_</tt> to <tt class="computeroutput">range_run_storage::ordered_inserter(series)</tt> </p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">offset</tt></span></td>
+<td><p>The offset of the first run written into this inserter, if the offset of that run is not otherwise specified. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">series</tt></span></td>
+<td><p>The series into which this inserter writes. </p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Postconditions:</span></td>
+<td><p><tt class="computeroutput">this-&gt;offset_ == offset</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout">ordered_inserter&amp; <a name="id253102-bb"></a><span class="bold"><b>operator</b></span>=(<a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> <span class="bold"><b>const</b></span> &amp;);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout">ordered_inserter&amp; <a name="id253127-bb"></a><span class="bold"><b>operator</b></span>=(value_type <span class="bold"><b>const</b></span> &amp; value);</pre>
+<p>Same as <tt class="computeroutput">(*this)(value)</tt></p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset&gt; 
+  ordered_inserter&amp; <a name="id253154-bb"></a><span class="bold"><b>operator</b></span>=(std::pair&lt; Value, Offset &gt; <span class="bold"><b>const</b></span> &amp; tup);</pre>
+<p>Same as <tt class="computeroutput">(*this)(tup.first, tup.second)</tt></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">Value</tt> is implicitly convertible to <tt class="computeroutput">value_type</tt> </p>
+<p><tt class="computeroutput">Offset</tt> is implicitly convertible to <tt class="computeroutput">offset_type</tt> </p>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset&gt; 
+  ordered_inserter&amp; <a name="id253356-bb"></a><span class="bold"><b>operator</b></span>=(compressed_pair&lt; Value, Offset &gt; <span class="bold"><b>const</b></span> &amp; tup);</pre>
+<p>Same as <tt class="computeroutput">(*this)(tup.first(), tup.second())</tt></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">Value</tt> is implicitly convertible to <tt class="computeroutput">value_type</tt> </p>
+<p><tt class="computeroutput">Offset</tt> is implicitly convertible to <tt class="computeroutput">offset_type</tt> </p>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset&gt; 
+  ordered_inserter&amp; <a name="id253422-bb"></a><span class="bold"><b>operator</b></span>=(tuple&lt; Value, Offset &gt; <span class="bold"><b>const</b></span> &amp; tup);</pre>
+<p>Same as <tt class="computeroutput">(*this)(get&lt;0&gt;(tup), get&lt;1&gt;(tup))</tt></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">Value</tt> is implicitly convertible to <tt class="computeroutput">value_type</tt> </p>
+<p><tt class="computeroutput">Offset</tt> is implicitly convertible to <tt class="computeroutput">offset_type</tt> </p>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset&gt; 
+  ordered_inserter&amp; <a name="id253555-bb"></a><span class="bold"><b>operator</b></span>=(tuple&lt; Value, Offset, Offset &gt; <span class="bold"><b>const</b></span> &amp; tup);</pre>
+<p>Same as <tt class="computeroutput">(*this)(get&lt;0&gt;(tup), get&lt;1&gt;(tup), get&lt;2&gt;(tup))</tt></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">Value</tt> is implicitly convertible to <tt class="computeroutput">value_type</tt> </p>
+<p><tt class="computeroutput">Offset</tt> is implicitly convertible to <tt class="computeroutput">offset_type</tt> </p>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ol></div>
+</div>
+<div class="refsect2" lang="en">
+<a name="id501667"></a><h3>
+<a name="id255902-bb"></a><tt class="computeroutput">ordered_inserter</tt> public member functions</h3>
+<div class="orderedlist"><ol type="1">
+<li>
+<pre class="literallayout"><span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a name="id255907-bb"></a><span class="bold"><b>operator</b></span> *() ;</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a name="id251372-bb"></a><span class="bold"><b>operator</b></span>++() ;</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a name="id251398-bb"></a><span class="bold"><b>operator</b></span>++(<span class="bold"><b>int</b></span>) ;</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a name="id251499-bb"></a><span class="bold"><b>operator</b></span>()(value_type <span class="bold"><b>const</b></span> &amp; value) ;</pre>
+<p>Calls <tt class="computeroutput">range_run_storage::set_at(this-&gt;inserter_, run_type(this-&gt;offset_, this-&gt;offset_ + 1), value)</tt></p>
+<p>
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td><p><tt class="computeroutput">-inf != this-&gt;offset_</tt> </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Postconditions:</span></td>
+<td><p><tt class="computeroutput">this-&gt;offset_</tt> is greater by 1. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> <a name="id251555-bb"></a><span class="bold"><b>operator</b></span>()(value_type <span class="bold"><b>const</b></span> &amp; value, offset_type offset) ;</pre>
+<p>Calls <tt class="computeroutput">range_run_storage::set_at(this-&gt;inserter_, run_type(offset, offset + 1), value)</tt></p>
+<p>
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td><p><tt class="computeroutput">offset &gt;= this-&gt;offset_</tt> </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Postconditions:</span></td>
+<td><p><tt class="computeroutput">this-&gt;offset_ == offset + 1</tt> </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a> &amp;</span> 
+<a name="id252027-bb"></a><span class="bold"><b>operator</b></span>()(value_type <span class="bold"><b>const</b></span> &amp; value, offset_type offset, offset_type endoff) ;</pre>
+<p>Calls <tt class="computeroutput">range_run_storage::set_at(this-&gt;inserter_, std::make_pair(offset, endoff), value)</tt></p>
+<p>
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td><p><tt class="computeroutput">offset &gt;= this-&gt;offset_</tt> </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Postconditions:</span></td>
+<td><p><tt class="computeroutput">this-&gt;offset_ == endoff</tt> </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p><tt class="computeroutput">*this</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="type"><span class="bold"><b>void</b></span></span> <a name="id252234-bb"></a>commit() ;</pre>
+<p>Calls <tt class="computeroutput">range_run_storage::commit(this-&gt;inserter_)</tt> </p>
+</li>
+</ol></div>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="shifted_variable_period_sums.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.ordered_inserter.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="make_ordered_inserter.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

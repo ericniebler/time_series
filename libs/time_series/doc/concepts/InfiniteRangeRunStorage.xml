@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<concept name="InfiniteRangeRunStorage" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="infinite-range-run-storage-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>An InfiniteRangeRunStorage is a <conceptname>RangeRunStorage</conceptname>
+    with 2 additional <conceptname>Run</conceptname>s at the beginning and end
+    that may be infinite.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <refines const="no" concept="RangeRunStorage"/>
+
+  <associated-type name="pre_run_type">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::range_run_storage::op::pre_run">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="S"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of the pre-run, which comes before the
+      runs in the <code>runs</code> property map. The pre-run may be
+      infinite, but it is not required to be. <code>pre_run_type</code>
+      must be a model of the <conceptname>Run</conceptname> concept.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="post_run_type">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::range_run_storage::op::post_run">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="S"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of the post-run, which comes after the
+      runs in the <code>runs</code> property map. The post-run may be
+      infinite, but it is not required to be. <code>post_run_type</code>
+      must be a model of the <conceptname>Run</conceptname> concept.</simpara>
+    </description>
+  </associated-type>
+
+  <valid-expression name="Pre-Run">
+    <apply-function name="boost::range_run_storage::pre_run">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="pre_run_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the pre-run.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Pre-Value">
+    <apply-function name="boost::range_run_storage::pre_value">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="value_type"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Returns the value of the pre-run. If the pre-run is empty, the
+    return value of <code>pre_value()</code> is undefined.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Post-Run">
+    <apply-function name="boost::range_run_storage::post_run">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="post_run_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the post-run.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Post-Value">
+    <apply-function name="boost::range_run_storage::post_value">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="value_type"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Returns the value of the post-run. If the post-run is empty, the
+    return value of <code>post_value()</code> is undefined.</semantics>
+  </valid-expression>
+
+  <example-model>
+    <type name="boost::time_series::clipped_series"/>
+  </example-model>
+
+</concept>

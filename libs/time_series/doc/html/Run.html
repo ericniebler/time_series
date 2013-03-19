@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Concept Run</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="range_run_storage_reference.html" title="Range Run Storage Reference">
+<link rel="prev" href="range_run_storage_reference.html" title="Range Run Storage Reference">
+<link rel="next" href="RangeRunStorage.html" title="Concept RangeRunStorage">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="range_run_storage_reference.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="RangeRunStorage.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="Run"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Concept Run</span></h2>
+<p>Run</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id512599"></a><h2>Description</h2>
+<p>A Run represents an (offset, end_offset) 2-tuple, which represents
+    a half-open range of numbers.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id512610"></a><h2>Associated types</h2>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p><span class="bold"><b>offset_type</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::range_run_storage::op::offset(boost::add_reference&lt;R&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>The type of the offset and end_offset values.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>length_type</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::range_run_storage::op::length(boost::add_reference&lt;R&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>The type of the run length; usually an unsigned version of
+      the offset_type, if the offset_type is integral.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>is_unit_length</b></span></p>
+<pre class="literallayout">boost::range_run_storage::traits::is_unit_length&lt;R&gt;::type</pre>
+<p>
+      </p>
+<p>Either <tt class="computeroutput">mpl::true_</tt> or <tt class="computeroutput">mpl::false_</tt> depending
+      on whether or not this Run is indivisible.</p>
+<p>
+    </p>
+</li>
+</ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id512701"></a><h2>Notation</h2>
+<div class="variablelist"><dl>
+<dt><span class="term">R</span></dt>
+<dd>A type playing the role of run-type in the <a href="Run.html" title="Concept Run">Run</a> concept.</dd>
+<dt><span class="term"><tt class="varname">r</tt></span></dt>
+<dd>Object of type R</dd>
+</dl></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id512731"></a><h2>Valid expressions</h2>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Offset</p></td>
+<td><p>boost::range_run_storage::offset(r)</p></td>
+<td><p><span class="type">offset_type</span></p></td>
+<td><p>Returns the start offset of the Run.</p></td>
+</tr>
+<tr>
+<td><p>End Offset</p></td>
+<td><p>boost::range_run_storage::end_offset(r)</p></td>
+<td><p><span class="type">offset_type</span></p></td>
+<td><p>Returns the end offset of the Run.</p></td>
+</tr>
+<tr>
+<td><p>Length</p></td>
+<td><p>boost::range_run_storage::length(r)</p></td>
+<td><p><span class="type">length_type</span></p></td>
+<td><p>Returns the length of the Run.</p></td>
+</tr>
+<tr>
+<td><p>Empty</p></td>
+<td><p>boost::range_run_storage::empty(r)</p></td>
+<td><p>Convertible to <span class="type">bool</span></p></td>
+<td><p>Returns true if the Run is empty, false otherwise.</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id512831"></a><h2>Models</h2>
+<div class="itemizedlist"><ul type="disc"><li><span class="simplelist"><span class="type">std::pair&lt;int, int&gt;</span></span></li></ul></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="range_run_storage_reference.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="RangeRunStorage.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<concept name="OrderedInserter" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="O" role="ordered-inserter-type" />
+  <param name="S" role="range-run-storage-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>. 
+    The type <arg num="2" /> must be a model of <conceptname>RangeRunStorage</conceptname>.
+  </models-sentence>
+
+  <description>
+    <para>An OrderedInserter is a mechanism for efficiently populating a RangeRunStorage. Values
+    and runs are pushed into it in order, and when the OrderedInserter is committed, the data
+    is written into the underlying RangeRunStorage.</para>
+  </description>
+
+  <associated-type name="value_type">
+    <get-member-type name="value_type">
+      <apply-template name="RangeRunStorage">
+        <type name="S"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The value type of the underlying RangeRunStorage.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="run_type">
+    <get-member-type name="run_type">
+      <apply-template name="RangeRunStorage">
+        <type name="S"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The run type of the underlying RangeRunStorage.</simpara>
+    </description>
+  </associated-type>
+
+  <notation variables="o">
+    <sample-value>
+      <type name="O" />
+    </sample-value>
+  </notation>
+
+  <notation variables="r">
+    <sample-value>
+      <type name="run_type" />
+    </sample-value>
+  </notation>
+
+  <notation variables="v">
+    <sample-value>
+      <type name="value_type" />
+    </sample-value>
+  </notation>
+
+  <valid-expression name="SetAt">
+    <apply-function name="boost::range_run_storage::set_at">
+      <sample-value>
+        <type name="O" />
+      </sample-value>
+      <sample-value>
+        <type name="run_type" />
+      </sample-value>
+      <sample-value>
+        <type name="value_type" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="void"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Adds a run <code>r</code> with value <code>v</code>. This operation
+    is amortized O(1). The offset of the run <code>r</code> must be greater than or
+    equal to the end-offset of any run added previously.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Commit">
+    <apply-function name="boost::range_run_storage::commit">
+      <sample-value>
+        <type name="O" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="void"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Writes all the runs and values into the underlying series.
+    The complexity is O(N) in the worst case.</semantics>
+  </valid-expression>
+
+  <example-model>
+    <type name="boost::time_series::ordered_inserter&lt;boost::time_series::dense_series&lt;double&gt; &gt;" />
+  </example-model>
+
+</concept>

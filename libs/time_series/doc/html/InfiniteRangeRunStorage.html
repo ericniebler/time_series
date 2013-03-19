@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Concept InfiniteRangeRunStorage</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="range_run_storage_reference.html" title="Range Run Storage Reference">
+<link rel="prev" href="RangeRunStorage.html" title="Concept RangeRunStorage">
+<link rel="next" href="OrderedInserter.html" title="Concept OrderedInserter">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="RangeRunStorage.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="OrderedInserter.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="InfiniteRangeRunStorage"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Concept InfiniteRangeRunStorage</span></h2>
+<p>InfiniteRangeRunStorage</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513226"></a><h2>Description</h2>
+<p>An InfiniteRangeRunStorage is a <a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+    with 2 additional <a href="Run.html" title="Concept Run">Run</a>s at the beginning and end
+    that may be infinite.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513252"></a><h2>Refinement of</h2>
+<div class="itemizedlist"><ul type="disc"><li><p><a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a></p></li></ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513266"></a><h2>Associated types</h2>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p><span class="bold"><b>pre_run_type</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::range_run_storage::op::pre_run(boost::add_reference&lt;S&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>The type of the pre-run, which comes before the
+      runs in the <tt class="computeroutput">runs</tt> property map. The pre-run may be
+      infinite, but it is not required to be. <tt class="computeroutput">pre_run_type</tt>
+      must be a model of the <a href="Run.html" title="Concept Run">Run</a> concept.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>post_run_type</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::range_run_storage::op::post_run(boost::add_reference&lt;S&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>The type of the post-run, which comes after the
+      runs in the <tt class="computeroutput">runs</tt> property map. The post-run may be
+      infinite, but it is not required to be. <tt class="computeroutput">post_run_type</tt>
+      must be a model of the <a href="Run.html" title="Concept Run">Run</a> concept.</p>
+<p>
+    </p>
+</li>
+</ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513365"></a><h2>Notation</h2>
+<div class="variablelist"><dl>
+<dt><span class="term">S</span></dt>
+<dd>A type playing the role of infinite-range-run-storage-type in the <a href="InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a> concept.</dd>
+<dt><span class="term"><tt class="varname">s</tt></span></dt>
+<dd>Object of type S</dd>
+</dl></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513397"></a><h2>Valid expressions</h2>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Pre-Run</p></td>
+<td><p>boost::range_run_storage::pre_run(s)</p></td>
+<td><p><span class="type">pre_run_type</span></p></td>
+<td><p>Returns the pre-run.</p></td>
+</tr>
+<tr>
+<td><p>Pre-Value</p></td>
+<td><p>boost::range_run_storage::pre_value(s)</p></td>
+<td><p>Convertible to <span class="type">value_type</span></p></td>
+<td><p>Returns the value of the pre-run. If the pre-run is empty, the
+    return value of <tt class="computeroutput">pre_value()</tt> is undefined.</p></td>
+</tr>
+<tr>
+<td><p>Post-Run</p></td>
+<td><p>boost::range_run_storage::post_run(s)</p></td>
+<td><p><span class="type">post_run_type</span></p></td>
+<td><p>Returns the post-run.</p></td>
+</tr>
+<tr>
+<td><p>Post-Value</p></td>
+<td><p>boost::range_run_storage::post_value(s)</p></td>
+<td><p>Convertible to <span class="type">value_type</span></p></td>
+<td><p>Returns the value of the post-run. If the post-run is empty, the
+    return value of <tt class="computeroutput">post_value()</tt> is undefined.</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513514"></a><h2>Models</h2>
+<div class="itemizedlist"><ul type="disc"><li><span class="simplelist"><span class="type">boost::time_series::clipped_series</span></span></li></ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513528"></a><h2>See also</h2>
+<div class="itemizedlist"><ul type="disc"></ul></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="RangeRunStorage.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="OrderedInserter.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

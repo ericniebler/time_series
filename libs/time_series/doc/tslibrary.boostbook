@@ -1,0 +1,7 @@
+<?xml version="1.0" standalone="yes"?>
+<library-reference id="time_series_reference" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Time Series Reference</title>
+    <xi:include href="concepts/TimeSeries.xml"/>
+    <xi:include href="concepts/Mutable_TimeSeries.xml"/>
+    <xi:include href="tsdoc.boostbook" xpointer="xpointer(//header)"/>
+</library-reference>

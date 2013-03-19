@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Struct template TimeSeries</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../../time_series/reference.html#header.boost.time_series.concepts.hpp" title="Header &lt;boost/time_series/concepts.hpp&gt;">
+<link rel="prev" href="../clipped_series.html" title="Struct template clipped_series">
+<link rel="next" href="Mutable_TimeSeries.html" title="Struct template Mutable_TimeSeries">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../clipped_series.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../../time_series/reference.html#header.boost.time_series.concepts.hpp"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="Mutable_TimeSeries.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.concepts.TimeSeries"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Struct template TimeSeries</span></h2>
+<p>boost::time_series::concepts::TimeSeries &#8212; </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; 
+<span class="bold"><b>struct</b></span> TimeSeries {
+  <span class="emphasis"><em>// types</em></span>
+  <span class="bold"><b>typedef</b></span> <a href="../traits/discretization_type.html" title="Struct template discretization_type">traits::discretization_type</a>&lt; S &gt;::type discretization_type;
+  <span class="bold"><b>typedef</b></span> <a href="../traits/storage_category.html" title="Struct template storage_category">traits::storage_category</a>&lt; S &gt;::type    storage_category;   
+
+  <span class="emphasis"><em>// <a href="TimeSeries.html#boost.time_series.concepts.TimeSeriesconstruct-copy-destruct">construct/copy/destruct</a></em></span>
+  <a href="TimeSeries.html#id258269-bb">~TimeSeries</a>();
+};</pre></div>
+<div class="refsect1" lang="en">
+<a name="id482533"></a><h2>Description</h2>
+<div class="refsect2" lang="en">
+<a name="id482537"></a><h3>
+<a name="boost.time_series.concepts.TimeSeriesconstruct-copy-destruct"></a><tt class="computeroutput">TimeSeries</tt> construct/copy/destruct</h3>
+<div class="orderedlist"><ol type="1"><li><pre class="literallayout"><a name="id258269-bb"></a>~TimeSeries();</pre></li></ol></div>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../clipped_series.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../../time_series/reference.html#header.boost.time_series.concepts.hpp"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="Mutable_TimeSeries.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Function template first_run</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.first_last.hpp" title="Header &lt;boost/range_run_storage/algorithm/first_last.hpp&gt;">
+<link rel="prev" href="copy.html" title="Function template copy">
+<link rel="next" href="first_value.html" title="Function template first_value">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="copy.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.first_last.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="first_value.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.range_run_storage.first_run"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Function template first_run</span></h2>
+<p>boost::range_run_storage::first_run &#8212; Returns the first run of an <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis">
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In&gt; <span class="type"><span class="emphasis"><em>unspecified</em></span></span> first_run(In <span class="bold"><b>const</b></span> &amp; s);</pre></div>
+<div class="refsect1" lang="en">
+<a name="id515277"></a><h2>Description</h2>
+<p>Returns the first <tt class="computeroutput">Run</tt> of an <tt class="computeroutput">InfiniteRangeRunStorage</tt>. If there are no runs in the <tt class="computeroutput">InfinteRangeRunStorage</tt>, an empty run is returned. Complexity is O(1).</p>
+<p>
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><tt class="computeroutput">s</tt></span></td>
+<td><p>The <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td><p><tt class="computeroutput">In</tt> is a model of <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p>A <tt class="computeroutput">Run</tt> which has the same offset and end offset as the first run in the <tt class="computeroutput">InfiniteRangeRunStorage</tt> if one exists, or and empty run if one doesn't. </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="copy.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.first_last.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="first_value.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

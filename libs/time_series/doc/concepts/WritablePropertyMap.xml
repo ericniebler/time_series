@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<concept name="WritablePropertyMap" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="BinaryFunc" role="unary-function-type" />
+  <param name="Iter" role="iterator-type" />
+  <param name="Value" role="value-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <conceptname>BinaryFunction</conceptname>.
+  </models-sentence>
+
+  <models-sentence>
+    The type <arg num="2" /> must be a model of <conceptname>ReadableIterator</conceptname>
+    and <conceptname>IncrementableIterator</conceptname>.
+  </models-sentence>
+
+  <description>
+    <para>A WritablePropertyMap is used for writing a value at a position, as represented
+    by a cursor.</para>
+  </description>
+
+  <notation variables="func">
+    <sample-value>
+      <type name="BinaryFunc" />
+    </sample-value>
+  </notation>
+
+  <notation variables="pos">
+    <sample-value>
+      <type name="Iter" />
+    </sample-value>
+  </notation>
+  
+  <notation variables="val">
+    <sample-value>
+      <reference-to>
+        <const>
+          <type name="Value" />
+        </const>
+      </reference-to>
+    </sample-value>
+  </notation>
+  
+  <!-- refines const="no" concept="CopyConstructible"/ -->
+  
+  <associated-type name="elements">
+    <type name="BinaryFunc"/>
+    <description>
+      <simpara>Must be a model of <conceptname>BinaryFunction</conceptname>.</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="cursor">
+    <type name="Iter"/>
+    <description>
+      <simpara>Must be a model of <conceptname>ReadableIterator</conceptname>
+      and <conceptname>IncrementableIterator</conceptname>.</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="value_type">
+    <type name="Value"/>
+    <description>
+      <simpara>Must be a model of <conceptname>ReadableIterator</conceptname>
+      and <conceptname>IncrementableIterator</conceptname>.</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="key_type">
+    <get-member-type name="reference">
+      <apply-template name="ReadableIterator">
+        <type name="Iter" />
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The key type of the cursor</simpara>
+    </description>
+  </associated-type>
+  
+  <valid-expression name="Write at position">
+    <apply-funcobj>
+      <sample-value>
+        <type name="BinaryFunc" />
+      </sample-value>
+      <dereference>
+        <sample-value>
+          <type name="Iter" />
+        </sample-value>
+      </dereference>
+      <sample-value>
+        <reference-to>
+          <const>
+            <type name="Value" />
+          </const>
+        </reference-to>
+      </sample-value>
+    </apply-funcobj>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="void"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Writes the value at the specified position.
+    Requires <code>operator()</code>.</semantics>
+  </valid-expression>
+
+<!--  
+  <example-model>
+    <type name="int" />
+  </example-model>
+-->
+
+</concept>

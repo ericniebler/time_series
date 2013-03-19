@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<concept name="Mutable_Sequence" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="sequence-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A Mutable_Sequence exposes an <code>elements</code> property map that models 
+    <conceptname>ReadWritePropertyMap</conceptname> and <code>begin</code>
+    and <code>end</code> cursors that model <conceptname>ReadableIterator</conceptname>
+    and <conceptname>IncrementableIterator</conceptname>.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <refines const="no" concept="Sequence"/>
+
+  <valid-type-expression name="Elements type properties">
+    <description/>
+    <type name="elements"/>
+    <return-type>
+      <models-as-first-arg const="no" testable="yes" concept="ReadWritePropertyMap">
+        <type name="cursor"/>
+      </models-as-first-arg>
+    </return-type>
+  </valid-type-expression>
+
+  <see-also concept="ReadWritePropertyMap"/>
+
+<!--  
+  <example-model>
+    <type name="int" />
+  </example-model>
+-->
+
+</concept>

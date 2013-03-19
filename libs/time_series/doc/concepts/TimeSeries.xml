@@ -1,0 +1,133 @@
+<?xml version="1.0" ?>
+<concept name="TimeSeries" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="time-series-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A TimeSeries is an <conceptname>InfiniteRangeRunStorage</conceptname>
+    with a discretization.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <notation variables="o">
+    <sample-value>
+      <type name="offset_type" />
+    </sample-value>
+  </notation>
+
+  <notation variables="x y">
+    <sample-value>
+      <type name="discretization_type" />
+    </sample-value>
+  </notation>
+
+  <refines const="no" concept="InfiniteRangeRunStorage"/>
+
+  <associated-type name="discretization_type">
+    <get-member-type name="type">
+      <apply-template name="boost::time_series::traits::discretization_type">
+        <type name="S"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of the discretization, which could be a runtime value
+      or an MPL Integral Constant.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="storage_category">
+    <get-member-type name="type">
+      <apply-template name="boost::time_series::traits::storage_category">
+        <type name="S"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The category of the TimeSeries storage.</simpara>
+    </description>
+  </associated-type>
+
+  <valid-expression name="Get Discretization">
+    <apply-method name="discretization">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-method>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="discretization_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the series' discretization.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Discretization Compare Equal">
+    <equal-to>
+      <sample-value>
+        <type name="discretization_type" />
+      </sample-value>
+      <sample-value>
+        <type name="discretization_type" />
+      </sample-value>
+    </equal-to>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="bool"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Compares two discretizations for equality.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Discretization Compare Inequal">
+    <not-equal-to>
+      <sample-value>
+        <type name="discretization_type" />
+      </sample-value>
+      <sample-value>
+        <type name="discretization_type" />
+      </sample-value>
+    </not-equal-to>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="bool"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Compares two discretizations for inequality.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Array Subscript">
+    <subscript>
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+      <sample-value>
+        <type name="offset_type" />
+      </sample-value>
+    </subscript>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="value_type"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Equivalent to <code>boost::range_run_storage::get_at(s, o)</code>.</semantics>
+  </valid-expression>
+
+  <example-model>
+    <type name="boost::time_series::dense_series" />
+  </example-model>
+
+</concept>

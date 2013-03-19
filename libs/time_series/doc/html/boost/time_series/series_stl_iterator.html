@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Struct template series_stl_iterator</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../time_series/reference.html#header.boost.time_series.utility.series_stl_iterator.hpp" title="Header &lt;boost/time_series/utility/series_stl_iterator.hpp&gt;">
+<link rel="prev" href="../../id274153-bb.html" title="Struct template storage_category&lt;S volatile const&gt;">
+<link rel="next" href="time_series_root.html" title="Struct time_series_root">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../../id274153-bb.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.utility.series_stl_iterator.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="time_series_root.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.series_stl_iterator"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Struct template series_stl_iterator</span></h2>
+<p>boost::time_series::series_stl_iterator &#8212; </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+<span class="bold"><b>struct</b></span> series_stl_iterator {
+  <span class="emphasis"><em>// types</em></span>
+  <span class="bold"><b>typedef</b></span> <a href="concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series &gt; series_concept;
+  <span class="bold"><b>typedef</b></span> series_concept::value_type     value_type;    
+  <span class="bold"><b>typedef</b></span> series_concept::cursor         cursor_type;   
+  <span class="bold"><b>typedef</b></span> series_concept::offset_type    offset_type;   
+  <span class="bold"><b>typedef</b></span> series_concept::run_type       run_type;      
+  <span class="bold"><b>typedef</b></span> value_type <span class="bold"><b>const</b></span> &amp;             reference;     
+
+  <span class="emphasis"><em>// <a href="series_stl_iterator.html#boost.time_series.series_stl_iteratorconstruct-copy-destruct">construct/copy/destruct</a></em></span>
+  <a href="series_stl_iterator.html#id274268-bb">series_stl_iterator</a>(Series &amp;, cursor_type, offset_type);
+
+  <span class="emphasis"><em>// <a href="series_stl_iterator.html#id274292-bb">private member functions</a></em></span>
+  <span class="type"><span class="bold"><b>void</b></span></span> <a href="series_stl_iterator.html#id274297-bb">increment</a>() ;
+  <span class="type"><span class="bold"><b>bool</b></span></span> <a href="series_stl_iterator.html#id274307-bb">equal</a>(<a href="series_stl_iterator.html" title="Struct template series_stl_iterator">series_stl_iterator</a> <span class="bold"><b>const</b></span> &amp;) <span class="bold"><b>const</b></span>;
+  <span class="type">reference</span> <a href="series_stl_iterator.html#id274327-bb">dereference</a>() <span class="bold"><b>const</b></span>;
+};</pre></div>
+<div class="refsect1" lang="en">
+<a name="id512032"></a><h2>Description</h2>
+<p>An STL-compatible iterator over a range/run storage that makes it look like a continuous sequence </p>
+<div class="refsect2" lang="en">
+<a name="id512040"></a><h3>
+<a name="boost.time_series.series_stl_iteratorconstruct-copy-destruct"></a><tt class="computeroutput">series_stl_iterator</tt> construct/copy/destruct</h3>
+<div class="orderedlist"><ol type="1"><li><pre class="literallayout"><a name="id274268-bb"></a>series_stl_iterator(Series &amp; series, cursor_type cursor, offset_type offset);</pre></li></ol></div>
+</div>
+<div class="refsect2" lang="en">
+<a name="id512083"></a><h3>
+<a name="id274292-bb"></a><tt class="computeroutput">series_stl_iterator</tt> private member functions</h3>
+<div class="orderedlist"><ol type="1">
+<li><pre class="literallayout"><span class="type"><span class="bold"><b>void</b></span></span> <a name="id274297-bb"></a>increment() ;</pre></li>
+<li><pre class="literallayout"><span class="type"><span class="bold"><b>bool</b></span></span> <a name="id274307-bb"></a>equal(<a href="series_stl_iterator.html" title="Struct template series_stl_iterator">series_stl_iterator</a> <span class="bold"><b>const</b></span> &amp; that) <span class="bold"><b>const</b></span>;</pre></li>
+<li><pre class="literallayout"><span class="type">reference</span> <a name="id274327-bb"></a>dereference() <span class="bold"><b>const</b></span>;</pre></li>
+</ol></div>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../../id274153-bb.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.utility.series_stl_iterator.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="time_series_root.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

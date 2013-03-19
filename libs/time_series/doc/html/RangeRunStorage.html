@@ -1,0 +1,165 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Concept RangeRunStorage</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="range_run_storage_reference.html" title="Range Run Storage Reference">
+<link rel="prev" href="Run.html" title="Concept Run">
+<link rel="next" href="InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="Run.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="InfiniteRangeRunStorage.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="RangeRunStorage"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Concept RangeRunStorage</span></h2>
+<p>RangeRunStorage</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id512862"></a><h2>Description</h2>
+<p>A RangeRunStorage is a non-continuous
+    <a href="Sequence.html" title="Concept Sequence">Sequence</a> where the non-zeros
+    are represented by a property map of <a href="Run.html" title="Concept Run">Run</a>s.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id512888"></a><h2>Refinement of</h2>
+<div class="itemizedlist"><ul type="disc"><li><p><a href="Sequence.html" title="Concept Sequence">Sequence</a></p></li></ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id512903"></a><h2>Associated types</h2>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p><span class="bold"><b>runs</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::range_run_storage::op::runs(boost::add_reference&lt;S&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>Returns the runs property map for accessing the run
+      associated with a position in the storage.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>zero_type</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::range_run_storage::op::zero(boost::add_reference&lt;S&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>The type of the zeros of the storage.
+      Must be convertible to value_type.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>run_type</b></span></p>
+<pre class="literallayout">ReadablePropertyMap&lt;runs, cursor&gt;::value_type</pre>
+<p>
+      </p>
+<p>The type of the runs in the runs property map.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>offset_type</b></span></p>
+<pre class="literallayout">Run&lt;run_type&gt;::offset_type</pre>
+<p>
+      </p>
+<p>The offset type of the run.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>length_type</b></span></p>
+<pre class="literallayout">Run&lt;run_type&gt;::length_type</pre>
+<p>
+      </p>
+<p>The length type of the run.</p>
+<p>
+    </p>
+</li>
+</ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513023"></a><h2>Notation</h2>
+<div class="variablelist"><dl>
+<dt><span class="term">S</span></dt>
+<dd>A type playing the role of range-run-storage-type in the <a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a> concept.</dd>
+<dt><span class="term"><tt class="varname">s</tt></span></dt>
+<dd>Object of type S</dd>
+<dt><span class="term"><tt class="varname">o</tt></span></dt>
+<dd>Object of type offset_type</dd>
+</dl></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513062"></a><h2>Valid expressions</h2>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Runs</p></td>
+<td><p>boost::range_run_storage::runs(s)</p></td>
+<td><p><span class="type">runs</span></p></td>
+<td><p>Returns the <a href="ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a>
+    for accessing the runs of the <a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+    <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+<tr>
+<td><p>Zero</p></td>
+<td><p>boost::range_run_storage::zero(s)</p></td>
+<td><p><span class="type">zero_type</span></p></td>
+<td><p>Returns the zero value of the <a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+    <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+<tr>
+<td><p>Zero Convertibility</p></td>
+<td><p>boost::range_run_storage::zero(s)</p></td>
+<td><p>Convertible to <span class="type">value_type</span></p></td>
+<td><p>The zero_type is convertible to the value_type.</p></td>
+</tr>
+<tr>
+<td><p>GetAt</p></td>
+<td><p>boost::range_run_storage::get_at(s, o)</p></td>
+<td><p>Convertible to <span class="type">value_type</span></p></td>
+<td><p>Get the value at the given offset. Note: the complexity is not
+    guaranteed to be O(1).</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513203"></a><h2>See also</h2>
+<div class="itemizedlist"><ul type="disc"></ul></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="Run.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="InfiniteRangeRunStorage.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

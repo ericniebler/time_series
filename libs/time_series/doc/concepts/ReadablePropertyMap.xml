@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<concept name="ReadablePropertyMap" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="UnaryFunc" role="unary-function-type" />
+  <param name="Iter" role="iterator-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <conceptname>UnaryFunction</conceptname>.
+  </models-sentence>
+
+  <models-sentence>
+    The type <arg num="2" /> must be a model of <conceptname>ReadableIterator</conceptname>
+    and <conceptname>IncrementableIterator</conceptname>.
+  </models-sentence>
+
+  <description>
+    <para>A ReadablePropertyMap is used for mapping a position, as represented
+    by a cursor, to a value.</para>
+  </description>
+
+  <notation variables="func">
+    <sample-value>
+      <type name="UnaryFunc" />
+    </sample-value>
+  </notation>
+
+  <notation variables="pos">
+    <sample-value>
+      <type name="Iter" />
+    </sample-value>
+  </notation>
+  
+  <!-- refines const="no" concept="CopyConstructible"/ -->
+  
+  <associated-type name="elements">
+    <type name="UnaryFunc"/>
+    <description>
+      <simpara>Must be a model of <conceptname>UnaryFunction</conceptname>.</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="cursor">
+    <type name="Iter"/>
+    <description>
+      <simpara>Must be a model of <conceptname>ReadableIterator</conceptname>
+      and <conceptname>IncrementableIterator</conceptname>.</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="key_type">
+    <get-member-type name="reference">
+      <apply-template name="ReadableIterator">
+        <type name="Iter" />
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The key type of the cursor</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="value_type">
+    <get-member-type name="type">
+      <apply-template name="property_map::traits::value_type">
+        <type name="UnaryFunc" />
+        <type name="Iter" />
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The value type of the elements property map</simpara>
+    </description>
+  </associated-type>
+  
+  <valid-expression name="Read at position">
+    <apply-funcobj>
+      <sample-value>
+        <reference-to>
+          <type name="UnaryFunc" />
+        </reference-to>
+      </sample-value>
+      <dereference>
+        <sample-value>
+          <type name="Iter" />
+        </sample-value>
+      </dereference>
+    </apply-funcobj>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="value_type"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Reads the value at the specified position.
+    Requires <code>operator()</code>.</semantics>
+  </valid-expression>
+
+<!--  
+  <example-model>
+    <type name="int" />
+  </example-model>
+-->
+
+</concept>

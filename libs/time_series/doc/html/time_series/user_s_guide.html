@@ -1,0 +1,737 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>User's Guide</title>
+<link rel="stylesheet" href="../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="prev" href="../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="next" href="user_s_guide/series_algorithms.html" title="Series
+      Algorithms">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../boost.png"></td>
+<td align="center"><a href="../../../index.htm">Home</a></td>
+<td align="center"><a href="../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../index.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="user_s_guide/series_algorithms.html"><img src="../images/next.png" alt="Next"></a>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="time_series.user_s_guide"></a><a href="user_s_guide.html" title="User's Guide">User's Guide</a></h2></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers">Series
+      Containers</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.series_initialization">Series
+        Initialization</a></span></dt>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.zeros_and_sparse_data">Zeros
+        and Sparse Data</a></span></dt>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.series_discretization_and_strong_typing">Series
+        Discretization and Strong Typing</a></span></dt>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.floating_point_offsets">Floating-point
+        Offsets</a></span></dt>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.populating_a_series">Populating
+        a Series</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html">Series
+      Algorithms</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.arithmetic">Arithmetic</a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.promotion">Promotion</a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.conversions">Conversions</a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms">Algorithms</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__adjacent_difference___"><tt class="literal">adjacent_difference()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__clip___"><tt class="literal">clip()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__coarse_grain___"><tt class="literal">coarse_grain()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__fine_grain___"><tt class="literal">fine_grain()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__integrate___"><tt class="literal">integrate()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__invert_elements___"><tt class="literal">invert_elements()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__invert_heaviside___"><tt class="literal">invert_heaviside()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__partial_sum___"><tt class="literal">partial_sum()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__period_sums___"><tt class="literal">period_sums()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__piecewise_sample___"><tt class="literal">piecewise_sample()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__piecewise_surface_sample___"><tt class="literal">piecewise_surface_sample()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__rotate_left___"><tt class="literal">rotate_left()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__rotate_right___"><tt class="literal">rotate_right()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__shift___"><tt class="literal">shift()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__subscript___"><tt class="literal">subscript()</tt></a></span></dt>
+<dt><span class="section"><a href="user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__variable_period_sums___"><tt class="literal">variable_period_sums()</tt></a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="section"><a href="user_s_guide/extensibility.html">Extensibility</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="user_s_guide/extensibility.html#time_series.user_s_guide.extensibility.the_timeseries_concept">The
+        TimeSeries Concept</a></span></dt>
+<dt><span class="section"><a href="user_s_guide/extensibility.html#time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms">Defining
+        New TimeSeries algorithms</a></span></dt>
+<dt><span class="section"><a href="user_s_guide/extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type">Defining
+        a New TimeSeries Type</a></span></dt>
+</dl></dd>
+</dl></div>
+<p>
+      This section describes how to use the Boost.Time_series library to represent
+      and manipulate series of data. For detailed information regarding specific
+      components in Boost.Time_series, check the <a href="reference.html" title="Reference">Reference</a>
+      section.
+    </p>
+<a name="time_series.user_s_guide.hello__world_"></a><h2>
+<a name="id374045"></a>
+      <a href="user_s_guide.html#time_series.user_s_guide.hello__world_">Hello, World!</a>
+    </h2>
+<p>
+      
+      Below is a complete example of how to use Boost.Time_series.
+    </p>
+<pre class="programlisting">
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">foreach</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">time_series</span><span class="special">/</span><span class="identifier">dense_series</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">time_series</span><span class="special">/</span><span class="identifier">sparse_series</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">time_series</span><span class="special">/</span><span class="identifier">ordered_inserter</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">time_series</span><span class="special">/</span><span class="identifier">numeric</span><span class="special">/</span><span class="identifier">numeric</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">time_series</span><span class="special">;</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
+<span class="special">{</span>
+    <span class="comment">// A dense series is like a std::vector
+</span>    <span class="identifier">dense_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">d</span><span class="special">(</span> <span class="identifier">start</span><span class="special">=</span><span class="number">0</span><span class="special">,</span> <span class="identifier">stop</span><span class="special">=</span><span class="number">4</span><span class="special">,</span> <span class="identifier">value</span><span class="special">=</span><span class="number">2.2</span> <span class="special">);</span>
+    
+    <span class="comment">// A sparse series only stores its non-zeros
+</span>    <span class="identifier">sparse_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">s</span><span class="special">;</span>
+    
+    <span class="comment">// Filling a sparse_series (or any series, actually) can be done
+</span>    <span class="comment">// with an ordered insertion, as follows:
+</span>    <span class="identifier">make_ordered_inserter</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span>
+        <span class="special">(</span><span class="number">4.0</span><span class="special">,</span> <span class="number">1</span><span class="special">)</span>  <span class="comment">// Insert value 4.0 at offset 1
+</span>        <span class="special">(</span><span class="number">6.0</span><span class="special">,</span> <span class="number">3</span><span class="special">)</span>  <span class="comment">// Insert value 6.0 at offset 3
+</span>    <span class="special">.</span><span class="identifier">commit</span><span class="special">();</span>  <span class="comment">// Commit the changes to sparse_series s.
+</span>
+    <span class="comment">// Multiplication is done element-wise. Multiplying a sparse
+</span>    <span class="comment">// series by a dense series yields a sparse series.
+</span>    <span class="identifier">sparse_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">r</span> <span class="special">=</span> <span class="identifier">d</span> <span class="special">*</span> <span class="identifier">s</span><span class="special">;</span>
+    
+    <span class="comment">// All series are infinite, but a clipped range is a valid
+</span>    <span class="comment">// STL container, with iterators that make the storage look
+</span>    <span class="comment">// dense; that is, they traverse both the zeros and the 
+</span>    <span class="comment">// non-zeros, even if the storage is sparse.
+</span>    <span class="identifier">BOOST_FOREACH</span><span class="special">(</span> <span class="keyword">double</span> <span class="identifier">val</span><span class="special">,</span> <span class="identifier">clip</span><span class="special">(</span> <span class="identifier">r</span><span class="special">,</span> <span class="number">0</span><span class="special">,</span> <span class="number">4</span> <span class="special">)</span> <span class="special">)</span>
+    <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">val</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+    <span class="special">}</span>
+    
+    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+<span class="special">}</span>
+</pre>
+<p>
+      This program displays the following:
+    </p>
+<pre class="programlisting">0
+8.8
+0
+13.2
+</pre>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="time_series.user_s_guide.series_containers"></a><a href="user_s_guide.html#time_series.user_s_guide.series_containers" title="Series
+      Containers">Series
+      Containers</a></h3></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.series_initialization">Series
+        Initialization</a></span></dt>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.zeros_and_sparse_data">Zeros
+        and Sparse Data</a></span></dt>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.series_discretization_and_strong_typing">Series
+        Discretization and Strong Typing</a></span></dt>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.floating_point_offsets">Floating-point
+        Offsets</a></span></dt>
+<dt><span class="section"><a href="user_s_guide.html#time_series.user_s_guide.series_containers.populating_a_series">Populating
+        a Series</a></span></dt>
+</dl></div>
+<p>
+        
+        Boost.Time_series offers the following series types for representing your
+        data:
+      </p>
+<div class="variablelist">
+<p class="title"><b></b></p>
+<dl>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/dense_series.html" title="Struct template dense_series">dense_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A dense series, much like <tt class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;&gt;</span></tt>
+</dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A sparse series where runs have unit length.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/piecewise_constant_series.html" title="Struct template piecewise_constant_series">piecewise_constant_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A series which has an arbitrary number of runs of arbitrary length.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/delta_series.html" title="Struct template delta_series">delta_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A series which has exactly one run of unit length.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/delta_unit_series.html" title="Struct template delta_unit_series">delta_unit_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A delta series for which the run has a value of <tt class="computeroutput"><span class="number">1</span></tt>.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/constant_series.html" title="Struct template constant_series">constant_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A series which has exactly one run from -Inf to +Inf
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/characteristic_series.html" title="Struct template characteristic_series">characteristic_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A series which has exactly one run.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/characteristic_unit_series.html" title="Struct template characteristic_unit_series">characteristic_unit_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A characteristic series for which the run has a value of <tt class="computeroutput"><span class="number">1</span></tt>.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/heaviside_series.html" title="Struct template heaviside_series">heaviside_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A series which has one run from some offset to +Inf.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/heaviside_unit_series.html" title="Struct template heaviside_unit_series">heaviside_unit_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A heaviside series for which the run has a value of <tt class="computeroutput"><span class="number">1</span></tt>.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/inverse_heaviside_series.html" title="Struct template inverse_heaviside_series">inverse_heaviside_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          A series which has one run from -Inf to some end offset.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/inverse_heaviside_unit_series.html" title="Struct template inverse_heaviside_unit_series">inverse_heaviside_unit_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          An inverse heaviside series for which the run has a value of <tt class="computeroutput"><span class="number">1</span></tt>.
+        </dd>
+</dl>
+</div>
+<p>
+        In addition, Boost.Time_series provides the following series adaptors, which
+        can be applied to any of the above series.
+      </p>
+<div class="variablelist">
+<p class="title"><b></b></p>
+<dl>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/clipped_series.html" title="Struct template clipped_series">clipped_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          Makes the adapted series appear to have zeros outside some range.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/scaled_series.html" title="Struct template scaled_series">scaled_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          Multiplies all the elements of the adapted series by some constant factor.
+        </dd>
+<dt><span class="term"><tt class="computeroutput"><a href="../boost/time_series/shifted_series.html" title="Struct template shifted_series">shifted_series&lt;&gt;</a></tt></span></dt>
+<dd>
+          Shifts all the runs in a series by some constant offset.
+        </dd>
+</dl>
+</div>
+<a name="time_series.user_s_guide.series_containers.________________________________________________series_interface"></a><h3>
+<a name="id443987"></a>
+        <a href="user_s_guide.html#time_series.user_s_guide.series_containers.________________________________________________series_interface">Series
+        Interface</a>
+      </h3>
+<p>
+        
+        All series types present the same interface, summarized below.
+      </p>
+<pre class="programlisting">
+<span class="keyword">class</span> <i class="replaceable"><tt>series-type</tt></i>
+<span class="special">{</span>
+<span class="keyword">public</span><span class="special">:</span>
+    <span class="comment">// Public typedefs
+</span>    <span class="keyword">typedef</span> <i class="replaceable"><tt>discretization-type</tt></i> <span class="identifier">discretization_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <i class="replaceable"><tt>value-type</tt></i> <span class="identifier">value_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <i class="replaceable"><tt>offset-type</tt></i> <span class="identifier">offset_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <i class="replaceable"><tt>zero-type</tt></i> <span class="identifier">zero_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <i class="replaceable"><tt>unspecified</tt></i> <span class="identifier">reference</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="identifier">reference</span> <span class="identifier">const_reference</span><span class="special">;</span>
+    
+    <span class="comment">// Constructors
+</span>    <i class="replaceable"><tt>series-type</tt></i><span class="special">()</span>
+    <i class="replaceable"><tt>series-type</tt></i><span class="special">(</span> <span class="identifier">A0</span> <span class="keyword">const</span> <span class="special">&amp;,</span> <span class="identifier">A2</span> <span class="keyword">const</span> <span class="special">&amp;,</span> <span class="special">...</span> <span class="special">);</span>
+    
+    <span class="comment">// Accessors
+</span>    <span class="identifier">reference</span> <span class="keyword">operator</span> <span class="special">[](</span><span class="identifier">offset_type</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+    <span class="identifier">discretization_type</span> <span class="identifier">discretization</span><span class="special">()</span> <span class="keyword">const</span><span class="special">;</span>
+    <span class="keyword">void</span> <span class="identifier">discretization</span><span class="special">(</span><span class="identifier">discretization_type</span> <span class="identifier">disc</span><span class="special">);</span>
+
+    <span class="comment">// Modifiers        
+</span>    <span class="keyword">void</span> <span class="identifier">swap</span><span class="special">(</span> <i class="replaceable"><tt>series-type</tt></i> <span class="special">&amp;</span> <span class="special">);</span>
+    
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Series</span> <span class="special">&gt;</span>
+    <i class="replaceable"><tt>series-type</tt></i> <span class="special">&amp;</span> <span class="keyword">operator</span><span class="special">=(</span><span class="identifier">Series</span> <span class="keyword">const</span> <span class="special">&amp;);</span>
+<span class="special">};</span>
+
+<span class="keyword">void</span> <span class="identifier">swap</span><span class="special">(</span> <i class="replaceable"><tt>series-type</tt></i> <span class="special">&amp;,</span> <i class="replaceable"><tt>series-type</tt></i> <span class="special">&amp;</span> <span class="special">);</span>
+</pre>
+<p>
+        In addition, all series satisfy the <a href="../InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a>
+        concept. Since <a href="../InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a>
+        is a refinement of the <a href="../RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+        and <a href="../Sequence.html" title="Concept Sequence">Sequence</a> concepts, all series
+        model those concept also.
+      </p>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series.user_s_guide.series_containers.series_initialization"></a><a href="user_s_guide.html#time_series.user_s_guide.series_containers.series_initialization" title="Series
+        Initialization">Series
+        Initialization</a></h4></div></div></div>
+<p>
+          
+          Different series types require different initialization. All the series
+          types use named parameters for their constructor arguments. The allowable
+          named parameters are:
+        </p>
+<div class="variablelist">
+<p class="title"><b></b></p>
+<dl>
+<dt><span class="term"><tt class="computeroutput"><span class="identifier">start</span></tt></span></dt>
+<dd>
+            The start offset of an element or range of elements.
+          </dd>
+<dt><span class="term"><tt class="computeroutput"><span class="identifier">stop</span></tt></span></dt>
+<dd>
+            The end offset of a range of elements.
+          </dd>
+<dt><span class="term"><tt class="computeroutput"><span class="identifier">value</span></tt></span></dt>
+<dd>
+            The value of an element or range of elements.
+          </dd>
+<dt><span class="term"><tt class="computeroutput"><span class="identifier">discretization</span></tt></span></dt>
+<dd>
+            The "stride" of the series. This is used to specify whether
+            a series represents daily or monthly data, for example.
+          </dd>
+<dt><span class="term"><tt class="computeroutput"><span class="identifier">zero</span></tt></span></dt>
+<dd>
+            The value that should be assumed by the "zeros" of sparse storage.
+          </dd>
+</dl>
+</div>
+<p>
+          Not all series will use all of these constructor parameters. The table
+          below shows which series types accept which constructor parameters.
+        </p>
+<div class="table">
+<a name="id444707"></a><p class="title"><b>Table 1.1. Series Construction Parameters</b></p>
+<table class="table" summary="Series Construction Parameters">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Series Type</th>
+<th>Named Construction Parameters</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/characteristic_series.html" title="Struct template characteristic_series">characteristic_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">start</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">stop</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/characteristic_unit_series.html" title="Struct template characteristic_unit_series">characteristic_unit_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">start</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">stop</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/constant_series.html" title="Struct template constant_series">constant_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/delta_series.html" title="Struct template delta_series">delta_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">start</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/delta_unit_series.html" title="Struct template delta_unit_series">delta_unit_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">start</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/dense_series.html" title="Struct template dense_series">dense_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">start</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">stop</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/heaviside_series.html" title="Struct template heaviside_series">heaviside_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">start</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/heaviside_unit_series.html" title="Struct template heaviside_unit_series">heaviside_unit_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">start</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default =
+              <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/inverse_heaviside_series.html" title="Struct template inverse_heaviside_series">inverse_heaviside_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">stop</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/inverse_heaviside_unit_series.html" title="Struct template inverse_heaviside_unit_series">inverse_heaviside_unit_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">stop</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="number">0</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">value</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/piecewise_constant_series.html" title="Struct template piecewise_constant_series">piecewise_constant_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series&lt;&gt;</a></tt></td>
+<td>
+<tt class="computeroutput"><span class="identifier">discretization</span></tt> <span class="emphasis"><em>(default
+              = <tt class="computeroutput"><span class="number">1</span></tt>)</em></span>, <tt class="computeroutput"><span class="identifier">zero</span></tt> <span class="emphasis"><em>(default = <tt class="computeroutput"><span class="identifier">value_type</span><span class="special">()</span></tt>)</em></span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+          These constructor parameters can be used either positionally or with the
+          named parameter syntax. When used positionally, the order the parameters
+          appear in the table above determine how the library interprets the parameters
+          in the constructor. For example, consider the following code:
+        </p>
+<pre class="programlisting">
+<span class="comment">// A delta series with a 42.0 at offset 512:
+</span><span class="identifier">delta_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">delta1</span><span class="special">(</span> <span class="identifier">start</span> <span class="special">=</span> <span class="number">512</span><span class="special">,</span> <span class="identifier">value</span> <span class="special">=</span> <span class="number">42.0</span><span class="special">,</span> <span class="identifier">discretization</span> <span class="special">=</span> <span class="number">30</span> <span class="special">);</span>
+
+<span class="comment">// Same as above
+</span><span class="identifier">delta_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">delta2</span><span class="special">(</span> <span class="number">512</span><span class="special">,</span> <span class="number">42.0</span><span class="special">,</span> <span class="number">30</span> <span class="special">);</span>
+</pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td colspan="2" align="left" valign="top"><p>
+            It may seem odd that even the unit series have a <tt class="computeroutput"><span class="identifier">value</span></tt>
+            parameter. This is because <tt class="computeroutput"><span class="number">1</span></tt>
+            is not always convertible to the series' value type. Consider a <tt class="computeroutput"><span class="identifier">delta_unit_series</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="special">&gt;</span></tt>. You may decide that for this series,
+            the unit value should be <tt class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;(</span><span class="number">3</span><span class="special">,</span> <span class="number">1</span><span class="special">)</span></tt>. For unit series with scalar value types
+            such as <tt class="computeroutput"><span class="keyword">int</span></tt>, <tt class="computeroutput"><span class="keyword">double</span></tt> and <tt class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">complex</span><span class="special">&lt;&gt;</span></tt>, the <tt class="computeroutput"><span class="identifier">value</span></tt>
+            parameter is ignored.
+          </p></td></tr>
+</table></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series.user_s_guide.series_containers.zeros_and_sparse_data"></a><a href="user_s_guide.html#time_series.user_s_guide.series_containers.zeros_and_sparse_data" title="Zeros
+        and Sparse Data">Zeros
+        and Sparse Data</a></h4></div></div></div>
+<p>
+          
+          Every series type lets you specify the value of the zero elements. By default,
+          the zeros are default-constructed objects of the series' value type. That
+          is not always what you want. For example, consider the case of a <tt class="computeroutput"><span class="identifier">sparse_series</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="special">&gt;</span></tt>. If all the non-zeros of the series
+          are vectors of size 3, you probably want the zero elements to also be vectors
+          of size 3, where the integers are all zero. The code below demonstrates
+          how to accomlish that.
+        </p>
+<pre class="programlisting">
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="identifier">nil</span><span class="special">(</span> <span class="number">3</span><span class="special">,</span> <span class="number">0</span> <span class="special">);</span> <span class="comment">// vector of 3 zeros
+</span>
+<span class="comment">// OK, use nil as the value of the zeros in the sparse series
+</span><span class="identifier">sparse_series</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">s</span><span class="special">(</span> <span class="identifier">zero</span> <span class="special">=</span> <span class="identifier">nil</span> <span class="special">);</span>
+</pre>
+<p>
+          Positionally, the zero parameter always assumes the final position in the
+          constructor argument list.
+        </p>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series.user_s_guide.series_containers.series_discretization_and_strong_typing"></a><a href="user_s_guide.html#time_series.user_s_guide.series_containers.series_discretization_and_strong_typing" title="Series
+        Discretization and Strong Typing">Series
+        Discretization and Strong Typing</a></h4></div></div></div>
+<p>
+          
+          In the examples seen so far, the discretization is specified with a plain
+          integer. Arithmetic operations between series is only defined when the
+          series have the same discretization. When the discretization is a plain
+          integer, the discretizations are checked for compatibility at runtime.
+          However, you can get compile-time checking of the discretization if you
+          use compile-time constants for the discretization, as follows:
+        </p>
+<pre class="programlisting">
+<span class="identifier">dense_series</span><span class="special">&lt;</span> <span class="keyword">double</span><span class="special">,</span> <span class="identifier">monthly</span> <span class="special">&gt;</span> <span class="identifier">d</span><span class="special">;</span>
+<span class="identifier">sparse_series</span><span class="special">&lt;</span> <span class="keyword">double</span><span class="special">,</span> <span class="identifier">monthly</span> <span class="special">&gt;</span> <span class="identifier">s</span><span class="special">;</span>
+</pre>
+<p>
+          As you can see, there is an extra optional template parameter for specifying
+          the Discretization. The Boost.Time_series library defines the following
+          types for use as the Discretization template parameter:
+        </p>
+<div class="table">
+<a name="id446926"></a><p class="title"><b>Table 1.2. Time Series Resolutions</b></p>
+<table class="table" summary="Time Series Resolutions">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Discretization</th>
+<th>Equivalent To</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">daily</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">mpl</span><span class="special">::</span><span class="identifier">int_</span><span class="special">&lt;</span><span class="number">1</span><span class="special">&gt;</span></tt></td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">weekly</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">mpl</span><span class="special">::</span><span class="identifier">int_</span><span class="special">&lt;</span><span class="number">7</span><span class="special">&gt;</span></tt></td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">montly</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">mpl</span><span class="special">::</span><span class="identifier">int_</span><span class="special">&lt;</span><span class="number">30</span><span class="special">&gt;</span></tt></td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">quarterly</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">mpl</span><span class="special">::</span><span class="identifier">int_</span><span class="special">&lt;</span><span class="number">90</span><span class="special">&gt;</span></tt></td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">semi_yearly</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">mpl</span><span class="special">::</span><span class="identifier">int_</span><span class="special">&lt;</span><span class="number">180</span><span class="special">&gt;</span></tt></td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">yearly</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">mpl</span><span class="special">::</span><span class="identifier">int_</span><span class="special">&lt;</span><span class="number">360</span><span class="special">&gt;</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series.user_s_guide.series_containers.floating_point_offsets"></a><a href="user_s_guide.html#time_series.user_s_guide.series_containers.floating_point_offsets" title="Floating-point
+        Offsets">Floating-point
+        Offsets</a></h4></div></div></div>
+<p>
+          
+          Most of the series types allow you to use floating-point types instead
+          of integers for offsets and indices. For instance, you might want a <tt class="computeroutput"><span class="identifier">characteristic_series</span><span class="special">&lt;&gt;</span></tt>
+          where the series is non-zero from <tt class="computeroutput"><span class="special">-</span><span class="number">3.14</span></tt> through <tt class="computeroutput"><span class="number">2.12</span></tt>.
+          For that, you would specify the third template parameter of <tt class="computeroutput"><span class="identifier">characteristic_series</span><span class="special">&lt;&gt;</span></tt>
+          to be <tt class="computeroutput"><span class="keyword">double</span></tt>. For example:
+        </p>
+<pre class="programlisting">
+<span class="comment">// A characteristic_series where the values are ints,
+</span><span class="comment">// the discretization is daily, and offsets are doubles
+</span><span class="identifier">characteristic_series</span><span class="special">&lt;</span> <span class="keyword">int</span><span class="special">,</span> <span class="identifier">daily</span><span class="special">,</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">c</span><span class="special">(</span> <span class="identifier">start</span> <span class="special">=</span> <span class="special">-</span><span class="number">3.14</span><span class="special">,</span> <span class="identifier">stop</span> <span class="special">=</span> <span class="number">2.12</span><span class="special">,</span> <span class="identifier">value</span> <span class="special">=</span> <span class="number">42</span> <span class="special">);</span>
+
+<span class="identifier">assert</span><span class="special">(</span> <span class="number">0</span> <span class="special">==</span> <span class="identifier">c</span><span class="special">[</span> <span class="special">-</span><span class="number">4.11</span> <span class="special">]</span> <span class="special">);</span>
+<span class="identifier">assert</span><span class="special">(</span> <span class="number">42</span> <span class="special">==</span> <span class="identifier">c</span><span class="special">[</span> <span class="number">1.23</span> <span class="special">]</span> <span class="special">);</span>
+</pre>
+<p>
+          When doing series arithmetic with two series, the offset types of the two
+          series must be the same.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td colspan="2" align="left" valign="top"><p>
+            Some of the numeric algorithms do not work with series that have floating-point
+            offsets. For instance, <tt class="computeroutput"><a href="../boost/time_series/partial_sum.html" title="Function partial_sum">partial_sum()</a></tt>
+            assumes integral offsets; in fact, the discrete nature of the algorithm
+            prohibits its use with any series with floating-point offsets.
+          </p></td></tr>
+</table></div>
+<p>
+          The only series type that does not support floating-point offsets is <tt class="computeroutput"><a href="../boost/time_series/dense_series.html" title="Struct template dense_series">dense_series&lt;&gt;</a></tt>.
+        </p>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series.user_s_guide.series_containers.populating_a_series"></a><a href="user_s_guide.html#time_series.user_s_guide.series_containers.populating_a_series" title="Populating
+        a Series">Populating
+        a Series</a></h4></div></div></div>
+<p>
+          
+          All series types provide a generic mechanism for populating the series
+          with data. The basic idea to to ask the series for an inserter object,
+          push data into the inserter in order, and then commit the changes. The
+          inserter object is called <tt class="computeroutput"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter&lt;&gt;</a></tt>.
+          Below is an example of using <tt class="computeroutput"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter&lt;&gt;</a></tt>
+          to populate a <tt class="computeroutput"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series&lt;&gt;</a></tt>.
+        </p>
+<pre class="programlisting">
+<span class="comment">// Define a sparse_series
+</span><span class="identifier">sparse_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">s</span><span class="special">;</span>
+
+<span class="comment">// Make an inserter object for the series
+</span><span class="identifier">ordered_inserter</span><span class="special">&lt;</span> <span class="identifier">sparse_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">in</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">);</span>
+
+<span class="identifier">in</span><span class="special">(</span> <span class="number">1.1</span><span class="special">,</span> <span class="number">2</span> <span class="special">);</span>  <span class="comment">// Insert value 1.1 at offset 2
+</span><span class="identifier">in</span><span class="special">(</span> <span class="number">2.2</span><span class="special">,</span> <span class="number">4</span> <span class="special">);</span>  <span class="comment">// Insert value 2.2 at offset 4
+</span><span class="identifier">in</span><span class="special">(</span> <span class="number">3.3</span><span class="special">,</span> <span class="number">8</span> <span class="special">);</span>  <span class="comment">// Insert value 3.3 at offset 8
+</span><span class="identifier">in</span><span class="special">(</span> <span class="number">4.4</span><span class="special">,</span> <span class="number">16</span> <span class="special">);</span> <span class="comment">// Insert value 4.4 at offset 16
+</span>
+<span class="comment">// Commit the changes to series s
+</span><span class="identifier">in</span><span class="special">.</span><span class="identifier">commit</span><span class="special">();</span>
+</pre>
+<p>
+          The <tt class="computeroutput"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter&lt;&gt;</a></tt>
+          object has three overloads of <tt class="computeroutput"><span class="keyword">operator</span><span class="special">()</span></tt>, described below.
+        </p>
+<pre class="programlisting">
+<span class="comment">// Define a piecewise_constant_series
+</span><span class="identifier">piecewise_constant_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">pwc</span><span class="special">;</span>
+
+<span class="comment">// Make an inserter object for the series
+</span><span class="identifier">ordered_inserter</span><span class="special">&lt;</span> <span class="identifier">piecewise_constant_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">in</span><span class="special">(</span> <span class="identifier">pwc</span> <span class="special">);</span>
+
+<span class="identifier">in</span><span class="special">(</span> <span class="number">1.1</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">6</span> <span class="special">);</span>  <span class="comment">// Insert value 1.1 at offsets 2 through 6
+</span><span class="identifier">in</span><span class="special">(</span> <span class="number">2.2</span><span class="special">,</span> <span class="number">8</span> <span class="special">);</span>     <span class="comment">// Insert value 2.2 at offset 8
+</span><span class="identifier">in</span><span class="special">(</span> <span class="number">3.3</span> <span class="special">);</span>        <span class="comment">// Insert value 3.3 at the next offset (9)
+</span>
+<span class="comment">// Commit the changes to series pwc
+</span><span class="identifier">in</span><span class="special">.</span><span class="identifier">commit</span><span class="special">();</span>
+</pre>
+<p>
+          All of the <tt class="computeroutput"><span class="keyword">operator</span><span class="special">()</span></tt>
+          overloads return a reference to <tt class="computeroutput"><span class="special">*</span><span class="keyword">this</span></tt>, so the insertions can be chained.
+          In addition, there is a <tt class="computeroutput"><a href="../boost/time_series/make_ordered_inserter.html" title="Function make_ordered_inserter">make_ordered_inserter()</a></tt>
+          helper function. These can be used together to simply and efficiently populate
+          series:
+        </p>
+<pre class="programlisting">
+<span class="identifier">piecewise_constant_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">pwc</span><span class="special">(</span> <span class="number">64</span> <span class="special">);</span>
+
+<span class="identifier">make_ordered_inserter</span><span class="special">(</span> <span class="identifier">pwc</span> <span class="special">)</span>
+    <span class="special">(</span><span class="number">1.1</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">6</span><span class="special">)</span>  <span class="comment">// Insert value 1.1 at offsets 2 through 6
+</span>    <span class="special">(</span><span class="number">2.2</span><span class="special">,</span> <span class="number">8</span><span class="special">)</span>     <span class="comment">// Insert value 2.2 at offset 8
+</span>    <span class="special">(</span><span class="number">3.3</span><span class="special">)</span>        <span class="comment">// Insert value 3.3 at the next offset (9)
+</span><span class="special">.</span><span class="identifier">commit</span><span class="special">();</span>
+</pre>
+<p>
+          The <tt class="computeroutput"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter&lt;&gt;</a></tt>
+          object can also behave like an output iterator. When used in this way,
+          the following syntactic constructs are equivalent for a given <tt class="computeroutput"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter&lt;&gt;</a></tt> <tt class="computeroutput"><span class="identifier">in</span></tt>.
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Output Iterator Syntax</th>
+<th>Equivalent Ordered Inserter
+                Syntax</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><tt class="computeroutput"><span class="special">*</span><span class="identifier">in</span><span class="special">++</span> <span class="special">=</span> <span class="identifier">val</span><span class="special">;</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">in</span><span class="special">(</span> <span class="identifier">val</span> <span class="special">);</span></tt></td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="special">*</span><span class="identifier">in</span><span class="special">++</span> <span class="special">=</span> <span class="identifier">make_pair</span><span class="special">(</span> <span class="identifier">val</span><span class="special">,</span> <span class="identifier">off</span> <span class="special">);</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">in</span><span class="special">(</span> <span class="identifier">val</span><span class="special">,</span> <span class="identifier">off</span> <span class="special">);</span></tt></td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="special">*</span><span class="identifier">in</span><span class="special">++</span> <span class="special">=</span> <span class="identifier">make_tuple</span><span class="special">(</span> <span class="identifier">val</span><span class="special">,</span> <span class="identifier">off</span> <span class="special">);</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">in</span><span class="special">(</span> <span class="identifier">val</span><span class="special">,</span> <span class="identifier">off</span> <span class="special">);</span></tt></td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="special">*</span><span class="identifier">in</span><span class="special">++</span> <span class="special">=</span> <span class="identifier">make_tuple</span><span class="special">(</span> <span class="identifier">val</span><span class="special">,</span> <span class="identifier">off</span><span class="special">,</span> <span class="identifier">end</span> <span class="special">);</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">in</span><span class="special">(</span> <span class="identifier">val</span><span class="special">,</span> <span class="identifier">off</span><span class="special">,</span> <span class="identifier">end</span> <span class="special">);</span></tt></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+          These equivalencies are designed to permit the <tt class="computeroutput"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter&lt;&gt;</a></tt>
+          to work well with <tt class="computeroutput"><span class="identifier">zip_iterator</span><span class="special">&lt;&gt;</span></tt> from the Boost.Iterator library.
+          For example, the following code inserts the specified values into the specified
+          offsets in a sparse series.
+        </p>
+<pre class="programlisting">
+<span class="identifier">sparse_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">s</span><span class="special">;</span>
+
+<span class="comment">// Use boost::array to define the values and offsets
+</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span><span class="special">,</span><span class="number">4</span> <span class="special">&gt;</span> <span class="identifier">values</span>  <span class="special">=</span> <span class="special">{</span><span class="number">1.1</span><span class="special">,</span> <span class="number">2.2</span><span class="special">,</span> <span class="number">3.3</span><span class="special">,</span> <span class="number">4.4</span><span class="special">};</span>
+<span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">int</span><span class="special">,</span><span class="number">4</span> <span class="special">&gt;</span>    <span class="identifier">offsets</span> <span class="special">=</span> <span class="special">{</span>  <span class="number">2</span><span class="special">,</span>   <span class="number">4</span><span class="special">,</span>   <span class="number">8</span><span class="special">,</span>  <span class="number">16</span><span class="special">};</span>
+
+<span class="comment">// Use boost::zip_iterator to iterate over both the
+</span><span class="comment">// values and offsets in parallel.
+</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">copy</span><span class="special">(</span>
+    <span class="identifier">make_zip_iterator</span><span class="special">(</span> <span class="identifier">make_tuple</span><span class="special">(</span> <span class="identifier">values</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">offsets</span><span class="special">.</span><span class="identifier">begin</span><span class="special">()</span> <span class="special">)</span> <span class="special">)</span>
+  <span class="special">,</span> <span class="identifier">make_zip_iterator</span><span class="special">(</span> <span class="identifier">make_tuple</span><span class="special">(</span> <span class="identifier">values</span><span class="special">.</span><span class="identifier">end</span><span class="special">(),</span> <span class="identifier">offsets</span><span class="special">.</span><span class="identifier">end</span><span class="special">()</span> <span class="special">)</span> <span class="special">)</span>
+  <span class="special">,</span> <span class="identifier">make_ordered_inserter</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span>
+<span class="special">).</span><span class="identifier">commit</span><span class="special">();</span>
+</pre>
+<p>
+          In the above example, <tt class="computeroutput"><span class="identifier">make_ordered_inserter</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt> returns an inserter object for the sparse
+          series <tt class="computeroutput"><span class="identifier">s</span></tt> that is used as
+          an output iterator by <tt class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">copy</span></tt>.
+          The ordered inserter is assigned each (value, offset) tuple in turn. Finally,
+          <tt class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">copy</span></tt> returns the inserter, and we call
+          <tt class="computeroutput"><span class="identifier">commit</span><span class="special">()</span></tt>
+          on it, which writes all the (value, offset) tuples into the sparse series.
+        </p>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../index.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="user_s_guide/series_algorithms.html"><img src="../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

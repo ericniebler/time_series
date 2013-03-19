@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Function piecewise_surface_sample</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../time_series/reference.html#header.boost.time_series.numeric.piecewise_surface_sample.hpp" title="Header &lt;boost/time_series/numeric/piecewise_surface_sample.hpp&gt;">
+<link rel="prev" href="piecewise_sample.html" title="Function piecewise_sample">
+<link rel="next" href="rotate_left.html" title="Function rotate_left">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="piecewise_sample.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.numeric.piecewise_surface_sample.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="rotate_left.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.piecewise_surface_sample"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Function piecewise_surface_sample</span></h2>
+<p>boost::time_series::piecewise_surface_sample &#8212; Calculate a piecewise constant surface by sampling series at steps defined by two ranges representing the sample points for x and y coordinate of the surface. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis">
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> XPeriods, <span class="bold"><b>typename</b></span> YPeriods, <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+  piecewise_surface_sample(Series <span class="bold"><b>const</b></span> &amp; series, XPeriods <span class="bold"><b>const</b></span> &amp; x_periods, 
+                           YPeriods <span class="bold"><b>const</b></span> &amp; y_periods, 
+                           <a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt; out);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> XPeriods, <span class="bold"><b>typename</b></span> YPeriods&gt; 
+  <span class="type"><a href="piecewise_constant_series.html" title="Struct template piecewise_constant_series">piecewise_constant_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> concepts::RandomAccessRange&lt; XPeriods &gt;::value_type &gt;</span> 
+  piecewise_surface_sample(Series <span class="bold"><b>const</b></span> &amp; series, XPeriods <span class="bold"><b>const</b></span> &amp; x_periods, 
+                           YPeriods <span class="bold"><b>const</b></span> &amp; y_periods);</pre></div>
+<div class="refsect1" lang="en">
+<a name="id495409"></a><h2>Description</h2>
+<p>Calculate a piecewise constant surface by sampling series at steps defined by two ranges representing the sample points for x and y coordinate of the surface. The <tt class="computeroutput">x</tt> periods are specified as follows: </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p><tt class="computeroutput">[-inf,*boost::begin(x_periods))  </tt> </p></li>
+<li><p><tt class="computeroutput">[*boost::begin(x_periods),*(boost::begin(x_periods)+1))  </tt> </p></li>
+<li><p><tt class="computeroutput">[*(boost::begin(x_periods)+1),*(boost::begin(x_periods)+2))  </tt> </p></li>
+<li><p><tt class="computeroutput">...  </tt> </p></li>
+<li><p><tt class="computeroutput">[*(boost::end(x_periods)-1),inf)  </tt></p></li>
+</ul></div>
+<p>
+... and likewise for <tt class="computeroutput">y</tt> periods.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">out</tt></span></td>
+<td><p>The inserter into which the new series is written </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">series</tt></span></td>
+<td><p>The series of series to sample </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">x_periods</tt></span></td>
+<td><p>The x coordinates of the surface </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">y_periods</tt></span></td>
+<td><p>The y coordinates of the surface </p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">Series</tt> is a model of the <tt class="computeroutput">TimeSeries</tt> concept. </p>
+<p>The <tt class="computeroutput">value_type</tt> of <tt class="computeroutput">Series</tt> is a model of the <tt class="computeroutput">TimeSeries</tt> concept. </p>
+<p><tt class="computeroutput">XPeriods</tt> is a model of the <tt class="computeroutput">RandomAccessRange</tt> concept. </p>
+<p><tt class="computeroutput">YPeriods</tt> is a model of the <tt class="computeroutput">RandomAccessRange</tt> concept. </p>
+<p><tt class="computeroutput">Out</tt> is a model of the <tt class="computeroutput">OrderedInserter</tt> concept. </p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="piecewise_sample.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.numeric.piecewise_surface_sample.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="rotate_left.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

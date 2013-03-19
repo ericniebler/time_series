@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Struct template python_clipped_series</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../../time_series/reference.html#header.boost.time_series.python.series.hpp" title="Header &lt;boost/time_series/python/series.hpp&gt;">
+<link rel="prev" href="../piecewise_constant_series.html" title="Struct template piecewise_constant_series">
+<link rel="next" href="python_inserter.html" title="Struct template python_inserter">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../piecewise_constant_series.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../../time_series/reference.html#header.boost.time_series.python.series.hpp"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="python_inserter.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.python_.python_clipped_series"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Struct template python_clipped_series</span></h2>
+<p>boost::time_series::python_::python_clipped_series &#8212; </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+<span class="bold"><b>struct</b></span> python_clipped_series {
+  <span class="emphasis"><em>// types</em></span>
+  <span class="bold"><b>typedef</b></span> <a href="../clipped_series.html" title="Struct template clipped_series">clipped_series</a>&lt; Series &gt;                   clipped;       
+  <span class="bold"><b>typedef</b></span> python::class_&lt; <a href="../clipped_series.html" title="Struct template clipped_series">clipped_series</a>&lt; Series &gt; &gt; base;          
+  <span class="bold"><b>typedef</b></span> clipped::value_type                        value_type;    
+  <span class="bold"><b>typedef</b></span> clipped::offset_type                       offset_type;   
+  <span class="bold"><b>typedef</b></span> clipped::const_iterator                    const_iterator;
+
+  <span class="emphasis"><em>// <a href="python_clipped_series.html#boost.time_series.python_.python_clipped_seriesconstruct-copy-destruct">construct/copy/destruct</a></em></span>
+  <a href="python_clipped_series.html#id256443-bb">python_clipped_series</a>(std::string <span class="bold"><b>const</b></span> &amp;);
+
+  <span class="emphasis"><em>// <a href="python_clipped_series.html#id256452-bb">public static functions</a></em></span>
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Offset1, <span class="bold"><b>typename</b></span> Offset2&gt; 
+    <span class="type"><span class="bold"><b>static</b></span> clipped</span> <a href="python_clipped_series.html#id256457-bb">make</a>(Series &amp;, Offset1, Offset2) ;
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Offset&gt; 
+    <span class="type"><span class="bold"><b>static</b></span> value_type</span> <a href="python_clipped_series.html#id256780-bb">getitem</a>(clipped <span class="bold"><b>const</b></span> &amp;, Offset) ;
+  <span class="type"><span class="bold"><b>static</b></span> const_iterator</span> <a href="python_clipped_series.html#id256817-bb">begin</a>(clipped <span class="bold"><b>const</b></span> &amp;) ;
+  <span class="type"><span class="bold"><b>static</b></span> const_iterator</span> <a href="python_clipped_series.html#id256838-bb">end</a>(clipped <span class="bold"><b>const</b></span> &amp;) ;
+  <span class="type"><span class="bold"><b>static</b></span> std::size_t</span> <a href="python_clipped_series.html#id256858-bb">get_size</a>(clipped <span class="bold"><b>const</b></span> &amp;) ;
+};</pre></div>
+<div class="refsect1" lang="en">
+<a name="id503464"></a><h2>Description</h2>
+<div class="refsect2" lang="en">
+<a name="id503468"></a><h3>
+<a name="boost.time_series.python_.python_clipped_seriesconstruct-copy-destruct"></a><tt class="computeroutput">python_clipped_series</tt> construct/copy/destruct</h3>
+<div class="orderedlist"><ol type="1"><li><pre class="literallayout"><a name="id256443-bb"></a>python_clipped_series(std::string <span class="bold"><b>const</b></span> &amp; base_name);</pre></li></ol></div>
+</div>
+<div class="refsect2" lang="en">
+<a name="id503515"></a><h3>
+<a name="id256452-bb"></a><tt class="computeroutput">python_clipped_series</tt> public static functions</h3>
+<div class="orderedlist"><ol type="1">
+<li><pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Offset1, <span class="bold"><b>typename</b></span> Offset2&gt; 
+  <span class="type"><span class="bold"><b>static</b></span> clipped</span> <a name="id256457-bb"></a>make(Series &amp; series, Offset1 start, Offset2 stop) ;</pre></li>
+<li><pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Offset&gt; 
+  <span class="type"><span class="bold"><b>static</b></span> value_type</span> <a name="id256780-bb"></a>getitem(clipped <span class="bold"><b>const</b></span> &amp; s, Offset offset) ;</pre></li>
+<li><pre class="literallayout"><span class="type"><span class="bold"><b>static</b></span> const_iterator</span> <a name="id256817-bb"></a>begin(clipped <span class="bold"><b>const</b></span> &amp; s) ;</pre></li>
+<li><pre class="literallayout"><span class="type"><span class="bold"><b>static</b></span> const_iterator</span> <a name="id256838-bb"></a>end(clipped <span class="bold"><b>const</b></span> &amp; s) ;</pre></li>
+<li><pre class="literallayout"><span class="type"><span class="bold"><b>static</b></span> std::size_t</span> <a name="id256858-bb"></a>get_size(clipped <span class="bold"><b>const</b></span> &amp; s) ;</pre></li>
+</ol></div>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../piecewise_constant_series.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../../time_series/reference.html#header.boost.time_series.python.series.hpp"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="python_inserter.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

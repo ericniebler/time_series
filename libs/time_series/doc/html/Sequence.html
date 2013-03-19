@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Concept Sequence</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="sequence_reference.html" title="Sequence Reference">
+<link rel="prev" href="sequence_reference.html" title="Sequence Reference">
+<link rel="next" href="O1SizeSequence.html" title="Concept O1SizeSequence">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="sequence_reference.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="sequence_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="O1SizeSequence.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="Sequence"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Concept Sequence</span></h2>
+<p>Sequence</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522432"></a><h2>Description</h2>
+<p>A Sequence exposes an <tt class="computeroutput">elements</tt> property map that models 
+    <a href="ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a> and <tt class="computeroutput">begin</tt>
+    and <tt class="computeroutput">end</tt> cursors that model 
+    ReadableIterator and
+    IncrementableIterator.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522469"></a><h2>Associated types</h2>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p><span class="bold"><b>elements</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::sequence::op::elements(boost::add_reference&lt;S&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>The type of the property map for accessing the elements in
+      the Sequence.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>cursor</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::sequence::op::begin(boost::add_reference&lt;S&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>Iter</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>end_cursor</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::sequence::op::end(boost::add_reference&lt;S&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>The end cursor doesn't have to have the same type as the begin
+      cursor, just as long as you can compare them.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>key_type</b></span></p>
+<pre class="literallayout">ReadableIterator&lt;cursor&gt;::reference</pre>
+<p>
+      </p>
+<p>The key type of the cursor.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>value_type</b></span></p>
+<pre class="literallayout">property_map::traits::value_type&lt;elements, cursor&gt;::type</pre>
+<p>
+      </p>
+<p>The value type of the <tt class="computeroutput">elements</tt> property map.</p>
+<p>
+    </p>
+</li>
+</ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522596"></a><h2>Notation</h2>
+<div class="variablelist"><dl>
+<dt><span class="term">S</span></dt>
+<dd>A type playing the role of sequence-type in the <a href="Sequence.html" title="Concept Sequence">Sequence</a> concept.</dd>
+<dt><span class="term"><tt class="varname">s</tt></span></dt>
+<dd>Object of type S</dd>
+</dl></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522627"></a><h2>Valid expressions</h2>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Elements</p></td>
+<td><p>boost::sequence::elements(s)</p></td>
+<td><p><span class="type">elements</span></p></td>
+<td><p>Returns the <a href="ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a>
+    for accessing the elements of the <a href="Sequence.html" title="Concept Sequence">Sequence</a>
+    <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+<tr>
+<td><p>Begin cursor</p></td>
+<td><p>boost::sequence::begin(s)</p></td>
+<td><p><span class="type">cursor</span></p></td>
+<td><p>Returns a cursor that, when used with the <tt class="computeroutput">elements</tt>
+    property map, traverses the elements of the <a href="Sequence.html" title="Concept Sequence">Sequence</a>
+    <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+<tr>
+<td><p>End cursor</p></td>
+<td><p>boost::sequence::end(s)</p></td>
+<td><p><span class="type">end_cursor</span></p></td>
+<td><p>Returns a suitable cursor for terminating the traversal of
+    the <a href="Sequence.html" title="Concept Sequence">Sequence</a> <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522765"></a><h2>See also</h2>
+<div class="itemizedlist"><ul type="disc"></ul></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="sequence_reference.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="sequence_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="O1SizeSequence.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

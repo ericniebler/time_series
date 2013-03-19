@@ -1,0 +1,249 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Chapter 1. Boost.Time_series</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="next" href="time_series/user_s_guide.html" title="User's Guide">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav"><a accesskey="n" href="time_series/user_s_guide.html"><img src="images/next.png" alt="Next"></a></div>
+<div class="chapter" lang="en">
+<div class="titlepage"><div>
+<div><h2 class="title">
+<a name="time_series"></a>Chapter 1. Boost.Time_series</h2></div>
+<div><div class="author"><h3 class="author">
+<span class="firstname">Eric</span> <span class="surname">Niebler</span>
+</h3></div></div>
+<div><div class="author"><h3 class="author">
+<span class="firstname">Matthias</span> <span class="surname">Troyer</span>
+</h3></div></div>
+<div><div class="author"><h3 class="author">
+<span class="firstname">Daniel</span> <span class="surname">Egloff</span>
+</h3></div></div>
+<div><p class="copyright">Copyright © 2006 Eric Niebler</p></div>
+<div><div class="legalnotice">
+<a name="id373218"></a><p>
+        Distributed under the Boost Software License, Version 1.0. (See accompanying
+        file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
+      </p>
+</div></div>
+</div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt><span class="section"><a href="index.html#time_series.preface">Preface</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide.html">User's Guide</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="time_series/user_s_guide.html#time_series.user_s_guide.series_containers">Series
+      Containers</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="time_series/user_s_guide.html#time_series.user_s_guide.series_containers.series_initialization">Series
+        Initialization</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide.html#time_series.user_s_guide.series_containers.zeros_and_sparse_data">Zeros
+        and Sparse Data</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide.html#time_series.user_s_guide.series_containers.series_discretization_and_strong_typing">Series
+        Discretization and Strong Typing</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide.html#time_series.user_s_guide.series_containers.floating_point_offsets">Floating-point
+        Offsets</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide.html#time_series.user_s_guide.series_containers.populating_a_series">Populating
+        a Series</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html">Series
+      Algorithms</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.arithmetic">Arithmetic</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.promotion">Promotion</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.conversions">Conversions</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms">Algorithms</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__adjacent_difference___"><tt class="literal">adjacent_difference()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__clip___"><tt class="literal">clip()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__coarse_grain___"><tt class="literal">coarse_grain()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__fine_grain___"><tt class="literal">fine_grain()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__integrate___"><tt class="literal">integrate()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__invert_elements___"><tt class="literal">invert_elements()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__invert_heaviside___"><tt class="literal">invert_heaviside()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__partial_sum___"><tt class="literal">partial_sum()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__period_sums___"><tt class="literal">period_sums()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__piecewise_sample___"><tt class="literal">piecewise_sample()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__piecewise_surface_sample___"><tt class="literal">piecewise_surface_sample()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__rotate_left___"><tt class="literal">rotate_left()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__rotate_right___"><tt class="literal">rotate_right()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__shift___"><tt class="literal">shift()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__subscript___"><tt class="literal">subscript()</tt></a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/series_algorithms.html#time_series.user_s_guide.series_algorithms.algorithms.__variable_period_sums___"><tt class="literal">variable_period_sums()</tt></a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="section"><a href="time_series/user_s_guide/extensibility.html">Extensibility</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="time_series/user_s_guide/extensibility.html#time_series.user_s_guide.extensibility.the_timeseries_concept">The
+        TimeSeries Concept</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/extensibility.html#time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms">Defining
+        New TimeSeries algorithms</a></span></dt>
+<dt><span class="section"><a href="time_series/user_s_guide/extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type">Defining
+        a New TimeSeries Type</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="section"><a href="time_series/acknowledgements.html">Acknowledgements</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html">Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="time_series/reference.html#time_series_reference">Time Series Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="time_series/reference.html#time_series_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.characteristic_series.hpp">Header &lt;boost/time_series/characteristic_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.clipped_series.hpp">Header &lt;boost/time_series/clipped_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.concepts.hpp">Header &lt;boost/time_series/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.constant_series.hpp">Header &lt;boost/time_series/constant_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.delta_series.hpp">Header &lt;boost/time_series/delta_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.dense_series.hpp">Header &lt;boost/time_series/dense_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.heaviside_series.hpp">Header &lt;boost/time_series/heaviside_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.inverse_heaviside_series.hpp">Header &lt;boost/time_series/inverse_heaviside_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.adjacent_difference.hpp">Header &lt;boost/time_series/numeric/adjacent_difference.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.clip.hpp">Header &lt;boost/time_series/numeric/clip.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.coarse_grain.hpp">Header &lt;boost/time_series/numeric/coarse_grain.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.fine_grain.hpp">Header &lt;boost/time_series/numeric/fine_grain.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.integrate.hpp">Header &lt;boost/time_series/numeric/integrate.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.invert_elements.hpp">Header &lt;boost/time_series/numeric/invert_elements.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.invert_heaviside.hpp">Header &lt;boost/time_series/numeric/invert_heaviside.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.numeric.hpp">Header &lt;boost/time_series/numeric/numeric.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.partial_sum.hpp">Header &lt;boost/time_series/numeric/partial_sum.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.period_sums.hpp">Header &lt;boost/time_series/numeric/period_sums.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.piecewise_sample.hpp">Header &lt;boost/time_series/numeric/piecewise_sample.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.piecewise_surface_sample.hpp">Header &lt;boost/time_series/numeric/piecewise_surface_sample.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.rotate_left.hpp">Header &lt;boost/time_series/numeric/rotate_left.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.rotate_right.hpp">Header &lt;boost/time_series/numeric/rotate_right.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.shift.hpp">Header &lt;boost/time_series/numeric/shift.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.subscript.hpp">Header &lt;boost/time_series/numeric/subscript.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.numeric.variable_period_sums.hpp">Header &lt;boost/time_series/numeric/variable_period_sums.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.ordered_inserter.hpp">Header &lt;boost/time_series/ordered_inserter.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.piecewise_constant_series.hpp">Header &lt;boost/time_series/piecewise_constant_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.python.series.hpp">Header &lt;boost/time_series/python/series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.scaled_series.hpp">Header &lt;boost/time_series/scaled_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.shifted_series.hpp">Header &lt;boost/time_series/shifted_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.sparse_series.hpp">Header &lt;boost/time_series/sparse_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.time_series_facade.hpp">Header &lt;boost/time_series/time_series_facade.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.time_series_fwd.hpp">Header &lt;boost/time_series/time_series_fwd.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.time_series_typeof.hpp">Header &lt;boost/time_series/time_series_typeof.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.traits.discretization_type.hpp">Header &lt;boost/time_series/traits/discretization_type.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.traits.is_time_series.hpp">Header &lt;boost/time_series/traits/is_time_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.traits.storage_category.hpp">Header &lt;boost/time_series/traits/storage_category.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.utility.series_stl_iterator.hpp">Header &lt;boost/time_series/utility/series_stl_iterator.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="time_series/reference.html#header.boost.time_series.utility.time_series_base.hpp">Header &lt;boost/time_series/utility/time_series_base.hpp&gt;</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="range_run_storage_reference.html">Range Run Storage Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="range_run_storage_reference.html#range_run_storage_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.address_difference1.hpp">Header &lt;boost/range_run_storage/address_difference1.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.algorithm.copy.hpp">Header &lt;boost/range_run_storage/algorithm/copy.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.algorithm.first_last.hpp">Header &lt;boost/range_run_storage/algorithm/first_last.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.algorithm.for_each.hpp">Header &lt;boost/range_run_storage/algorithm/for_each.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.algorithm.transform.hpp">Header &lt;boost/range_run_storage/algorithm/transform.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.commit.hpp">Header &lt;boost/range_run_storage/commit.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.concepts.hpp">Header &lt;boost/range_run_storage/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.difference1.hpp">Header &lt;boost/range_run_storage/difference1.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.empty.hpp">Header &lt;boost/range_run_storage/empty.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.end_offset.hpp">Header &lt;boost/range_run_storage/end_offset.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.get_at.hpp">Header &lt;boost/range_run_storage/get_at.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.length.hpp">Header &lt;boost/range_run_storage/length.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.offset.hpp">Header &lt;boost/range_run_storage/offset.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.ordered_inserter.hpp">Header &lt;boost/range_run_storage/ordered_inserter.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.post_run.hpp">Header &lt;boost/range_run_storage/post_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.pre_run.hpp">Header &lt;boost/range_run_storage/pre_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.runs.hpp">Header &lt;boost/range_run_storage/runs.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.set_at.hpp">Header &lt;boost/range_run_storage/set_at.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.tag.hpp">Header &lt;boost/range_run_storage/tag.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.traits.is_dense_runs.hpp">Header &lt;boost/range_run_storage/traits/is_dense_runs.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.traits.is_unit_run.hpp">Header &lt;boost/range_run_storage/traits/is_unit_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.zero.hpp">Header &lt;boost/range_run_storage/zero.hpp&gt;</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="sequence_reference.html">Sequence Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="sequence_reference.html#sequence_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.begin.hpp">Header &lt;boost/sequence/begin.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.composed.hpp">Header &lt;boost/sequence/composed.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.concepts.hpp">Header &lt;boost/sequence/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.elements.hpp">Header &lt;boost/sequence/elements.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.end.hpp">Header &lt;boost/sequence/end.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.insert.hpp">Header &lt;boost/sequence/insert.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.size.hpp">Header &lt;boost/sequence/size.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.tag.hpp">Header &lt;boost/sequence/tag.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.traits.has_static_size.hpp">Header &lt;boost/sequence/traits/has_static_size.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.traits.index_type.hpp">Header &lt;boost/sequence/traits/index_type.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.traits.size_type.hpp">Header &lt;boost/sequence/traits/size_type.hpp&gt;</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="property_map_reference.html">Property Map Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="property_map_reference.html#property_map_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="property_map_reference.html#header.boost.property_map.concepts.hpp">Header &lt;boost/property_map/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="property_map_reference.html#header.boost.property_map.dereference.hpp">Header &lt;boost/property_map/dereference.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="property_map_reference.html#header.boost.property_map.identity.hpp">Header &lt;boost/property_map/identity.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="property_map_reference.html#header.boost.property_map.traits.value_type.hpp">Header &lt;boost/property_map/traits/value_type.hpp&gt;</a></span></dt>
+</dl></dd>
+</dl></dd>
+</dl>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="time_series.preface"></a><a href="index.html#time_series.preface" title="Preface">Preface</a></h2></div></div></div>
+<div class="blockquote"><blockquote class="blockquote"><p>
+        
+        &#8220;<span class="quote">Where do we find ourselves? In a series of which we do not know the
+        extremes, and believe that it has none.</span>&#8221;<br> <span class="emphasis"><em>--Ralph Waldo
+        Emerson</em></span>
+      </p></blockquote></div>
+<a name="time_series.preface.description"></a><h3>
+<a name="id373275"></a>
+      <a href="index.html#time_series.preface.description">Description</a>
+    </h3>
+<p>
+      The purpose of the Boost.Time_series library is to provide data structures,
+      numerical operators and algorithms to operate on <span class="emphasis"><em>time series</em></span>.
+      A time series is a series of data points, sampled at regular intervals. The
+      library provides numerous time series containers, each with different time/space
+      trade-offs, and a hierarchy of concepts which allow the time series to be manipulated
+      generically. The library also provides operators and algorithms which use the
+      generic interfaces to perform calculations on time series and accumulate various
+      statistics about them.
+    </p>
+<p>
+      Boost.Time_series does not yet contain all the algorithms one might want in
+      order to perform full time series analysis. However, the key contribution of
+      Boost.Time_series is the framework and the rich hierarchy of concepts with
+      which such algorithms can be written to efficiently and generically process
+      series of data with widely divergent in-memory representations and performance
+      characteristics. Boost.Time_series provides several such series containers,
+      as well as mechanisms for defining additional series types and algorithms that
+      fit within the framework. Some examples of series types that are provided are:
+      dense, sparse, piecewise constant, heaviside and others, as well as adaptors
+      for providing shifted, scaled and clipped series views.
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td colspan="2" align="left" valign="top"><p>
+        Boost.Time_series is not (yet) an official Boost library.
+      </p></td></tr>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"><small><p>Last revised: December 11, 2006 at 23:18:53 GMT</p></small></td>
+<td align="right"><small></small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav"><a accesskey="n" href="time_series/user_s_guide.html"><img src="images/next.png" alt="Next"></a></div>
+</body>
+</html>

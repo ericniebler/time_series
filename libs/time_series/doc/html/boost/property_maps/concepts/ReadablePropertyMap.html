@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Struct template ReadablePropertyMap</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../../property_map_reference.html#header.boost.property_map.concepts.hpp" title="Header &lt;boost/property_map/concepts.hpp&gt;">
+<link rel="prev" href="BasicPropertyMap.html" title="Struct template BasicPropertyMap">
+<link rel="next" href="WritablePropertyMap.html" title="Struct template WritablePropertyMap">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="BasicPropertyMap.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../../property_map_reference.html#header.boost.property_map.concepts.hpp"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="WritablePropertyMap.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.property_maps.concepts.ReadablePropertyMap"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Struct template ReadablePropertyMap</span></h2>
+<p>boost::property_maps::concepts::ReadablePropertyMap &#8212; </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> UnaryFunc, <span class="bold"><b>typename</b></span> Iter&gt; 
+<span class="bold"><b>struct</b></span> ReadablePropertyMap : <span class="bold"><b>public</b></span> boost::property_maps::concepts::BasicPropertyMap&lt; UnaryFunc, Iter &gt;
+{
+  <span class="emphasis"><em>// types</em></span>
+  <span class="bold"><b>typedef</b></span> result_of&lt; UnaryFunc(<span class="bold"><b>typename</b></span> ReadablePropertyMap::key_type) &gt;::type reference;                  
+  <span class="bold"><b>typedef</b></span> <span class="emphasis"><em>unspecified</em></span>                                                          boost_concept_check__LINE__;
+  <span class="bold"><b>typedef</b></span> <span class="emphasis"><em>unspecified</em></span>                                                          boost_concept_check__LINE__;
+};</pre></div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="BasicPropertyMap.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../../property_map_reference.html#header.boost.property_map.concepts.hpp"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="WritablePropertyMap.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

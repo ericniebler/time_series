@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="yes"?>
+<library-reference id="sequence_reference" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Sequence Reference</title>
+    <xi:include href="concepts/Sequence.xml"/>
+    <xi:include href="concepts/O1SizeSequence.xml"/>
+    <xi:include href="concepts/Mutable_Sequence.xml"/>
+    <xi:include href="seqdoc.boostbook" xpointer="xpointer(//header)"/>
+</library-reference>

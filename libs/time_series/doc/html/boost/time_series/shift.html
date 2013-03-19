@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Function shift</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../time_series/reference.html#header.boost.time_series.numeric.shift.hpp" title="Header &lt;boost/time_series/numeric/shift.hpp&gt;">
+<link rel="prev" href="rotate_right.html" title="Function rotate_right">
+<link rel="next" href="subscript.html" title="Function subscript">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="rotate_right.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.numeric.shift.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="subscript.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.shift"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Function shift</span></h2>
+<p>boost::time_series::shift &#8212; Shifts a <tt class="computeroutput">TimeSeries</tt> by the specified offset. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis">
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Offset&gt; 
+  <span class="type"><a href="shifted_series.html" title="Struct template shifted_series">shifted_series</a>&lt; Series &gt; <span class="bold"><b>const</b></span></span> shift(Series &amp; series, Offset offset);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Offset&gt; 
+  <span class="type"><a href="shifted_series.html" title="Struct template shifted_series">shifted_series</a>&lt; Series <span class="bold"><b>const</b></span>  &gt; <span class="bold"><b>const</b></span></span> 
+  shift(Series <span class="bold"><b>const</b></span> &amp; series, Offset offset);</pre></div>
+<div class="refsect1" lang="en">
+<a name="id497881"></a><h2>Description</h2>
+<p>Shifts a <tt class="computeroutput">TimeSeries</tt> by the specified offset. The offset can be positive, which shifts the series right, or negative which shifts it left.</p>
+<p>
+
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">offset</tt></span></td>
+<td><p>The offset by which the series is to be shifted. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">series</tt></span></td>
+<td><p>The series to shift. </p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">Series</tt> is a model of the <tt class="computeroutput">TimeSeries</tt> concept. </p>
+<p><tt class="computeroutput">Offset</tt> is convertible to the <tt class="computeroutput">offset_type</tt> of the input series. </p>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p>A <tt class="computeroutput">shifted_series&lt;&gt;</tt> view that models <tt class="computeroutput">TimeSeries</tt>. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Notes:</span></td>
+<td><p>The complexity is O(1). </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="rotate_right.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.numeric.shift.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="subscript.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

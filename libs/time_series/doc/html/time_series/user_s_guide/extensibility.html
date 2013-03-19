@@ -1,0 +1,1307 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Extensibility</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../user_s_guide.html" title="User's Guide">
+<link rel="prev" href="series_algorithms.html" title="Series
+      Algorithms">
+<link rel="next" href="../acknowledgements.html" title="Acknowledgements">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="series_algorithms.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../user_s_guide.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="../acknowledgements.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="time_series.user_s_guide.extensibility"></a><a href="extensibility.html" title="Extensibility">Extensibility</a></h3></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="extensibility.html#time_series.user_s_guide.extensibility.the_timeseries_concept">The
+        TimeSeries Concept</a></span></dt>
+<dt><span class="section"><a href="extensibility.html#time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms">Defining
+        New TimeSeries algorithms</a></span></dt>
+<dt><span class="section"><a href="extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type">Defining
+        a New TimeSeries Type</a></span></dt>
+</dl></div>
+<p>
+        
+        This section describes how to extend the Boost.Time_series library by adding
+        new algorithms that work with the series types, and how to define new series
+        types that satisfy the <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>
+        concept.
+      </p>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series.user_s_guide.extensibility.the_timeseries_concept"></a><a href="extensibility.html#time_series.user_s_guide.extensibility.the_timeseries_concept" title="The
+        TimeSeries Concept">The
+        TimeSeries Concept</a></h4></div></div></div>
+<p>
+          
+          All of the series types in the Time_series library, whether they are dense
+          or sparse or constant or even an adapted view of any of those, share a
+          common interface and can be processed generically. This is because they
+          all model the same concept: <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>.
+          The <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a> concept itself
+          is a refinement of a lower-level interface, called <a href="../../InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a>.
+          Understanding how <a href="../../InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a>
+          can be used to represent and manipulate all these different types of series
+          is key to being able to extend the Time_series library.
+        </p>
+<p class="blurb">
+          <span class="bold"><b>The Range-Run Abstraction</b></span><br> <br>
+          The range-run abstraction is the core of the Time_series library. Just
+          as iterators in the STL make it possible to traverse the elements of an
+          STL contaier without knowing the details of how it is layed out in memory,
+          so too does the range-run abstraction.<br> <br> The easiest way to
+          visualize range-run storage is as an array of (value, offset, end_offset)
+          tuples. Each tuple in the array represents a <span class="emphasis"><em>run</em></span> of
+          elements with the same value, stretching from the offset to the end-offset.
+          The run is half-open -- the offset is inclusive, but the end-offset is
+          exclusive -- just as STL iterator ranges are, but offsets are position
+          indicators, not iterators.<br> <br> The Range_run_storage library provides
+          utilities and a handful of algorithms for stepping through and manipulating
+          the runs in a series.
+        </p>
+<p>
+          The following table shows all the valid expressions on models of the <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a> concept. In the table, <tt class="computeroutput"><span class="identifier">S</span></tt> is a (possibly const-qualified) type
+          which models <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>, <tt class="computeroutput"><span class="identifier">s</span></tt> is an object of type <tt class="computeroutput"><span class="identifier">S</span></tt>, and <tt class="computeroutput"><span class="identifier">o</span></tt>
+          is an object of <tt class="computeroutput"><span class="identifier">S</span></tt>'s <tt class="computeroutput"><span class="identifier">offset_type</span></tt>. All types and functions
+          are assumed to be in the <tt class="computeroutput"><span class="special">::</span><span class="identifier">boost</span></tt> namespace, except the <tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;&gt;</span></tt>
+          template, which is in the <tt class="computeroutput"><span class="special">::</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">time_series</span><span class="special">::</span><span class="identifier">concepts</span></tt> namespace.
+        </p>
+<div class="table">
+<a name="id461434"></a><p class="title"><b>Table 1.3. TimeSeries Valid Expressions</b></p>
+<table class="table" summary="TimeSeries Valid Expressions">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">cursor</span></tt></td>
+<td>A cursor that
+              can be used to traverse the elements and runs of <tt class="computeroutput"><span class="identifier">s</span></tt>.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">end</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">end_cursor</span></tt></td>
+<td>A cursor
+              that can be used to mark the end of the traversal of the elements and
+              runs of <tt class="computeroutput"><span class="identifier">s</span></tt>.(Note: for
+              all series types in the Time_series library, <tt class="computeroutput"><span class="identifier">end_cursor</span></tt>
+              is the same type as <tt class="computeroutput"><span class="identifier">cursor</span></tt>.)</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">elements</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">elements</span></tt></td>
+<td>A <a href="../../ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a> that, when
+              accessed with a cursor, returns the element at the specified position.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">runs</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">runs</span></tt></td>
+<td>A
+              <a href="../../ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a>
+              that, when accessed with a cursor, returns the <a href="../../Run.html" title="Concept Run">Run</a>
+              at the specified position.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">get_at</span><span class="special">(</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">o</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">value_type</span></tt></td>
+<td>Returns
+              the element at the offset <tt class="computeroutput"><span class="identifier">o</span></tt>.
+              This is generally an O(log N) operation, except for dense series, where
+              it is O(1).</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">zero</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">zero_type</span></tt></td>
+<td>Returns
+              the value of the zero elements of the series. <tt class="computeroutput"><span class="identifier">zero_type</span></tt>
+              must be convertible to <tt class="computeroutput"><span class="identifier">value_type</span></tt>.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">pre_run</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">pre_run_type</span></tt></td>
+<td>A
+              <a href="../../Run.html" title="Concept Run">Run</a> that comes before the runs
+              in the <tt class="computeroutput"><span class="identifier">runs</span></tt> property
+              map. Unlike the runs in the <tt class="computeroutput"><span class="identifier">runs</span></tt>
+              property map, this run may be infinite or empty.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">pre_value</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">value_type</span></tt></td>
+<td>The
+              value associated with the <tt class="computeroutput"><span class="identifier">pre_run</span></tt>,
+              if there is one.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">post_run</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">post_run_type</span></tt></td>
+<td>A
+              <a href="../../Run.html" title="Concept Run">Run</a> that comes after the runs
+              in the <tt class="computeroutput"><span class="identifier">runs</span></tt> property
+              map. Unlike the runs in the <tt class="computeroutput"><span class="identifier">runs</span></tt>
+              property map, this run may be infinite or empty.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">post_value</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">value_type</span></tt></td>
+<td>The
+              value associated with the <tt class="computeroutput"><span class="identifier">post_run</span></tt>,
+              if there is one.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">s</span><span class="special">.</span><span class="identifier">discretization</span><span class="special">()</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">discretization_type</span></tt></td>
+<td>A
+              value which represents the series' <span class="emphasis"><em>discretization</em></span>.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">s</span><span class="special">[</span><span class="identifier">o</span><span class="special">]</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">value_type</span></tt></td>
+<td>Same as
+              <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">get_at</span><span class="special">(</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">o</span> <span class="special">)</span></tt>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+          Every series type in the Boost.Time_series library exposes all of its data
+          via these functions. In addition, most of the series types provide mechanisms
+          for mutating the data, or building an entirely new series. These series
+          are models of the <a href="../../Mutable_TimeSeries.html" title="Concept Mutable_TimeSeries">Mutable_TimeSeries</a>
+          concept, which has the following valid expressions in addition to those
+          of the <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a> concept.
+          In this table, <tt class="computeroutput"><span class="identifier">S</span></tt> is a (possibly
+          const-qualified) type which models <a href="../../Mutable_TimeSeries.html" title="Concept Mutable_TimeSeries">Mutable_TimeSeries</a>,
+          <tt class="computeroutput"><span class="identifier">s</span></tt> is an object of type
+          <tt class="computeroutput"><span class="identifier">S</span></tt>, <tt class="computeroutput"><span class="identifier">r</span></tt>
+          is an object of <tt class="computeroutput"><span class="identifier">S</span></tt>'s <tt class="computeroutput"><span class="identifier">run_type</span></tt>, and <tt class="computeroutput"><span class="identifier">v</span></tt>
+          is an object of <tt class="computeroutput"><span class="identifier">S</span></tt>'s <tt class="computeroutput"><span class="identifier">value_type</span></tt>.
+        </p>
+<div class="table">
+<a name="id462774"></a><p class="title"><b>Table 1.4. Mutable_TimeSeries Valid Expressions</b></p>
+<table class="table" summary="Mutable_TimeSeries Valid Expressions">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">set_at</span><span class="special">(</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">r</span><span class="special">,</span> <span class="identifier">v</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="keyword">void</span></tt></td>
+<td>Sets
+              a run <tt class="computeroutput"><span class="identifier">r</span></tt> within <tt class="computeroutput"><span class="identifier">s</span></tt> to value <tt class="computeroutput"><span class="identifier">v</span></tt>.
+              This operation is O(N) in the worst case, and invalidates any cursors
+              to <tt class="computeroutput"><span class="identifier">s</span></tt>.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">zero</span><span class="special">(</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">v</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="keyword">void</span></tt></td>
+<td>Sets
+              the value of the zero elements of the series.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">pre_value</span><span class="special">(</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">v</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="keyword">void</span></tt></td>
+<td>Sets
+              a the value of the pre-run within <tt class="computeroutput"><span class="identifier">s</span></tt>
+              to <tt class="computeroutput"><span class="identifier">v</span></tt>.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">post_value</span><span class="special">(</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">v</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="keyword">void</span></tt></td>
+<td>Sets
+              a the value of the post-run within <tt class="computeroutput"><span class="identifier">s</span></tt>
+              to <tt class="computeroutput"><span class="identifier">v</span></tt>.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">ordered_inserter</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="identifier">Mutable_TimeSeries</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;::</span><span class="identifier">ordered_inserter_type</span></tt></td>
+<td>Returns
+              an <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+              for <tt class="computeroutput"><span class="identifier">s</span></tt> that can be used
+              to build a new series in <tt class="computeroutput"><span class="identifier">s</span></tt>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+          In addition, the <tt class="computeroutput"><span class="identifier">elements</span></tt>
+          property map of <a href="../../Mutable_TimeSeries.html" title="Concept Mutable_TimeSeries">Mutable_TimeSeries</a>
+          is a model of <a href="../../ReadWritePropertyMap.html" title="Concept ReadWritePropertyMap">ReadWritePropertyMap</a>,
+          which means the elements of the series can be written to. All of the series
+          types besides the views (<tt class="computeroutput"><a href="../../boost/time_series/clipped_series.html" title="Struct template clipped_series">clipped_series&lt;&gt;</a></tt>,
+          <tt class="computeroutput"><a href="../../boost/time_series/scaled_series.html" title="Struct template scaled_series">scaled_series&lt;&gt;</a></tt> and <tt class="computeroutput"><a href="../../boost/time_series/shifted_series.html" title="Struct template shifted_series">shifted_series&lt;&gt;</a></tt>)
+          are models of <a href="../../Mutable_TimeSeries.html" title="Concept Mutable_TimeSeries">Mutable_TimeSeries</a>.
+        </p>
+<p>
+          The <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a> concept
+          makes efficient initialization of time series possible. You use an <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a> by pushing runs and
+          values into it <span class="emphasis"><em>in order</em></span>, and when you are done, you
+          call <tt class="computeroutput"><span class="identifier">commit</span><span class="special">()</span></tt>
+          on it. The <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          concept has the following valid expressions. In the table below, <tt class="computeroutput"><span class="identifier">o</span></tt> is a model of an <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>,
+          <tt class="computeroutput"><span class="identifier">r</span></tt> is a run, and <tt class="computeroutput"><span class="identifier">v</span></tt> is a value.
+        </p>
+<div class="table">
+<a name="id463457"></a><p class="title"><b>Table 1.5. OrderedInserter Valid Expressions</b></p>
+<table class="table" summary="OrderedInserter Valid Expressions">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">set_at</span><span class="special">(</span> <span class="identifier">o</span><span class="special">,</span> <span class="identifier">r</span><span class="special">,</span> <span class="identifier">v</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="keyword">void</span></tt></td>
+<td>Adds
+              a run <tt class="computeroutput"><span class="identifier">r</span></tt> with value
+              <tt class="computeroutput"><span class="identifier">v</span></tt>. This operation is
+              amortized O(1). The offset of the run <tt class="computeroutput"><span class="identifier">r</span></tt>
+              must be greater than or equal to the end-offset of any run added previously.</td>
+</tr>
+<tr>
+<td><tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">commit</span><span class="special">(</span> <span class="identifier">o</span> <span class="special">)</span></tt></td>
+<td><tt class="computeroutput"><span class="keyword">void</span></tt></td>
+<td>Writes
+              all the runs and values into the underlying series. The complexity
+              is O(1).</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms"></a><a href="extensibility.html#time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms" title="Defining
+        New TimeSeries algorithms">Defining
+        New TimeSeries algorithms</a></h4></div></div></div>
+<p>
+          
+          The easiest way to implement a new Time_series algorithm is to implement
+          it in terms of the lower-level InfiniteRangeRunStorage algorithms: <tt class="computeroutput"><a href="../../boost/range_run_storage/copy.html" title="Function template copy">copy()</a></tt>, <tt class="computeroutput"><a href="../../boost/range_run_storage/for_each.html" title="Function for_each">for_each()</a></tt>,
+          and <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>.
+          These algorithms take care of the details of stepping through a series
+          one run at a time, or in the case of the 2-series variant of <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>, stepping through two
+          series in tandem.
+        </p>
+<a name="time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms.using__code__phrase_role__identifier__range_run_storage__phrase__phrase_role__special______phrase__phrase_role__identifier__for_each__phrase__phrase_role__special______phrase___code_"></a><h3>
+<a name="id463776"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms.using__code__phrase_role__identifier__range_run_storage__phrase__phrase_role__special______phrase__phrase_role__identifier__for_each__phrase__phrase_role__special______phrase___code_">Using
+          <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">()</span></tt></a>
+        </h3>
+<p>
+          The simplest of these algorithms is <tt class="computeroutput"><a href="../../boost/range_run_storage/for_each.html" title="Function for_each">for_each()</a></tt>.
+          It accepts an InfiniteRangeRunStorage and a TernaryFunction. For each run
+          in the series, the function is invoked with the run's value, offset and
+          end offset. The following example uses <tt class="computeroutput"><a href="../../boost/range_run_storage/for_each.html" title="Function for_each">for_each()</a></tt>
+          to print a series to <tt class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span></tt>:
+        </p>
+<pre class="programlisting">
+<span class="comment">// A TernaryFunction for printing runs to std::cout
+</span><span class="keyword">struct</span> <span class="identifier">display_run</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Value</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">Offset</span> <span class="special">&gt;</span>
+    <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">Value</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="identifier">value</span><span class="special">,</span> <span class="identifier">Offset</span> <span class="identifier">start</span><span class="special">,</span> <span class="identifier">Offset</span> <span class="identifier">stop</span> <span class="special">)</span> <span class="keyword">const</span>
+    <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span>
+            <span class="special">&lt;&lt;</span> <span class="string">" value = "</span> <span class="special">&lt;&lt;</span> <span class="identifier">value</span> <span class="special">&lt;&lt;</span> <span class="string">", "</span>
+            <span class="special">&lt;&lt;</span> <span class="string">" offset = "</span> <span class="special">&lt;&lt;</span> <span class="identifier">start</span> <span class="special">&lt;&lt;</span> <span class="string">", "</span>
+            <span class="special">&lt;&lt;</span> <span class="string">" end offset = "</span> <span class="special">&lt;&lt;</span> <span class="identifier">stop</span> <span class="special">&lt;&lt;</span> <span class="char">'\n'</span><span class="special">;</span>
+    <span class="special">}</span>
+<span class="special">};</span>
+
+<span class="comment">// Uses for_each() and display_run to print a series to std::cout
+</span><span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Series</span> <span class="special">&gt;</span>
+<span class="keyword">void</span> <span class="identifier">print_series</span><span class="special">(</span> <span class="identifier">Series</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="identifier">series</span> <span class="special">)</span>
+<span class="special">{</span>
+    <span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">(</span> <span class="identifier">series</span><span class="special">,</span> <span class="identifier">display_run</span><span class="special">()</span> <span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<p>
+          Many of the TimeSeries algorithms are trivially implementable in terms
+          of <tt class="computeroutput"><a href="../../boost/range_run_storage/for_each.html" title="Function for_each">for_each()</a></tt>;
+          for example, see <tt class="computeroutput"><a href="../../boost/time_series/adjacent_difference.html" title="Function adjacent_difference">adjacent_difference()</a></tt>.
+        </p>
+<a name="time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms.using__code__phrase_role__identifier__range_run_storage__phrase__phrase_role__special______phrase__phrase_role__identifier__copy__phrase__phrase_role__special______phrase___code_"></a><h3>
+<a name="id464403"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms.using__code__phrase_role__identifier__range_run_storage__phrase__phrase_role__special______phrase__phrase_role__identifier__copy__phrase__phrase_role__special______phrase___code_">Using
+          <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">copy</span><span class="special">()</span></tt></a>
+        </h3>
+<p>
+          Another option would be to use the <tt class="computeroutput"><a href="../../boost/range_run_storage/copy.html" title="Function template copy">copy()</a></tt>
+          algorithm, which is like <tt class="computeroutput"><a href="../../boost/range_run_storage/for_each.html" title="Function for_each">for_each()</a></tt>
+          except that it accepts an <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          instead of a TernaryFunction. The <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          interface is more complicated, but also more powerful. All models of <a href="../../Mutable_TimeSeries.html" title="Concept Mutable_TimeSeries">Mutable_TimeSeries</a> expose an <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a> so they can be modified,
+          but anything that satisfies the <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          interface can be used by <tt class="computeroutput"><a href="../../boost/range_run_storage/copy.html" title="Function template copy">copy()</a></tt>
+          -- it doesn't necessarily have to be an inserter into a series. It may
+          calculate a single value, for instance.
+        </p>
+<p>
+          The <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a> interface
+          offers more opportunities for optimization than TernaryFunction. When your
+          algorithm can be made more efficient when handling unit-length runs (as
+          with sparse, dense and delta series), you will want to use <tt class="computeroutput"><a href="../../boost/range_run_storage/copy.html" title="Function template copy">copy()</a></tt> instead of <tt class="computeroutput"><a href="../../boost/range_run_storage/for_each.html" title="Function for_each">for_each()</a></tt>, because <tt class="computeroutput"><a href="../../boost/range_run_storage/copy.html" title="Function template copy">copy()</a></tt> makes that information
+          available at compile time.
+        </p>
+<a name="time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms.using__code__phrase_role__identifier__range_run_storage__phrase__phrase_role__special______phrase__phrase_role__identifier__transform__phrase__phrase_role__special______phrase___code_"></a><h3>
+<a name="id464618"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms.using__code__phrase_role__identifier__range_run_storage__phrase__phrase_role__special______phrase__phrase_role__identifier__transform__phrase__phrase_role__special______phrase___code_">Using
+          <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">transform</span><span class="special">()</span></tt></a>
+        </h3>
+<p>
+          For more complex tasks, the <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>
+          algorithm is indespensible. There are two basic variants, which are analogous
+          to the two <tt class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">transform</span><span class="special">()</span></tt>
+          overloads in the standard: one that takes one series, and another that
+          takes two.
+        </p>
+<p>
+          Here is an example of using <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>
+          to negate every element in a series and write the result into another,
+          using only the low-level InfiniteRangeRunStorage interface:
+        </p>
+<pre class="programlisting">
+<span class="identifier">dense_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">from</span><span class="special">,</span> <span class="identifier">to</span><span class="special">;</span>
+<span class="special">...</span>
+<span class="identifier">Mutable_InfiniteRangeRunStorage</span><span class="special">&lt;</span> <span class="identifier">dense_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="special">&gt;::</span>
+    <span class="identifier">ordered_inserter_type</span> <span class="identifier">out</span><span class="special">(</span> <span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">ordered_inserter</span><span class="special">(</span> <span class="identifier">to</span> <span class="special">)</span> <span class="special">);</span>
+
+<span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">transform</span><span class="special">(</span> <span class="identifier">from</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">negate</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;(),</span> <span class="identifier">out</span> <span class="special">);</span>
+<span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">commit</span><span class="special">(</span> <span class="identifier">out</span> <span class="special">);</span>
+</pre>
+<p>
+          And here is an example of using <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>
+          to add two series and write the result into a third:
+        </p>
+<pre class="programlisting">
+<span class="identifier">piecewise_constant_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="identifier">left</span><span class="special">,</span> <span class="identifier">right</span><span class="special">,</span> <span class="identifier">to</span><span class="special">;</span>
+<span class="special">...</span>
+<span class="identifier">Mutable_InfiniteRangeRunStorage</span><span class="special">&lt;</span> <span class="identifier">dense_series</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;</span> <span class="special">&gt;::</span>
+    <span class="identifier">ordered_inserter_type</span> <span class="identifier">out</span><span class="special">(</span> <span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">ordered_inserter</span><span class="special">(</span> <span class="identifier">to</span> <span class="special">)</span> <span class="special">);</span>
+
+<span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">transform</span><span class="special">(</span> <span class="identifier">left</span><span class="special">,</span> <span class="identifier">right</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">plus</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">&gt;(),</span> <span class="identifier">out</span> <span class="special">);</span>
+<span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">commit</span><span class="special">(</span> <span class="identifier">out</span> <span class="special">);</span>
+</pre>
+<p>
+          This does what you would expect: it performs an element-wise addition of
+          the two series. Note that the runs in one series may or may not overlap
+          with runs in the other. Where runs do overlap, the result will be the addition
+          of the two runs' values. Elsewhere, the result is the value from the one
+          run plus the zero of the other series.
+        </p>
+<p>
+          Some complicated algorithms need to do something different depending on
+          whether or not runs overlap. There is a special version of <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt> you can use in those situations.
+          This version lets you specify three functions: a binary one to call when
+          runs overlap, and two unary ones to call when a left run doesn't overlap
+          a right and <span class="emphasis"><em>vice versa</em></span>. These three functions may
+          or may not return the same type. Below is a longer example that shows how
+          you would use this version of <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>
+          to detect in an <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          the different ways the runs overlap.
+        </p>
+<pre class="programlisting">
+<span class="keyword">struct</span> <span class="identifier">left_t</span> <span class="special">{};</span>
+<span class="keyword">struct</span> <span class="identifier">right_t</span> <span class="special">{};</span>
+<span class="keyword">struct</span> <span class="identifier">both_t</span> <span class="special">{};</span>
+
+<span class="identifier">left_t</span>  <span class="identifier">do_left</span><span class="special">(</span> <span class="keyword">int</span> <span class="special">)</span> <span class="special">{</span> <span class="keyword">return</span> <span class="identifier">left_t</span><span class="special">();</span> <span class="special">}</span>
+<span class="identifier">right_t</span> <span class="identifier">do_right</span><span class="special">(</span> <span class="keyword">int</span> <span class="special">)</span> <span class="special">{</span> <span class="keyword">return</span> <span class="identifier">right_t</span><span class="special">();</span> <span class="special">}</span>
+<span class="identifier">both_t</span>  <span class="identifier">do_both</span><span class="special">(</span> <span class="keyword">int</span><span class="special">,</span><span class="keyword">int</span> <span class="special">)</span> <span class="special">{</span> <span class="keyword">return</span> <span class="identifier">both_t</span><span class="special">();</span> <span class="special">}</span>
+
+<span class="keyword">struct</span> <span class="identifier">stub_ordered_inserter</span>
+<span class="special">{</span>
+    <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">ptrdiff_t</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">ptrdiff_t</span> <span class="special">&gt;</span> <span class="identifier">run_t</span><span class="special">;</span>
+    
+    <span class="keyword">void</span> <span class="identifier">set_at</span><span class="special">(</span> <span class="identifier">run_t</span><span class="special">,</span> <span class="identifier">left_t</span> <span class="special">)</span> <span class="special">{}</span>  <span class="comment">// for left runs only
+</span>    <span class="keyword">void</span> <span class="identifier">set_at</span><span class="special">(</span> <span class="identifier">run_t</span><span class="special">,</span> <span class="identifier">right_t</span> <span class="special">)</span> <span class="special">{}</span> <span class="comment">// for right runs only
+</span>    <span class="keyword">void</span> <span class="identifier">set_at</span><span class="special">(</span> <span class="identifier">run_t</span><span class="special">,</span> <span class="identifier">both_t</span> <span class="special">)</span> <span class="special">{}</span>  <span class="comment">// where left and right overlap
+</span><span class="special">};</span>
+
+<span class="special">...</span>
+
+<span class="identifier">time_series</span><span class="special">::</span><span class="identifier">piecewise_constant_series</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="identifier">left</span><span class="special">,</span> <span class="identifier">right</span><span class="special">;</span>
+
+<span class="comment">// Call transform() with different functions for where runs do and do not overlap.
+</span><span class="identifier">stub_ordered_inserter</span> <span class="identifier">o</span><span class="special">;</span>
+<span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">transform</span><span class="special">(</span> <span class="identifier">left</span><span class="special">,</span> <span class="identifier">right</span><span class="special">,</span> <span class="identifier">do_both</span><span class="special">,</span> <span class="identifier">do_left</span><span class="special">,</span> <span class="identifier">do_right</span><span class="special">,</span> <span class="identifier">o</span> <span class="special">);</span>
+</pre>
+<p>
+          Now imagine that the series <tt class="computeroutput"><span class="identifier">left</span></tt>
+          and <tt class="computeroutput"><span class="identifier">right</span></tt> contain one run
+          each:
+        </p>
+<pre class="programlisting">left  = [0, 2) of value 1 
+right = [1, 3) of value 2
+</pre>
+<p>
+          What is the sequence of operations executed by <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>?
+          It depends on how the runs from <tt class="computeroutput"><span class="identifier">left</span></tt>
+          and <tt class="computeroutput"><span class="identifier">right</span></tt> overlap. The
+          following table shows the different sub-runs of the two sequence and the
+          operations <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>
+          performs for each:
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Left sub-runs</th>
+<th>Right sub-runs</th>
+<th>overlap</th>
+<th>operation</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+<tt class="literal">[0,1)</tt> of value <tt class="computeroutput"><span class="number">1</span></tt>
+</td>
+<td> </td>
+<td>no
+                overlap</td>
+<td><tt class="computeroutput"><span class="identifier">do_left</span><span class="special">(</span><span class="number">1</span><span class="special">)</span></tt></td>
+</tr>
+<tr>
+<td>
+<tt class="literal">[1,2)</tt> of value <tt class="computeroutput"><span class="number">1</span></tt>
+</td>
+<td>
+<tt class="literal">[1,2)</tt>
+                of value <tt class="computeroutput"><span class="number">2</span></tt>
+</td>
+<td>overlap</td>
+<td><tt class="computeroutput"><span class="identifier">do_both</span><span class="special">(</span><span class="number">1</span><span class="special">,</span><span class="number">2</span><span class="special">)</span></tt></td>
+</tr>
+<tr>
+<td> </td>
+<td>
+<tt class="literal">[2,3)</tt> of value <tt class="computeroutput"><span class="number">2</span></tt>
+</td>
+<td>no overlap</td>
+<td><tt class="computeroutput"><span class="identifier">do_right</span><span class="special">(</span><span class="number">2</span><span class="special">)</span></tt></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+          This example demonstrates a number of interesting and useful features of
+          the <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>
+          function and <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>'s
+          in general. First, note that the return types of the three functions <tt class="computeroutput"><span class="identifier">do_both</span><span class="special">()</span></tt>,
+          <tt class="computeroutput"><span class="identifier">do_left</span><span class="special">()</span></tt>,
+          and <tt class="computeroutput"><span class="identifier">do_right</span><span class="special">()</span></tt>
+          can be used to dispatch to different member functions of <tt class="computeroutput"><span class="identifier">stub_ordered_inserter</span></tt>. This trick is
+          used in the implementation of many of the Time_series algorithms. Also,
+          note that all we need to do to make a valid <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          is to define an appropriate <tt class="computeroutput"><span class="identifier">set_at</span><span class="special">()</span></tt> member function. This takes advantage
+          of the default implementations of <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">set_at</span><span class="special">()</span></tt> and <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">commit</span><span class="special">()</span></tt>, the former calling the <tt class="computeroutput"><span class="identifier">set_at</span><span class="special">()</span></tt>
+          member function and the later being a no-op.
+        </p>
+<a name="time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms.programming_to_the_rangerunstorage_interface"></a><h3>
+<a name="id466551"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_new_timeseries_algorithms.programming_to_the_rangerunstorage_interface">Programming
+          To The RangeRunStorage Interface</a>
+        </h3>
+<p>
+          Sometimes, the existing InfiniteRangeRunStorage algorithms are not enough
+          to implement a new TimeSeries algorithm, and you need to write your own.
+          In that case, understanding the <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>
+          concept is crucial. When implementing a new algorithm over a <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a> (or an <a href="../../InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a>),
+          it can help to start with an existing algorithm and modify it to suit your
+          needs. Here, for example, is how <tt class="computeroutput"><a href="../../boost/range_run_storage/for_each.html" title="Function for_each">for_each()</a></tt>
+          might be implemented:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">seq</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">sequence</span><span class="special">;</span>
+<span class="keyword">namespace</span> <span class="identifier">rrs</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">range_run_storage</span><span class="special">;</span>
+
+<span class="comment">// Call a ternary function for every (value, offset, end_offset) in 
+</span><span class="comment">// an InfiniteRangeRunStorage
+</span><span class="comment">//
+</span><span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">In</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">TernaryOp</span> <span class="special">&gt;</span>
+<span class="identifier">TernaryOp</span> <span class="identifier">for_each</span><span class="special">(</span> <span class="identifier">In</span> <span class="special">&amp;</span><span class="identifier">in</span><span class="special">,</span> <span class="identifier">TernaryOp</span> <span class="identifier">fun</span> <span class="special">)</span>
+<span class="special">{</span>
+    <span class="keyword">using</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">concepts</span><span class="special">::</span><span class="identifier">InfiniteRangeRunStorage</span><span class="special">;</span>
+
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">InfiniteRangeRunStorage</span><span class="special">&lt;</span> <span class="identifier">In</span> <span class="special">&gt;::</span><span class="identifier">cursor</span> <span class="identifier">cursor_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">InfiniteRangeRunStorage</span><span class="special">&lt;</span> <span class="identifier">In</span> <span class="special">&gt;::</span><span class="identifier">runs</span> <span class="identifier">runs_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">InfiniteRangeRunStorage</span><span class="special">&lt;</span> <span class="identifier">In</span> <span class="special">&gt;::</span><span class="identifier">run_type</span> <span class="identifier">run_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">InfiniteRangeRunStorage</span><span class="special">&lt;</span> <span class="identifier">In</span> <span class="special">&gt;::</span><span class="identifier">elements</span> <span class="identifier">elements_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">InfiniteRangeRunStorage</span><span class="special">&lt;</span> <span class="identifier">In</span> <span class="special">&gt;::</span><span class="identifier">post_run_type</span> <span class="identifier">post_run_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">InfiniteRangeRunStorage</span><span class="special">&lt;</span> <span class="identifier">In</span> <span class="special">&gt;::</span><span class="identifier">pre_run_type</span> <span class="identifier">pre_run_type</span><span class="special">;</span>
+
+    <span class="comment">// Execute "fun" on the pre_run
+</span>    <span class="identifier">pre_run_type</span> <span class="identifier">pre_run</span><span class="special">(</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">pre_run</span><span class="special">(</span> <span class="identifier">in</span> <span class="special">)</span> <span class="special">);</span>
+    <span class="keyword">if</span><span class="special">(!</span><span class="identifier">rrs</span><span class="special">::</span><span class="identifier">empty</span><span class="special">(</span> <span class="identifier">pre_run</span> <span class="special">))</span>
+    <span class="special">{</span>
+        <span class="identifier">fun</span><span class="special">(</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">pre_value</span><span class="special">(</span> <span class="identifier">in</span> <span class="special">),</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">offset</span><span class="special">(</span> <span class="identifier">pre_run</span> <span class="special">),</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">end_offset</span><span class="special">(</span> <span class="identifier">pre_run</span> <span class="special">)</span> <span class="special">);</span>
+    <span class="special">}</span>
+
+    <span class="identifier">runs_type</span> <span class="identifier">runs</span> <span class="special">=</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">runs</span><span class="special">(</span> <span class="identifier">in</span> <span class="special">);</span>
+    <span class="identifier">elements_type</span> <span class="identifier">elements</span> <span class="special">=</span> <span class="identifier">seq</span><span class="special">::</span><span class="identifier">elements</span><span class="special">(</span> <span class="identifier">in</span> <span class="special">);</span>
+    <span class="identifier">cursor_type</span> <span class="identifier">begin</span> <span class="special">=</span> <span class="identifier">seq</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span> <span class="identifier">in</span> <span class="special">);</span>
+    <span class="identifier">cursor_type</span> <span class="identifier">end</span> <span class="special">=</span> <span class="identifier">seq</span><span class="special">::</span><span class="identifier">end</span><span class="special">(</span> <span class="identifier">in</span> <span class="special">);</span>
+
+    <span class="comment">// Execute "fun" on the runs in the "runs" property map
+</span>    <span class="keyword">for</span><span class="special">(</span> <span class="special">;</span> <span class="identifier">begin</span> <span class="special">!=</span> <span class="identifier">end</span><span class="special">;</span> <span class="special">++</span><span class="identifier">begin</span> <span class="special">)</span>
+    <span class="special">{</span>
+        <span class="identifier">run_type</span> <span class="identifier">run</span> <span class="special">=</span> <span class="identifier">runs</span><span class="special">(</span> <span class="special">*</span><span class="identifier">begin</span> <span class="special">);</span>
+        <span class="identifier">fun</span><span class="special">(</span> <span class="identifier">elements</span><span class="special">(</span> <span class="special">*</span><span class="identifier">begin</span> <span class="special">),</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">offset</span><span class="special">(</span> <span class="identifier">run</span> <span class="special">),</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">end_offset</span><span class="special">(</span> <span class="identifier">run</span> <span class="special">)</span> <span class="special">);</span>
+    <span class="special">}</span>
+
+    <span class="comment">// Execute fun on the post_run
+</span>    <span class="identifier">post_run_type</span> <span class="identifier">post_run</span><span class="special">(</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">post_run</span><span class="special">(</span> <span class="identifier">in</span> <span class="special">)</span> <span class="special">);</span>
+    <span class="keyword">if</span><span class="special">(</span> <span class="special">!</span><span class="identifier">rrs</span><span class="special">::</span><span class="identifier">empty</span><span class="special">(</span> <span class="identifier">post_run</span> <span class="special">)</span> <span class="special">)</span>
+    <span class="special">{</span>
+        <span class="identifier">fun</span><span class="special">(</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">post_value</span><span class="special">(</span> <span class="identifier">in</span> <span class="special">),</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">offset</span><span class="special">(</span> <span class="identifier">post_run</span> <span class="special">),</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">end_offset</span><span class="special">(</span> <span class="identifier">post_run</span> <span class="special">)</span> <span class="special">);</span>
+    <span class="special">}</span>
+
+    <span class="keyword">return</span> <span class="identifier">fun</span><span class="special">;</span>
+<span class="special">}</span>
+</pre>
+<p>
+          Notice how we first process the pre-run, then the runs in the <tt class="computeroutput"><span class="identifier">runs</span></tt> property map, and finally the post-run.
+        </p>
+<p>
+          Stepping through two series in tandem is a much more difficult problem.
+          Try to express your new algorithm in terms of <tt class="computeroutput"><a href="../../boost/range_run_storage/transform.html" title="Function transform">transform()</a></tt>
+          if at all possible.
+        </p>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series.user_s_guide.extensibility.defining_a_new_timeseries_type"></a><a href="extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type" title="Defining
+        a New TimeSeries Type">Defining
+        a New TimeSeries Type</a></h4></div></div></div>
+<p>
+          
+          Understanding the <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>
+          concept is the first step to implementing a new <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>
+          type. Once you know the basics, the code is unsurprising and rather mechanical.
+          Let's see how it works by implementing a basic <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>
+          that has a fixed size:
+        </p>
+<pre class="programlisting">
+<span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Value</span><span class="special">,</span> <span class="identifier">size_t</span> <span class="identifier">Size</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">Discretization</span> <span class="special">=</span> <span class="keyword">int</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">fixed_series</span><span class="special">;</span>
+</pre>
+<p>
+          The <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a> concept is at
+          the top of a refinement heirarchy of concepts. We can begin at the bottom
+          and work our way up the refinement heirarchy until we are done.
+        </p>
+<a name="time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.modelling_the_sequence_concept"></a><h3>
+<a name="id468368"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.modelling_the_sequence_concept">Modelling
+          the Sequence Concept</a>
+        </h3>
+<p>
+          The concept at the bottom of the hierarchy is <a href="../../Sequence.html" title="Concept Sequence">Sequence</a>,
+          so we will begin there, by making the following <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> model <a href="../../Sequence.html" title="Concept Sequence">Sequence</a>.
+        </p>
+<pre class="programlisting">
+<span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Value</span><span class="special">,</span> <span class="identifier">size_t</span> <span class="identifier">Size</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">fixed_storage</span>
+<span class="special">{</span>
+    <span class="keyword">typedef</span> <span class="identifier">Value</span> <span class="identifier">value_type</span><span class="special">;</span>
+    <span class="keyword">enum</span> <span class="identifier">size_type</span> <span class="special">{</span> <span class="identifier">size</span> <span class="special">=</span> <span class="identifier">Size</span> <span class="special">};</span>
+    <span class="identifier">fixed_storage</span><span class="special">()</span> <span class="special">:</span> <span class="identifier">elements_</span><span class="special">()</span> <span class="special">{}</span>
+    <span class="identifier">Value</span> <span class="special">&amp;</span> <span class="keyword">operator</span><span class="special">[](</span><span class="identifier">ptrdiff_t</span> <span class="identifier">n</span><span class="special">)</span> <span class="special">{</span> <span class="keyword">return</span> <span class="identifier">elements_</span><span class="special">[</span><span class="identifier">n</span><span class="special">];</span> <span class="special">}</span>
+    <span class="identifier">Value</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="keyword">operator</span><span class="special">[](</span><span class="identifier">ptrdiff_t</span> <span class="identifier">n</span><span class="special">)</span> <span class="keyword">const</span> <span class="special">{</span> <span class="keyword">return</span> <span class="identifier">elements_</span><span class="special">[</span><span class="identifier">n</span><span class="special">];</span> <span class="special">}</span>
+<span class="keyword">private</span><span class="special">:</span>
+    <span class="identifier">Value</span> <span class="identifier">elements_</span><span class="special">[</span> <span class="identifier">Size</span> <span class="special">];</span>
+<span class="special">};</span>
+</pre>
+<p>
+          The simplest way to make <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> a <a href="../../Sequence.html" title="Concept Sequence">Sequence</a>
+          is to give it STL iterators and <tt class="computeroutput"><span class="identifier">begin</span><span class="special">()</span></tt> and <tt class="computeroutput"><span class="identifier">end</span><span class="special">()</span></tt> member functions. That would make it
+          a valid Range, which is by definition a valid <a href="../../Sequence.html" title="Concept Sequence">Sequence</a>.
+          But let's see how to use the <a href="../../Sequence.html" title="Concept Sequence">Sequence</a>
+          customization points to make this a valid <a href="../../Sequence.html" title="Concept Sequence">Sequence</a>
+          non-intrusively.
+        </p>
+<p>
+          First, we'll need to define some cursors. A cursor is nothing more that
+          a position indicator. It must be incrementable and dereferencable. For
+          position, we can use a plain <tt class="computeroutput"><span class="identifier">ptrdiff_t</span></tt>,
+          but we must wrap it in a <tt class="computeroutput"><span class="identifier">counting_iterator</span><span class="special">&lt;&gt;</span></tt> from the Boost.Iterator library
+          to make it dereferencable.
+        </p>
+<p>
+          The <a href="../../Sequence.html" title="Concept Sequence">Sequence</a> customization points
+          use tag dispatching, so let's define a tag type and a specialization of
+          <tt class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">impl</span><span class="special">::</span><span class="identifier">tag</span><span class="special">&lt;&gt;</span></tt>
+          as follows:
+        </p>
+<pre class="programlisting">
+<span class="keyword">struct</span> <span class="identifier">fixed_storage_tag</span><span class="special">;</span>
+
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">sequence</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">size_t</span> <span class="identifier">N</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">tag</span><span class="special">&lt;</span> <span class="identifier">fixed_storage</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">fixed_storage_tag</span> <span class="identifier">type</span><span class="special">;</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          Now we can hook the <tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">begin</span><span class="special">()</span></tt> and <tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">end</span><span class="special">()</span></tt> functions by specializing their implementation
+          templates in the <tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">impl</span></tt>
+          namespace:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">sequence</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">begin</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">counting_iterator</span><span class="special">&lt;</span> <span class="identifier">ptrdiff_t</span> <span class="special">&gt;</span> <span class="identifier">result_type</span><span class="special">;</span>
+        <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span><span class="identifier">S</span> <span class="special">&amp;)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="keyword">return</span> <span class="identifier">result_type</span><span class="special">(</span> <span class="number">0</span> <span class="special">);</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">end</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">counting_iterator</span><span class="special">&lt;</span> <span class="identifier">ptrdiff_t</span> <span class="special">&gt;</span> <span class="identifier">result_type</span><span class="special">;</span>
+        <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="keyword">return</span> <span class="identifier">result_type</span><span class="special">(</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">size</span> <span class="special">);</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          With these definitions, <tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span></tt> will return a <tt class="computeroutput"><span class="identifier">counting_iterator</span><span class="special">&lt;</span> <span class="identifier">ptrdiff_t</span> <span class="special">&gt;(</span><span class="number">0</span><span class="special">)</span></tt>
+          when passed a <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt>.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td colspan="2" align="left" valign="top"><p>
+            There is no distinction between const cursors and non-const cursors,
+            as there is with iterators. In the <a href="../../Sequence.html" title="Concept Sequence">Sequence</a>
+            concept, cursors are purely position indicators, and the const-ness is
+            best handled by the <tt class="computeroutput"><span class="identifier">elements</span></tt>
+            property map, which we implement next.
+          </p></td></tr>
+</table></div>
+<p>
+          To complete the <a href="../../Sequence.html" title="Concept Sequence">Sequence</a> concept,
+          we need to implement the <tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">elements</span><span class="special">()</span></tt> customization point. For that, we need
+          a <a href="../../ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a>
+          that converts a <tt class="computeroutput"><span class="identifier">ptrdiff_t</span></tt>
+          to an element in the <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt>. That's fairly straightforward;
+          the only trick is getting the const-ness of the return type correct.
+        </p>
+<pre class="programlisting">
+<span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">indexable_elements</span>
+<span class="special">{</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">value_type</span> <span class="identifier">value_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span>
+        <span class="keyword">typename</span> <span class="identifier">mpl</span><span class="special">::</span><span class="identifier">if_</span><span class="special">&lt;</span> <span class="identifier">is_const</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;,</span> <span class="identifier">value_type</span> <span class="special">&amp;</span> <span class="special">&gt;::</span><span class="identifier">type</span>
+    <span class="identifier">result_type</span><span class="special">;</span>
+    
+    <span class="identifier">indexable_elements</span><span class="special">(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span> <span class="special">)</span> <span class="special">:</span> <span class="identifier">s_</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span> <span class="special">{}</span>
+    
+    <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">ptrdiff_t</span> <span class="identifier">n</span> <span class="special">)</span> <span class="keyword">const</span>
+    <span class="special">{</span>
+        <span class="keyword">return</span> <span class="identifier">s_</span><span class="special">[</span> <span class="identifier">n</span> <span class="special">];</span>
+    <span class="special">}</span>
+<span class="keyword">private</span><span class="special">:</span>
+    <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s_</span><span class="special">;</span>
+<span class="special">};</span>
+</pre>
+<p>
+          Now we can use the <tt class="computeroutput"><span class="identifier">indexable_elements</span><span class="special">&lt;&gt;</span></tt> template to implement the <tt class="computeroutput"><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">elements</span><span class="special">()</span></tt>
+          customization point:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">sequence</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">elements</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">indexable_elements</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;</span> <span class="identifier">result_type</span><span class="special">;</span>
+        
+        <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="keyword">return</span> <span class="identifier">result_type</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">);</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          And that's it. The <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> type is now a model of the <a href="../../Sequence.html" title="Concept Sequence">Sequence</a> concept.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td colspan="2" align="left" valign="top"><p>
+            Making <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> model the <a href="../../Mutable_Sequence.html" title="Concept Mutable_Sequence">Mutable_Sequence</a>
+            concept would involve a small change to <tt class="computeroutput"><span class="identifier">indexable_elements</span><span class="special">&lt;&gt;</span></tt> to make it a <a href="../../ReadWritePropertyMap.html" title="Concept ReadWritePropertyMap">ReadWritePropertyMap</a>.
+          </p></td></tr>
+</table></div>
+<a name="time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.modelling_the_rangerunstorage_concept"></a><h3>
+<a name="id470835"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.modelling_the_rangerunstorage_concept">Modelling
+          the RangeRunStorage Concept</a>
+        </h3>
+<p>
+          To make <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt>
+          model the <a href="../../RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+          concept, we need to implement the <tt class="computeroutput"><span class="identifier">runs</span><span class="special">()</span></tt>, <tt class="computeroutput"><span class="identifier">zero</span><span class="special">()</span></tt>, and <tt class="computeroutput"><span class="identifier">get_at</span><span class="special">()</span></tt> customization points. Let's look at
+          <tt class="computeroutput"><span class="identifier">runs</span><span class="special">()</span></tt>
+          first. It must return a <a href="../../ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a>
+          that, when used together with a cursor, returns the associated run. Recall
+          that our cursor is merely <tt class="computeroutput"><span class="identifier">counting_iterator</span><span class="special">&lt;</span> <span class="identifier">ptrdiff_t</span> <span class="special">&gt;</span></tt>, and that for our <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt>, all the runs will have a length
+          of <tt class="computeroutput"><span class="number">1</span></tt>. We can use the <tt class="computeroutput"><span class="identifier">unit_run</span><span class="special">&lt;&gt;</span></tt>
+          template provided by the Range_run_storage library to trivially implement
+          our runs property map:
+        </p>
+<pre class="programlisting">
+<span class="keyword">struct</span> <span class="identifier">fixed_runs</span>
+<span class="special">{</span>
+    <span class="keyword">typedef</span> <span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">unit_run</span><span class="special">&lt;</span> <span class="identifier">ptrdiff_t</span> <span class="special">&gt;</span> <span class="identifier">result_type</span><span class="special">;</span>
+    
+    <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">ptrdiff_t</span> <span class="identifier">n</span> <span class="special">)</span> <span class="keyword">const</span>
+    <span class="special">{</span>
+        <span class="keyword">return</span> <span class="identifier">result_type</span><span class="special">(</span> <span class="identifier">n</span> <span class="special">);</span>
+    <span class="special">}</span>
+<span class="special">};</span>
+</pre>
+<p>
+          Then we specialize the <tt class="computeroutput"><span class="identifier">runs</span><span class="special">&lt;&gt;</span></tt> template in the <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">impl</span></tt>
+          namespace as follows:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">runs</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">fixed_runs</span> <span class="identifier">result_type</span><span class="special">;</span>
+    
+        <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="keyword">return</span> <span class="identifier">result_type</span><span class="special">();</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          There is one optimization we should take care of while we're at it. Our
+          <tt class="computeroutput"><span class="identifier">runs</span></tt> property map is <span class="emphasis"><em>dense</em></span>;
+          that is, the runs are all unit length, and the offsets are monotonically
+          increasing. Many low-level algorithms can use this information to select
+          a more efficient implementation. We can use the <tt class="computeroutput"><span class="identifier">is_dense_runs</span><span class="special">&lt;&gt;</span></tt> trait to enable this optimization
+          for our <tt class="computeroutput"><span class="identifier">runs</span></tt> property map,
+          as follows:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">traits</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">is_dense_runs</span><span class="special">&lt;</span> <span class="identifier">fixed_runs</span> <span class="special">&gt;</span>
+      <span class="special">:</span> <span class="identifier">mpl</span><span class="special">::</span><span class="identifier">true_</span>
+    <span class="special">{};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          OK, now we're done with the <tt class="computeroutput"><span class="identifier">runs</span></tt>
+          property map. Next is <tt class="computeroutput"><span class="identifier">zero</span><span class="special">()</span></tt>. The <tt class="computeroutput"><span class="identifier">zero</span><span class="special">()</span></tt> function returns the value the series
+          takes outside the defined range. It has a default implementation which
+          returns a const reference to a default constructed object of the series'
+          value type. In our case, it would return a <tt class="computeroutput"><span class="keyword">double</span></tt>
+          of value <tt class="computeroutput"><span class="number">0.0</span></tt>. We decide that
+          this is an acceptable default for us, and we leave it alone.
+        </p>
+<p>
+          Finally, we have <tt class="computeroutput"><span class="identifier">get_at</span><span class="special">()</span></tt>. When implementing <tt class="computeroutput"><span class="identifier">get_at</span><span class="special">()</span></tt>, keep in mind that a <a href="../../RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+          has a defined value everywhere, it just may be zero. You need to check
+          the index and return something sensible. This affects the return type,
+          since you cannot return a non-const reference to the series' zero.
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">I</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">get_at</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">I</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="identifier">result_type</span><span class="special">;</span>
+        
+        <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">I</span> <span class="special">&amp;</span> <span class="identifier">i</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="keyword">if</span><span class="special">(</span> <span class="identifier">i</span> <span class="special">&gt;=</span> <span class="number">0</span> <span class="special">&amp;&amp;</span> <span class="identifier">i</span> <span class="special">&lt;</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">size</span> <span class="special">)</span>
+                <span class="keyword">return</span> <span class="identifier">s</span><span class="special">[</span><span class="identifier">i</span><span class="special">];</span>
+            
+            <span class="keyword">return</span> <span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">zero</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">);</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          And with that, we're done satisfying the <a href="../../RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+          concept requirements.
+        </p>
+<a name="time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.modelling_the_infiniterangerunstorage_concept"></a><h3>
+<a name="id472267"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.modelling_the_infiniterangerunstorage_concept">Modelling
+          the InfiniteRangeRunStorage Concept</a>
+        </h3>
+<p>
+          The <a href="../../InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a>
+          concept refines the <a href="../../RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+          concept with the addition of four customization points: <tt class="computeroutput"><span class="identifier">pre_run</span><span class="special">()</span></tt>, <tt class="computeroutput"><span class="identifier">pre_value</span><span class="special">()</span></tt>, <tt class="computeroutput"><span class="identifier">post_run</span><span class="special">()</span></tt> and <tt class="computeroutput"><span class="identifier">post_value</span><span class="special">()</span></tt>. These are two extra runs before and
+          after the runs in the <tt class="computeroutput"><span class="identifier">runs</span></tt>
+          property map. Unlike the runs in the property map, the pre- and post-runs
+          may be infinite or empty. The default implementations of these customization
+          points return empty runs. That means that any <a href="../../RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a>
+          is also an <a href="../../InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a>.
+          If our series type cannot have a run from -Inf or to +Inf, we don't have
+          to do anything extra beyond what we have done already.
+        </p>
+<p>
+          If we wanted our <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> to have pre- and post-runs we could
+          add them by partially specializing the appropriate templates in the <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">impl</span></tt> namespace, as follows:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">pre_run</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <i class="replaceable"><tt>some-run-type</tt></i> <span class="identifier">result_type</span><span class="special">;</span>
+        
+        <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="keyword">return</span> <i class="replaceable"><tt>the-pre-run</tt></i><span class="special">;</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">pre_value</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">value_type</span> <span class="identifier">result_type</span><span class="special">;</span>
+        
+        <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="keyword">return</span> <i class="replaceable"><tt>the-value-of-the-pre-run</tt></i><span class="special">;</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          And likewise for the post-run.
+        </p>
+<a name="time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.making_your_series_mutable"></a><h3>
+<a name="id472912"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.making_your_series_mutable">Making
+          Your Series Mutable</a>
+        </h3>
+<p>
+          To make your series mutable, you first need to make the series model <a href="../../Mutable_Sequence.html" title="Concept Mutable_Sequence">Mutable_Sequence</a>. That involves extending
+          the <tt class="computeroutput"><span class="identifier">elements</span></tt> property map
+          to allow writing to the elements of the <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt>. Our new <tt class="computeroutput"><span class="identifier">indexable_elements</span><span class="special">&lt;&gt;</span></tt> property map looks like this:
+        </p>
+<pre class="programlisting">
+<span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">indexable_elements</span>
+<span class="special">{</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">value_type</span> <span class="identifier">value_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span>
+        <span class="keyword">typename</span> <span class="identifier">mpl</span><span class="special">::</span><span class="identifier">if_</span><span class="special">&lt;</span> <span class="identifier">is_const</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;,</span> <span class="identifier">value_type</span> <span class="special">&amp;</span> <span class="special">&gt;::</span><span class="identifier">type</span>
+    <span class="identifier">reference</span><span class="special">;</span>
+    
+    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Signature</span><span class="special">&gt;</span> <span class="keyword">struct</span> <span class="identifier">result</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="keyword">void</span> <span class="identifier">type</span><span class="special">;</span>
+    <span class="special">};</span>
+    
+    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">This</span><span class="special">,</span> <span class="keyword">typename</span> <span class="identifier">A</span><span class="special">&gt;</span> <span class="keyword">struct</span> <span class="identifier">result</span><span class="special">&lt;</span> <span class="identifier">This</span><span class="special">(</span> <span class="identifier">A</span> <span class="special">)</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">reference</span> <span class="identifier">type</span><span class="special">;</span> <span class="comment">// single-argument invocations return a reference
+</span>    <span class="special">};</span>
+    
+    <span class="identifier">indexable_elements</span><span class="special">(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span> <span class="special">)</span> <span class="special">:</span> <span class="identifier">s_</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">)</span> <span class="special">{}</span>
+    
+    <span class="identifier">reference</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">ptrdiff_t</span> <span class="identifier">n</span> <span class="special">)</span> <span class="keyword">const</span>
+    <span class="special">{</span>
+        <span class="keyword">return</span> <span class="identifier">s_</span><span class="special">[</span> <span class="identifier">n</span> <span class="special">];</span>
+    <span class="special">}</span>
+
+    <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">ptrdiff_t</span> <span class="identifier">n</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="identifier">v</span> <span class="special">)</span> <span class="keyword">const</span>
+    <span class="special">{</span>
+        <span class="identifier">s_</span><span class="special">[</span> <span class="identifier">n</span> <span class="special">]</span> <span class="special">=</span> <span class="identifier">v</span><span class="special">;</span>
+    <span class="special">}</span>
+<span class="keyword">private</span><span class="special">:</span>
+    <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s_</span><span class="special">;</span>
+<span class="special">};</span>
+</pre>
+<p>
+          With this change, the <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> type models <a href="../../Mutable_Sequence.html" title="Concept Mutable_Sequence">Mutable_Sequence</a>,
+          and its elements can be modified in-place. For instance, the following
+          code would set the first element of a <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="number">10</span><span class="special">&gt;</span></tt> to <tt class="computeroutput"><span class="number">42</span></tt>:
+        </p>
+<pre class="programlisting">
+<span class="identifier">fixed_storage</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="number">10</span><span class="special">&gt;</span> <span class="identifier">fs</span><span class="special">;</span>
+<span class="identifier">sequence</span><span class="special">::</span><span class="identifier">elements</span><span class="special">(</span><span class="identifier">fs</span><span class="special">)(*</span><span class="identifier">sequence</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span><span class="identifier">fs</span><span class="special">),</span> <span class="number">42</span><span class="special">);</span>
+</pre>
+<p>
+          To model <a href="../../Mutable_RangeRunStorage.html" title="Concept Mutable_RangeRunStorage">Mutable_RangeRunStorage</a>,
+          you need to implement the <tt class="computeroutput"><span class="identifier">set_at</span><span class="special">()</span></tt>, <tt class="computeroutput"><span class="identifier">zero</span><span class="special">()</span></tt> and <tt class="computeroutput"><span class="identifier">ordered_inserter</span><span class="special">()</span></tt> customization points. <tt class="computeroutput"><span class="identifier">Set_at</span><span class="special">()</span></tt> is easily implemented, as follows:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">R</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">V</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">set_at</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">R</span><span class="special">,</span> <span class="identifier">V</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="keyword">void</span> <span class="identifier">result_type</span><span class="special">;</span>
+        
+        <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">R</span> <span class="special">&amp;</span> <span class="identifier">r</span><span class="special">,</span> <span class="identifier">V</span> <span class="special">&amp;</span> <span class="identifier">v</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="identifier">ptrdiff_t</span> <span class="identifier">off</span> <span class="special">=</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">offset</span><span class="special">(</span> <span class="identifier">r</span> <span class="special">);</span>
+            <span class="identifier">ptrdiff_t</span> <span class="identifier">endoff</span> <span class="special">=</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">end_offset</span><span class="special">(</span> <span class="identifier">r</span> <span class="special">);</span>
+            <span class="identifier">BOOST_ASSERT</span><span class="special">(</span> <span class="identifier">off</span> <span class="special">&gt;=</span> <span class="number">0</span> <span class="special">&amp;&amp;</span> <span class="identifier">endoff</span> <span class="special">&lt;</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">size</span> <span class="special">);</span>
+            <span class="identifier">std</span><span class="special">::</span><span class="identifier">fill</span><span class="special">(</span> <span class="special">&amp;</span><span class="identifier">s</span><span class="special">[</span><span class="number">0</span><span class="special">]</span> <span class="special">+</span> <span class="identifier">off</span><span class="special">,</span> <span class="special">&amp;</span><span class="identifier">s</span><span class="special">[</span><span class="number">0</span><span class="special">]</span> <span class="special">+</span> <span class="identifier">endoff</span><span class="special">,</span> <span class="identifier">v</span> <span class="special">);</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          A <a href="../../Mutable_RangeRunStorage.html" title="Concept Mutable_RangeRunStorage">Mutable_RangeRunStorage</a>
+          lets you modify the zero elements of a series with the <tt class="computeroutput"><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">zero</span><span class="special">(</span> <span class="identifier">series</span><span class="special">,</span> <span class="identifier">value</span> <span class="special">)</span></tt> syntax. The default implementation of
+          this API merely asserts that the new zero value is the same as the old.
+          If you would like a different implementation, you can hook this API as
+          follows:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">V</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">set_zero</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">V</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="keyword">void</span> <span class="identifier">result_type</span><span class="special">;</span>
+        
+        <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">V</span> <span class="special">&amp;</span> <span class="identifier">v</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <i class="replaceable"><tt>the-zero-of-s</tt></i> <span class="special">=</span> <span class="identifier">v</span><span class="special">;</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          Implementing <tt class="computeroutput"><span class="identifier">ordered_inserter</span><span class="special">()</span></tt> is a bit trickier, and involves defining
+          and inserter type that satisfies the <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          concept. Inserters receive runs <span class="emphasis"><em>in order</em></span>, and changes
+          are committed at the end. Your inserter should make no changes to the underlying
+          storage until the commit occurs; in particular, the inserter should not
+          invalidate any of the series' cursors until the commit is called.
+        </p>
+<pre class="programlisting">
+<span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">fixed_storage_inserter</span>
+<span class="special">{</span>
+    <span class="identifier">fixed_storage_inserter</span><span class="special">(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span> <span class="special">)</span>
+      <span class="special">:</span> <span class="identifier">old_</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">),</span> <span class="identifier">new_</span><span class="special">(</span> <span class="keyword">new</span> <span class="identifier">S</span> <span class="special">),</span> <span class="identifier">offset_</span><span class="special">(</span> <span class="number">0</span> <span class="special">)</span> <span class="special">{}</span>
+    
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">R</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">V</span> <span class="special">&gt;</span>
+    <span class="keyword">void</span> <span class="identifier">set_at</span><span class="special">(</span> <span class="identifier">R</span> <span class="special">&amp;</span> <span class="identifier">r</span><span class="special">,</span> <span class="identifier">V</span> <span class="special">&amp;</span> <span class="identifier">v</span> <span class="special">)</span>
+    <span class="special">{</span>
+        <span class="identifier">ptrdiff_t</span> <span class="identifier">off</span> <span class="special">=</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">offset</span><span class="special">(</span> <span class="identifier">r</span> <span class="special">);</span>
+        <span class="identifier">ptrdiff_t</span> <span class="identifier">endoff</span> <span class="special">=</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">end_offset</span><span class="special">(</span> <span class="identifier">r</span> <span class="special">);</span>
+        <span class="identifier">BOOST_ASSERT</span><span class="special">(</span> <span class="identifier">off</span> <span class="special">&gt;=</span> <span class="identifier">offset_</span> <span class="special">&amp;&amp;</span> <span class="identifier">endoff</span> <span class="special">&lt;</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">size</span> <span class="special">);</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">fill</span><span class="special">(</span> <span class="special">&amp;(*</span><span class="identifier">new_</span><span class="special">)[</span><span class="number">0</span><span class="special">]</span> <span class="special">+</span> <span class="identifier">offset_</span><span class="special">,</span> <span class="special">&amp;(*</span><span class="identifier">new_</span><span class="special">)[</span><span class="number">0</span><span class="special">]</span> <span class="special">+</span> <span class="identifier">off</span><span class="special">,</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">zero</span><span class="special">(</span> <span class="identifier">old_</span> <span class="special">)</span> <span class="special">);</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">fill</span><span class="special">(</span> <span class="special">&amp;(*</span><span class="identifier">new_</span><span class="special">)[</span><span class="number">0</span><span class="special">]</span> <span class="special">+</span> <span class="identifier">off</span><span class="special">,</span> <span class="special">&amp;(*</span><span class="identifier">new_</span><span class="special">)[</span><span class="number">0</span><span class="special">]</span> <span class="special">+</span> <span class="identifier">endoff</span><span class="special">,</span> <span class="identifier">v</span> <span class="special">);</span>
+        <span class="identifier">offset_</span> <span class="special">=</span> <span class="identifier">endoff</span><span class="special">;</span>
+    <span class="special">}</span>
+
+    <span class="keyword">void</span> <span class="identifier">commit</span><span class="special">()</span>
+    <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">fill</span><span class="special">(</span> <span class="special">&amp;(*</span><span class="identifier">new_</span><span class="special">)[</span><span class="number">0</span><span class="special">]</span> <span class="special">+</span> <span class="identifier">offset_</span><span class="special">,</span> <span class="special">&amp;(*</span><span class="identifier">new_</span><span class="special">)[</span><span class="number">0</span><span class="special">]</span> <span class="special">+</span> <span class="identifier">S</span><span class="special">::</span><span class="identifier">size</span><span class="special">,</span> <span class="identifier">rrs</span><span class="special">::</span><span class="identifier">zero</span><span class="special">(</span> <span class="identifier">old_</span> <span class="special">)</span> <span class="special">);</span>
+        <span class="keyword">using</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">swap</span><span class="special">;</span>
+        <span class="identifier">swap</span><span class="special">(</span> <span class="identifier">old_</span><span class="special">,</span> <span class="special">*</span><span class="identifier">new_</span> <span class="special">);</span>
+    <span class="special">}</span>
+<span class="keyword">private</span><span class="special">:</span>
+    <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">old_</span><span class="special">;</span>
+    <span class="identifier">shared_ptr</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;</span> <span class="identifier">new_</span><span class="special">;</span>
+    <span class="identifier">ptrdiff_t</span> <span class="identifier">offset_</span><span class="special">;</span>
+<span class="special">};</span>
+</pre>
+<p>
+          As an extra nicety, the above inserter object is cheap to copy since it
+          holds its new data in a <tt class="computeroutput"><span class="identifier">shared_ptr</span><span class="special">&lt;&gt;</span></tt>. This can sometimes be useful in
+          case the inserter ever gets used as an STL output iterator by higher-level
+          wrappers.
+        </p>
+<p>
+          Now that we have an appropriately defined inserter object, we need to "wire
+          it up" to the <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          and <a href="../../Mutable_RangeRunStorage.html" title="Concept Mutable_RangeRunStorage">Mutable_RangeRunStorage</a>
+          customization points. First, we define a tag type, like we did for <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt>:
+        </p>
+<pre class="programlisting">
+<span class="keyword">struct</span> <span class="identifier">fixed_storage_inserter_tag</span><span class="special">;</span>
+
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">sequence</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">tag</span><span class="special">&lt;</span> <span class="identifier">fixed_storage_inserter</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">fixed_storage_inserter_tag</span> <span class="identifier">type</span><span class="special">;</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          Then we implement the <a href="../../OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a>
+          customization points, as follows:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">R</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">V</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">set_at</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">R</span><span class="special">,</span> <span class="identifier">V</span><span class="special">,</span> <span class="identifier">fixed_storage_inserter_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="keyword">void</span> <span class="identifier">result_type</span><span class="special">;</span>
+        <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">R</span> <span class="special">&amp;</span> <span class="identifier">r</span><span class="special">,</span> <span class="identifier">V</span> <span class="special">&amp;</span> <span class="identifier">v</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="identifier">s</span><span class="special">.</span><span class="identifier">set_at</span><span class="special">(</span> <span class="identifier">r</span><span class="special">,</span> <span class="identifier">v</span> <span class="special">);</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">commit</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">fixed_storage_inserter_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="keyword">void</span> <span class="identifier">result_type</span><span class="special">;</span>
+        <span class="keyword">void</span> <span class="keyword">operator</span> <span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="identifier">s</span><span class="special">.</span><span class="identifier">commit</span><span class="special">();</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          Finally, we hook the <tt class="computeroutput"><span class="identifier">ordered_inserter</span><span class="special">()</span></tt> customization point to return one of
+          our <tt class="computeroutput"><span class="identifier">fixed_storage_inserter</span><span class="special">&lt;&gt;</span></tt> objects:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">ordered_inserter</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">fixed_storage_inserter</span><span class="special">&lt;</span> <span class="identifier">S</span> <span class="special">&gt;</span> <span class="identifier">result_type</span><span class="special">;</span>
+        <span class="identifier">result_type</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <span class="keyword">return</span> <span class="identifier">result_type</span><span class="special">(</span> <span class="identifier">s</span> <span class="special">);</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          Now, our <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> type models <a href="../../Mutable_RangeRunStorage.html" title="Concept Mutable_RangeRunStorage">Mutable_RangeRunStorage</a>.
+          To make it model <a href="../../Mutable_InfiniteRangeRunStorage.html" title="Concept Mutable_InfiniteRangeRunStorage">Mutable_InfiniteRangeRunStorage</a>,
+          we need to implement a way to mutate the values of the pre- and post-run.
+          For storage types like <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> that do not have pre- and post-runs,
+          we don't need to do anything. If we did have pre- and post-runs, we could
+          make them mutable as follows:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">range_run_storage</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">S</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">V</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">set_pre_value</span><span class="special">&lt;</span> <span class="identifier">S</span><span class="special">,</span> <span class="identifier">V</span><span class="special">,</span> <span class="identifier">fixed_storage_tag</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="keyword">void</span> <span class="identifier">result_type</span><span class="special">;</span>
+        
+        <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span> <span class="identifier">S</span> <span class="special">&amp;</span> <span class="identifier">s</span><span class="special">,</span> <span class="identifier">V</span> <span class="special">&amp;</span> <span class="identifier">v</span> <span class="special">)</span> <span class="keyword">const</span>
+        <span class="special">{</span>
+            <i class="replaceable"><tt>the-value-of-the-pre-run</tt></i> <span class="special">=</span> <span class="identifier">v</span><span class="special">;</span>
+        <span class="special">}</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          We would do the same for the post-run.
+        </p>
+<p>
+          Now, our <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> type is a full-fledged model of
+          the <a href="../../Mutable_InfiniteRangeRunStorage.html" title="Concept Mutable_InfiniteRangeRunStorage">Mutable_InfiniteRangeRunStorage</a>
+          concept, and we can do things like this:
+        </p>
+<pre class="programlisting">
+<span class="comment">// define a delta series
+</span><span class="identifier">delta_series</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="identifier">delta</span><span class="special">(</span> <span class="identifier">start</span> <span class="special">=</span> <span class="number">5</span><span class="special">,</span> <span class="identifier">value</span> <span class="special">=</span> <span class="number">42</span> <span class="special">);</span>
+
+<span class="comment">// define an empty fixed_storage
+</span><span class="identifier">fixed_storage</span><span class="special">&lt;</span> <span class="keyword">int</span><span class="special">,</span> <span class="number">16</span> <span class="special">&gt;</span> <span class="identifier">fixed</span><span class="special">;</span>
+
+<span class="comment">// make an ordered inserter for the fixed_storage
+</span><span class="identifier">fixed_storage_inserter</span><span class="special">&lt;</span> <span class="identifier">fixed_storage</span><span class="special">&lt;</span> <span class="keyword">int</span><span class="special">,</span> <span class="number">16</span> <span class="special">&gt;</span> <span class="special">&gt;</span>
+    <span class="identifier">out</span> <span class="special">=</span> <span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">ordered_inserter</span><span class="special">(</span> <span class="identifier">fixed</span> <span class="special">);</span>
+
+<span class="comment">// copy the delta_series into the fixed_storage inserter
+</span><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">copy</span><span class="special">(</span> <span class="identifier">delta</span><span class="special">,</span> <span class="identifier">out</span> <span class="special">);</span>
+
+<span class="comment">// commit the changes to the fixed_storage
+</span><span class="identifier">range_run_storage</span><span class="special">::</span><span class="identifier">commit</span><span class="special">(</span> <span class="identifier">out</span> <span class="special">);</span>
+
+<span class="comment">// OK! The fixed_storage will be 0 everywhere except at offset 5
+</span><span class="identifier">BOOST_ASSERT</span><span class="special">(</span> <span class="number">42</span> <span class="special">==</span> <span class="identifier">fixed</span><span class="special">[</span> <span class="number">5</span> <span class="special">]</span> <span class="special">);</span>
+</pre>
+<a name="time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.using__classname_alt__boost__time_series__time_series_facade___code__phrase_role__identifier__time_series_facade__phrase__phrase_role__special___lt__gt___phrase___code___classname_"></a><h3>
+<a name="id478163"></a>
+          <a href="extensibility.html#time_series.user_s_guide.extensibility.defining_a_new_timeseries_type.using__classname_alt__boost__time_series__time_series_facade___code__phrase_role__identifier__time_series_facade__phrase__phrase_role__special___lt__gt___phrase___code___classname_">Using
+          <tt class="computeroutput"><a href="../../boost/time_series/time_series_facade.html" title="Struct template time_series_facade">time_series_facade&lt;&gt;</a></tt></a>
+        </h3>
+<p>
+          Our <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt>
+          type models <a href="../../Mutable_InfiniteRangeRunStorage.html" title="Concept Mutable_InfiniteRangeRunStorage">Mutable_InfiniteRangeRunStorage</a>,
+          but it does not yet satisfy the <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>
+          concept because it doesn't have a discretization. It would be a simple
+          matter to define a wrapper that uses <tt class="computeroutput"><span class="identifier">fixed_storage</span><span class="special">&lt;&gt;</span></tt> as a backing store and added a
+          <tt class="computeroutput"><span class="identifier">discretization</span><span class="special">()</span></tt>
+          member function and indexed access. The Time_series library already provides
+          such a wrapper that does that and much more, like:
+        </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+            Providing an intuitive named-parameter construction syntax,
+          </li>
+<li>
+            Allowing conversion from any other <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>
+            type,
+          </li>
+<li>
+            Defining Boolean series comparison operators, and
+          </li>
+<li>
+            Defining a <tt class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">ostream</span></tt> insertion operator.
+          </li>
+</ul></div>
+<p>
+          Using <tt class="computeroutput"><a href="../../boost/time_series/time_series_facade.html" title="Struct template time_series_facade">time_series_facade&lt;&gt;</a></tt>
+          is fairly straight-forward. First, we define a type <tt class="computeroutput"><span class="identifier">fixed_series</span><span class="special">&lt;&gt;</span></tt> that inherits from <tt class="computeroutput"><a href="../../boost/time_series/time_series_facade.html" title="Struct template time_series_facade">time_series_facade&lt;&gt;</a></tt>:
+        </p>
+<pre class="programlisting">
+<span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">Disc</span> <span class="special">=</span> <span class="keyword">int</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">fixed_series</span>
+  <span class="special">:</span> <span class="identifier">time_series_facade</span><span class="special">&lt;</span> <span class="identifier">fixed_series</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">N</span><span class="special">,</span> <span class="identifier">Disc</span> <span class="special">&gt;,</span> <span class="identifier">fixed_storage</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;,</span> <span class="identifier">Disc</span> <span class="special">&gt;</span>
+<span class="special">{</span>
+    <span class="keyword">typedef</span>
+        <span class="identifier">time_series_facade</span><span class="special">&lt;</span> <span class="identifier">fixed_series</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">N</span><span class="special">,</span> <span class="identifier">Disc</span> <span class="special">&gt;,</span> <span class="identifier">fixed_storage</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;,</span> <span class="identifier">Disc</span> <span class="special">&gt;</span>
+    <span class="identifier">base_type</span><span class="special">;</span>
+    
+    <span class="comment">// Use operator= from time_series_facade, which allows all models
+</span>    <span class="comment">// of TimeSeries to be assigned to a fixed_series&lt;&gt;
+</span>    <span class="keyword">using</span> <span class="identifier">base_type</span><span class="special">::</span><span class="keyword">operator</span><span class="special">=;</span>
+    
+    <span class="comment">// Define time series constructors that use named parameters
+</span>    <span class="identifier">BOOST_TIME_SERIES_DEFINE_CTORS</span><span class="special">(</span> <span class="identifier">fixed_series</span> <span class="special">)</span>
+<span class="special">};</span>
+</pre>
+<p>
+          Here, we use the <tt class="computeroutput"><a href="../../BOOST_TIME_SERIES_DEFINE_CTORS.html" title="Macro BOOST_TIME_SERIES_DEFINE_CTORS">BOOST_TIME_SERIES_DEFINE_CTORS</a></tt>
+          macro to generate the <tt class="computeroutput"><span class="identifier">fixed_series</span><span class="special">&lt;&gt;</span></tt> constructors. Already, we can declare
+          a <tt class="computeroutput"><span class="identifier">fixed_series</span><span class="special">&lt;&gt;</span></tt>
+          object as: <tt class="computeroutput"><span class="identifier">fixed_series</span><span class="special">&lt;</span> <span class="keyword">double</span><span class="special">,</span> <span class="number">64</span> <span class="special">&gt;</span> <span class="identifier">fs</span><span class="special">;</span></tt> and the result is a valid <a href="../../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a>. Before we can use named parameters
+          to specify a discretization, we have to teach <tt class="computeroutput"><a href="../../boost/time_series/time_series_facade.html" title="Struct template time_series_facade">time_series_facade&lt;&gt;</a></tt>
+          what the named parameters for our <tt class="computeroutput"><span class="identifier">fixed_series</span><span class="special">&lt;&gt;</span></tt> are. For that, we use a little
+          utility in the <tt class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">constructors</span></tt> namespace:
+        </p>
+<pre class="programlisting">
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">constructors</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">impl</span>
+<span class="special">{</span>
+    <span class="keyword">struct</span> <span class="identifier">fixed_series_tag</span><span class="special">;</span>
+
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">Disc</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">tag</span><span class="special">&lt;</span> <span class="identifier">fixed_series</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">N</span><span class="special">,</span> <span class="identifier">Disc</span> <span class="special">&gt;</span> <span class="special">&gt;</span>
+    <span class="special">{</span>
+        <span class="keyword">typedef</span> <span class="identifier">fixed_series_tag</span> <span class="identifier">type</span><span class="special">;</span>
+    <span class="special">};</span>
+
+    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">T</span> <span class="special">&gt;</span>
+    <span class="keyword">struct</span> <span class="identifier">construct</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">fixed_series_tag</span> <span class="special">&gt;</span>
+      <span class="special">:</span> <span class="identifier">arg_pack_construct</span>
+    <span class="special">{</span>
+        <span class="comment">// OK, for fixed_series&lt;&gt;, the only allowable constructor
+</span>        <span class="comment">// parameter is the discretization, and it is optional.
+</span>        <span class="keyword">typedef</span> <span class="identifier">parameter</span><span class="special">::</span><span class="identifier">parameters</span><span class="special">&lt;</span>
+            <span class="identifier">parameter</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">time_series</span><span class="special">::</span><span class="identifier">tag</span><span class="special">::</span><span class="identifier">discretization</span> <span class="special">&gt;</span>
+        <span class="special">&gt;</span> <span class="identifier">args_type</span><span class="special">;</span>
+    <span class="special">};</span>
+<span class="special">}}}</span>
+</pre>
+<p>
+          Now we can say the following:
+        </p>
+<pre class="programlisting">
+<span class="comment">// A fixed-size series with a discretization of 30
+</span><span class="identifier">fixed_series</span><span class="special">&lt;</span> <span class="keyword">double</span><span class="special">,</span> <span class="number">64</span> <span class="special">&gt;</span> <span class="identifier">fs1</span><span class="special">(</span> <span class="identifier">time_series</span><span class="special">::</span><span class="identifier">discretization</span> <span class="special">=</span> <span class="number">30</span> <span class="special">);</span>
+
+<span class="comment">// Same as above
+</span><span class="identifier">fixed_series</span><span class="special">&lt;</span> <span class="keyword">double</span><span class="special">,</span> <span class="number">64</span> <span class="special">&gt;</span> <span class="identifier">fs2</span><span class="special">(</span> <span class="number">30</span> <span class="special">);</span>
+</pre>
+<p>
+          And with that, we're finally done implementing <tt class="computeroutput"><span class="identifier">fixed_series</span><span class="special">&lt;&gt;</span></tt>. Whew!
+        </p>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="series_algorithms.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../user_s_guide.html"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="../acknowledgements.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

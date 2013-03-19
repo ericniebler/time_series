@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Struct piecewise_upsample</title>
+<link rel="stylesheet" href="../../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../../time_series/reference.html#header.boost.time_series.numeric.fine_grain.hpp" title="Header &lt;boost/time_series/numeric/fine_grain.hpp&gt;">
+<link rel="prev" href="sampler_base.html" title="Struct template sampler_base">
+<link rel="next" href="sparse_upsample.html" title="Struct sparse_upsample">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="sampler_base.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../../time_series/reference.html#header.boost.time_series.numeric.fine_grain.hpp"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="sparse_upsample.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.samplers.piecewise_upsample"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Struct piecewise_upsample</span></h2>
+<p>boost::time_series::samplers::piecewise_upsample &#8212; </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis">
+<span class="bold"><b>struct</b></span> piecewise_upsample : <span class="bold"><b>public</b></span> boost::time_series::samplers::sampler_base&lt; piecewise_upsample &gt;
+{
+
+  <span class="emphasis"><em>// <a href="piecewise_upsample.html#id250012-bb">public member functions</a></em></span>
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset, <span class="bold"><b>typename</b></span> Out&gt; 
+    <span class="type"><span class="bold"><b>void</b></span></span> <a href="piecewise_upsample.html#id250017-bb"><span class="bold"><b>operator</b></span>()</a>(Out &amp;, Value, Offset, Offset, Offset) <span class="bold"><b>const</b></span>;
+};</pre></div>
+<div class="refsect1" lang="en">
+<a name="id489853"></a><h2>Description</h2>
+<p>A fine_grain upsampler that makes a piecewise constant function with jumps at the coarse-grained points. </p>
+<div class="refsect2" lang="en">
+<a name="id489860"></a><h3>
+<a name="id250012-bb"></a><tt class="computeroutput">piecewise_upsample</tt> public member functions</h3>
+<div class="orderedlist"><ol type="1"><li><pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Offset, <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type"><span class="bold"><b>void</b></span></span> <a name="id250017-bb"></a><span class="bold"><b>operator</b></span>()(Out &amp; out, Value value, Offset offset, Offset endoff, 
+                  Offset factor) <span class="bold"><b>const</b></span>;</pre></li></ol></div>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="sampler_base.html"><img src="../../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../../time_series/reference.html#header.boost.time_series.numeric.fine_grain.hpp"><img src="../../../images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../images/home.png" alt="Home"></a><a accesskey="n" href="sparse_upsample.html"><img src="../../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

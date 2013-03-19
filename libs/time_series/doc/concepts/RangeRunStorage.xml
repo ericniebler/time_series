@@ -1,0 +1,178 @@
+<?xml version="1.0" ?>
+<concept name="RangeRunStorage" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="range-run-storage-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A RangeRunStorage is a non-continuous
+    <conceptname>Sequence</conceptname> where the non-zeros
+    are represented by a property map of <conceptname>Run</conceptname>s.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <notation variables="o">
+    <sample-value>
+      <type name="offset_type" />
+    </sample-value>
+  </notation>
+
+  <refines const="no" concept="Sequence"/>
+
+  <associated-type name="runs">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::range_run_storage::op::runs">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="S"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>Returns the runs property map for accessing the run
+      associated with a position in the storage.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="zero_type">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::range_run_storage::op::zero">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="S"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of the zeros of the storage.
+      Must be convertible to value_type.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="run_type">
+    <get-member-type name="value_type">
+      <apply-template name="ReadablePropertyMap">
+        <type name="runs"/>
+        <type name="cursor"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of the runs in the runs property map.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="offset_type">
+    <get-member-type name="offset_type">
+      <apply-template name="Run">
+        <type name="run_type"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The offset type of the run.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="length_type">
+    <get-member-type name="length_type">
+      <apply-template name="Run">
+        <type name="run_type"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The length type of the run.</simpara>
+    </description>
+  </associated-type>
+
+  <valid-expression name="Runs">
+    <apply-function name="boost::range_run_storage::runs">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="runs"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the <conceptname>ReadablePropertyMap</conceptname>
+    for accessing the runs of the <conceptname>RangeRunStorage</conceptname>
+    <code>s</code>.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Zero">
+    <apply-function name="boost::range_run_storage::zero">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="zero_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the zero value of the <conceptname>RangeRunStorage</conceptname>
+    <code>s</code>.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Zero Convertibility">
+    <apply-function name="boost::range_run_storage::zero">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="value_type"/>
+      </convertible-to>
+    </return-type>
+    <semantics>The zero_type is convertible to the value_type.</semantics>
+  </valid-expression>
+
+  <valid-expression name="GetAt">
+    <apply-function name="boost::range_run_storage::get_at">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+      <sample-value>
+        <type name="offset_type" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="value_type"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Get the value at the given offset. Note: the complexity is not
+    guaranteed to be O(1).</semantics>
+  </valid-expression>
+
+  <see-also name="Sequence" />
+  <see-also name="ReadablePropertyMap" />
+
+<!--  
+  <example-model>
+    <type name="int" />
+  </example-model>
+-->
+
+</concept>

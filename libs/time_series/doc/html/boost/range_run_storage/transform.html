@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Function transform</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.transform.hpp" title="Header &lt;boost/range_run_storage/algorithm/transform.hpp&gt;">
+<link rel="prev" href="for_each.html" title="Function for_each">
+<link rel="next" href="op/commit.html" title="Struct commit">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="for_each.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.transform.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="op/commit.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.range_run_storage.transform"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Function transform</span></h2>
+<p>boost::range_run_storage::transform &#8212; Apply a unary transformation to a single <tt class="computeroutput">InfiniteRangeRunStorage</tt>, or a binary transform to two <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis">
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> UnaryOp, <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type">Out &amp;</span> transform(In &amp; in, UnaryOp <span class="bold"><b>const</b></span> &amp; unary_op, Out &amp; out);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> UnaryOp, <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type">Out &amp;</span> transform(In <span class="bold"><b>const</b></span> &amp; in, UnaryOp <span class="bold"><b>const</b></span> &amp; unary_op, Out &amp; out);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right, <span class="bold"><b>typename</b></span> BothOp, <span class="bold"><b>typename</b></span> LeftOp, 
+         <span class="bold"><b>typename</b></span> RightOp, <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type">Out &amp;</span> transform(Left <span class="bold"><b>const</b></span> &amp; left, Right <span class="bold"><b>const</b></span> &amp; right, 
+                  BothOp <span class="bold"><b>const</b></span> &amp; both_op, LeftOp <span class="bold"><b>const</b></span> &amp; left_op, 
+                  RightOp <span class="bold"><b>const</b></span> &amp; right_op, Out &amp; out);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right, <span class="bold"><b>typename</b></span> BinOp, <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type">Out &amp;</span> transform(Left <span class="bold"><b>const</b></span> &amp; left, Right <span class="bold"><b>const</b></span> &amp; right, 
+                  BinOp <span class="bold"><b>const</b></span> &amp; binary_op, Out &amp; out);</pre></div>
+<div class="refsect1" lang="en">
+<a name="id516927"></a><h2>Description</h2>
+<p>The three-parameter form of <tt class="computeroutput">transform</tt>, <tt class="computeroutput">transform(in, unary_op, out)</tt>, effectively copies the runs from <tt class="computeroutput">in</tt> to <tt class="computeroutput">out</tt> after applying <tt class="computeroutput">unary_op</tt> to each element value.</p>
+<p>The four-parameter form of <tt class="computeroutput">transform</tt>, <tt class="computeroutput">transform(left, right, binary_op, out)</tt>, steps through the series <tt class="computeroutput">left</tt> and <tt class="computeroutput">right</tt> in lock-step. Where two runs overlap, the result of <tt class="computeroutput">binary_op(left_value, right_value)</tt> is written to <tt class="computeroutput">out</tt>. Where part of a left run does not overlap with a right, the result of <tt class="computeroutput">binary_op(left_value, rrs::zero(right))</tt> is written to <tt class="computeroutput">out</tt>. Where part of a right run does not overlap with a left, the result of <tt class="computeroutput">binary_op(rrs::zero(left), right_value)</tt> is written to <tt class="computeroutput">out</tt>.</p>
+<p>The six-parameter form of <tt class="computeroutput">transform</tt>, <tt class="computeroutput">transform(left, right, both_op, left_op, right_op, out)</tt>, steps through the series <tt class="computeroutput">left</tt> and <tt class="computeroutput">right</tt> in lock-step. Where two runs overlap, the result of <tt class="computeroutput">both_op(left_value, right_value)</tt> is written to <tt class="computeroutput">out</tt>. Where part of a left run does not overlap with a right, the result of <tt class="computeroutput">left_op(left_value)</tt> is written to <tt class="computeroutput">out</tt>. Where part of a right run does not overlap with a left, the result of <tt class="computeroutput">right_op(right_value)</tt> is written to <tt class="computeroutput">out</tt>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">in</tt></span></td>
+<td><p>The input sequence. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">out</tt></span></td>
+<td><p>An <tt class="computeroutput">OrderedInserter</tt> into which the resulting sequence is written. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">unary_op</tt></span></td>
+<td><p>A <tt class="computeroutput">UnaryFunction</tt> used to transform the elements of the input sequence. </p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">In</tt> is a model of <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p>
+<p><tt class="computeroutput">Left</tt> is a model of <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p>
+<p><tt class="computeroutput">Right</tt> is a model of <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p>
+<p><tt class="computeroutput">UnaryOp</tt> is a model of <tt class="computeroutput">UnaryFunction</tt>. </p>
+<p><tt class="computeroutput">LeftOp</tt> is a model of <tt class="computeroutput">UnaryFunction</tt>. </p>
+<p><tt class="computeroutput">RightOp</tt> is a model of <tt class="computeroutput">UnaryFunction</tt>. </p>
+<p><tt class="computeroutput">BothOp</tt> is a model of <tt class="computeroutput">BinaryFunction</tt>. </p>
+<p><tt class="computeroutput">BinaryOp</tt> is a model of <tt class="computeroutput">BinaryFunction</tt>. </p>
+<p><tt class="computeroutput">Out</tt> is a model of <tt class="computeroutput">OrderedInserter</tt>. </p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="for_each.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.transform.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="op/commit.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

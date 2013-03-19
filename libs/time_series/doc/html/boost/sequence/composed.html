@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Struct template composed</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../sequence_reference.html#header.boost.sequence.composed.hpp" title="Header &lt;boost/sequence/composed.hpp&gt;">
+<link rel="prev" href="begin.html" title="Global begin">
+<link rel="next" href="concepts/Sequence.html" title="Struct template Sequence">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="begin.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../sequence_reference.html#header.boost.sequence.composed.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="concepts/Sequence.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.sequence.composed"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Struct template composed</span></h2>
+<p>boost::sequence::composed &#8212; </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Cursor, <span class="bold"><b>typename</b></span> Mapping = property_maps::identity&gt; 
+<span class="bold"><b>struct</b></span> composed {
+  <span class="emphasis"><em>// types</em></span>
+  <span class="bold"><b>typedef</b></span> Cursor  cursor; 
+  <span class="bold"><b>typedef</b></span> Mapping mapping;
+
+  <span class="emphasis"><em>// <a href="composed.html#boost.sequence.composedconstruct-copy-destruct">construct/copy/destruct</a></em></span>
+  <a href="composed.html#id270805-bb">composed</a>(Cursor, Cursor, Mapping);
+
+  <span class="emphasis"><em>// <a href="composed.html#id261711-bb">public member functions</a></em></span>
+  <span class="type">Cursor</span> <a href="composed.html#id264280-bb">begin</a>() <span class="bold"><b>const</b></span>;
+  <span class="type">Cursor</span> <a href="composed.html#id264289-bb">end</a>() <span class="bold"><b>const</b></span>;
+  <span class="type">mapping</span> <a href="composed.html#id270795-bb">elements</a>() <span class="bold"><b>const</b></span>;
+};</pre></div>
+<div class="refsect1" lang="en">
+<a name="id523617"></a><h2>Description</h2>
+<div class="refsect2" lang="en">
+<a name="id523621"></a><h3>
+<a name="boost.sequence.composedconstruct-copy-destruct"></a><tt class="computeroutput">composed</tt> construct/copy/destruct</h3>
+<div class="orderedlist"><ol type="1"><li><pre class="literallayout"><a name="id270805-bb"></a>composed(Cursor start, Cursor finish, Mapping mapping);</pre></li></ol></div>
+</div>
+<div class="refsect2" lang="en">
+<a name="id523661"></a><h3>
+<a name="id261711-bb"></a><tt class="computeroutput">composed</tt> public member functions</h3>
+<div class="orderedlist"><ol type="1">
+<li><pre class="literallayout"><span class="type">Cursor</span> <a name="id264280-bb"></a>begin() <span class="bold"><b>const</b></span>;</pre></li>
+<li><pre class="literallayout"><span class="type">Cursor</span> <a name="id264289-bb"></a>end() <span class="bold"><b>const</b></span>;</pre></li>
+<li><pre class="literallayout"><span class="type">mapping</span> <a name="id270795-bb"></a>elements() <span class="bold"><b>const</b></span>;</pre></li>
+</ol></div>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="begin.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../sequence_reference.html#header.boost.sequence.composed.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="concepts/Sequence.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Concept O1SizeSequence</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="sequence_reference.html" title="Sequence Reference">
+<link rel="prev" href="Sequence.html" title="Concept Sequence">
+<link rel="next" href="Mutable_Sequence.html" title="Concept Mutable_Sequence">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="Sequence.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="sequence_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="Mutable_Sequence.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="O1SizeSequence"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Concept O1SizeSequence</span></h2>
+<p>O1SizeSequence</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522788"></a><h2>Description</h2>
+<p>A O1SizeSequence is a <a href="Sequence.html" title="Concept Sequence">Sequence</a> for which
+    the size of the sequence can be queried with O(1) complexity.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522806"></a><h2>Refinement of</h2>
+<div class="itemizedlist"><ul type="disc"><li><p><a href="Sequence.html" title="Concept Sequence">Sequence</a></p></li></ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522821"></a><h2>Associated types</h2>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p><span class="bold"><b>size_type</b></span></p>
+<pre class="literallayout">boost::sequence::traits::size_type&lt;S&gt;::type</pre>
+<p>
+      </p>
+<p>A type representing the size of the sequence.</p>
+<p>
+    </p>
+</li>
+<li>
+<p><span class="bold"><b>index_type</b></span></p>
+<pre class="literallayout">boost::sequence::traits::index_type&lt;S&gt;::type</pre>
+<p>
+      </p>
+<p>A type that can act as an index into the sequence. Because
+      size_type may be a wrapper for a compile-time constant, e.g. 
+      mpl::integral_c&lt;std::ptrdiff_t, N&gt;, we need a distinct type in
+      order to be able to count at runtime.</p>
+<p>
+    </p>
+</li>
+</ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522875"></a><h2>Notation</h2>
+<div class="variablelist"><dl>
+<dt><span class="term">S</span></dt>
+<dd>A type playing the role of sequence-type in the <a href="O1SizeSequence.html" title="Concept O1SizeSequence">O1SizeSequence</a> concept.</dd>
+<dt><span class="term"><tt class="varname">s</tt></span></dt>
+<dd>Object of type S</dd>
+<dt><span class="term"><tt class="varname">size</tt></span></dt>
+<dd>Object of type size_type</dd>
+<dt><span class="term"><tt class="varname">index</tt></span></dt>
+<dd>Object of type index_type</dd>
+</dl></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id522924"></a><h2>Valid expressions</h2>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Size</p></td>
+<td><p>boost::sequence::size(s)</p></td>
+<td><p><span class="type">size_type</span></p></td>
+<td><p>Returns the size of the sequence <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+<tr>
+<td><p>Index convertability</p></td>
+<td><p>boost::sequence::size(s)</p></td>
+<td><p>Convertible to <span class="type">index_type</span></p></td>
+<td><p>Returns the size of the sequence <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+<tr>
+<td><p>Index equal-to comparison 1</p></td>
+<td><p>size == index</p></td>
+<td><p>Convertible to <span class="type">bool</span></p></td>
+<td><p>Compares an index to a size for equality.</p></td>
+</tr>
+<tr>
+<td><p>Index equal-to comparison 2</p></td>
+<td><p>index == size</p></td>
+<td><p>Convertible to <span class="type">bool</span></p></td>
+<td><p>Compares an index to a size for equality.</p></td>
+</tr>
+<tr>
+<td><p>Index not-equal-to comparison 1</p></td>
+<td><p>size != index</p></td>
+<td><p>Convertible to <span class="type">bool</span></p></td>
+<td><p>Compares an index to a size for inequality.</p></td>
+</tr>
+<tr>
+<td><p>Index not-equal-to comparison 2</p></td>
+<td><p>index != size</p></td>
+<td><p>Convertible to <span class="type">bool</span></p></td>
+<td><p>Compares an index to a size for inequality.</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id523082"></a><h2>See also</h2>
+<div class="itemizedlist"><ul type="disc"></ul></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="Sequence.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="sequence_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="Mutable_Sequence.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

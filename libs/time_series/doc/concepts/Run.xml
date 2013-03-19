@@ -1,0 +1,134 @@
+<?xml version="1.0" ?>
+<concept name="Run" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="R" role="run-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A Run represents an (offset, end_offset) 2-tuple, which represents
+    a half-open range of numbers.</para>
+  </description>
+
+  <notation variables="r">
+    <sample-value>
+      <type name="R" />
+    </sample-value>
+  </notation>
+
+  <associated-type name="offset_type">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::range_run_storage::op::offset">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="R"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of the offset and end_offset values.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="length_type">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::range_run_storage::op::length">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="R"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of the run length; usually an unsigned version of
+      the offset_type, if the offset_type is integral.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="is_unit_length">
+    <get-member-type name="type">
+      <apply-template name="boost::range_run_storage::traits::is_unit_length">
+        <type name="R"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>Either <code>mpl::true_</code> or <code>mpl::false_</code> depending
+      on whether or not this Run is indivisible.</simpara>
+    </description>
+  </associated-type>
+
+  <valid-expression name="Offset">
+    <apply-function name="boost::range_run_storage::offset">
+      <sample-value>
+        <type name="R" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="offset_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the start offset of the Run.</semantics>
+  </valid-expression>
+
+  <valid-expression name="End Offset">
+    <apply-function name="boost::range_run_storage::end_offset">
+      <sample-value>
+        <type name="R" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="offset_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the end offset of the Run.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Length">
+    <apply-function name="boost::range_run_storage::length">
+      <sample-value>
+        <type name="R" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="length_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the length of the Run.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Empty">
+    <apply-function name="boost::range_run_storage::empty">
+      <sample-value>
+        <type name="R" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="bool"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Returns true if the Run is empty, false otherwise.</semantics>
+  </valid-expression>
+
+  <example-model>
+    <type name="std::pair&lt;int, int&gt;" />
+  </example-model>
+
+</concept>

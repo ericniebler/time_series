@@ -1,0 +1,362 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Range Run Storage Reference</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="time_series/reference.html" title="Reference">
+<link rel="prev" href="boost/time_series/time_series_base.html" title="Struct template time_series_base">
+<link rel="next" href="Run.html" title="Concept Run">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="boost/time_series/time_series_base.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="time_series/reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="Run.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="range_run_storage_reference"></a>Range Run Storage Reference</h3></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="range_run_storage_reference.html#range_run_storage_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.address_difference1.hpp">Header &lt;boost/range_run_storage/address_difference1.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.algorithm.copy.hpp">Header &lt;boost/range_run_storage/algorithm/copy.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.algorithm.first_last.hpp">Header &lt;boost/range_run_storage/algorithm/first_last.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.algorithm.for_each.hpp">Header &lt;boost/range_run_storage/algorithm/for_each.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.algorithm.transform.hpp">Header &lt;boost/range_run_storage/algorithm/transform.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.commit.hpp">Header &lt;boost/range_run_storage/commit.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.concepts.hpp">Header &lt;boost/range_run_storage/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.difference1.hpp">Header &lt;boost/range_run_storage/difference1.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.empty.hpp">Header &lt;boost/range_run_storage/empty.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.end_offset.hpp">Header &lt;boost/range_run_storage/end_offset.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.get_at.hpp">Header &lt;boost/range_run_storage/get_at.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.length.hpp">Header &lt;boost/range_run_storage/length.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.offset.hpp">Header &lt;boost/range_run_storage/offset.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.ordered_inserter.hpp">Header &lt;boost/range_run_storage/ordered_inserter.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.post_run.hpp">Header &lt;boost/range_run_storage/post_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.pre_run.hpp">Header &lt;boost/range_run_storage/pre_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.runs.hpp">Header &lt;boost/range_run_storage/runs.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.set_at.hpp">Header &lt;boost/range_run_storage/set_at.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.tag.hpp">Header &lt;boost/range_run_storage/tag.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.traits.is_dense_runs.hpp">Header &lt;boost/range_run_storage/traits/is_dense_runs.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.traits.is_unit_run.hpp">Header &lt;boost/range_run_storage/traits/is_unit_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="range_run_storage_reference.html#header.boost.range_run_storage.zero.hpp">Header &lt;boost/range_run_storage/zero.hpp&gt;</a></span></dt>
+</dl></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="range_run_storage_reference.concepts"></a>Concepts</h4></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><a href="Run.html" title="Concept Run">Run</a></li>
+<li><a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a></li>
+<li><a href="InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a></li>
+<li><a href="OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a></li>
+<li><a href="Mutable_RangeRunStorage.html" title="Concept Mutable_RangeRunStorage">Mutable_RangeRunStorage</a></li>
+<li><a href="Mutable_InfiniteRangeRunStorage.html" title="Concept Mutable_InfiniteRangeRunStorage">Mutable_InfiniteRangeRunStorage</a></li>
+</ul></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.address_difference1.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/address_difference1.hpp" target="_top">boost/range_run_storage/address_difference1.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Base&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/address_difference1.html" title="Struct template address_difference1">address_difference1</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Base&gt; <span class="bold"><b>struct</b></span> <a href="id262542-bb.html" title="Struct template is_dense_runs&lt;address_difference1&lt; Base &gt;&gt;">is_dense_runs</a>&lt;address_difference1&lt; Base &gt;&gt;;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.algorithm.copy.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/algorithm/copy.hpp" target="_top">boost/range_run_storage/algorithm/copy.hpp</a>&gt;</h4></div></div></div>
+<p>Copies one <tt class="computeroutput">InfiniteRangeRunStorage</tt> to an <tt class="computeroutput">OrderedInserter</tt>. </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> Out&gt; <span class="type">Out &amp;</span> <a href="boost/range_run_storage/copy.html" title="Function template copy">copy</a>(In <span class="bold"><b>const</b></span> &amp;, Out &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.algorithm.first_last.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/algorithm/first_last.hpp" target="_top">boost/range_run_storage/algorithm/first_last.hpp</a>&gt;</h4></div></div></div>
+<p>Returns the first and last runs and values from an <tt class="computeroutput">InfiniteRangeRunStorage</tt> </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In&gt; <span class="type"><span class="emphasis"><em>unspecified</em></span></span> <a href="boost/range_run_storage/first_run.html" title="Function template first_run">first_run</a>(In <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In&gt; 
+      <span class="type"><a href="boost/range_run_storage/concepts/InfiniteRangeRunStorage.html" title="Struct template InfiniteRangeRunStorage">concepts::InfiniteRangeRunStorage</a>&lt; In <span class="bold"><b>const</b></span>  &gt;::reference</span> 
+      <a href="boost/range_run_storage/first_value.html" title="Function template first_value">first_value</a>(In <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In&gt; <span class="type"><span class="emphasis"><em>unspecified</em></span></span> <a href="boost/range_run_storage/last_run.html" title="Function template last_run">last_run</a>(In <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In&gt; 
+      <span class="type"><a href="boost/range_run_storage/concepts/InfiniteRangeRunStorage.html" title="Struct template InfiniteRangeRunStorage">concepts::InfiniteRangeRunStorage</a>&lt; In <span class="bold"><b>const</b></span>  &gt;::reference</span> 
+      <a href="boost/range_run_storage/last_value.html" title="Function template last_value">last_value</a>(In <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.algorithm.for_each.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/algorithm/for_each.hpp" target="_top">boost/range_run_storage/algorithm/for_each.hpp</a>&gt;</h4></div></div></div>
+<p>Invokes a <tt class="computeroutput">TernaryFunction</tt> for each run in an <tt class="computeroutput">InfiniteRangeRunStorage</tt> </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> Fun&gt; <span class="type">Fun</span> <a href="boost/range_run_storage/for_each.html" title="Function for_each">for_each</a>(In &amp;, Fun);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> Fun&gt; <span class="type">Fun</span> <a href="boost/range_run_storage/for_each.html" title="Function for_each">for_each</a>(In <span class="bold"><b>const</b></span> &amp;, Fun);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.algorithm.transform.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/algorithm/transform.hpp" target="_top">boost/range_run_storage/algorithm/transform.hpp</a>&gt;</h4></div></div></div>
+<p>Apply a unary transformation to a single <tt class="computeroutput">InfiniteRangeRunStorage</tt>, or a binary transform to two <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> UnaryOp, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type">Out &amp;</span> <a href="boost/range_run_storage/transform.html" title="Function transform">transform</a>(In &amp;, UnaryOp <span class="bold"><b>const</b></span> &amp;, Out &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> UnaryOp, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type">Out &amp;</span> <a href="boost/range_run_storage/transform.html" title="Function transform">transform</a>(In <span class="bold"><b>const</b></span> &amp;, UnaryOp <span class="bold"><b>const</b></span> &amp;, Out &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right, <span class="bold"><b>typename</b></span> BothOp, <span class="bold"><b>typename</b></span> LeftOp, 
+             <span class="bold"><b>typename</b></span> RightOp, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type">Out &amp;</span> <a href="boost/range_run_storage/transform.html" title="Function transform">transform</a>(Left <span class="bold"><b>const</b></span> &amp;, Right <span class="bold"><b>const</b></span> &amp;, BothOp <span class="bold"><b>const</b></span> &amp;, 
+                      LeftOp <span class="bold"><b>const</b></span> &amp;, RightOp <span class="bold"><b>const</b></span> &amp;, Out &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right, <span class="bold"><b>typename</b></span> BinOp, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type">Out &amp;</span> <a href="boost/range_run_storage/transform.html" title="Function transform">transform</a>(Left <span class="bold"><b>const</b></span> &amp;, Right <span class="bold"><b>const</b></span> &amp;, BinOp <span class="bold"><b>const</b></span> &amp;, Out &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> UnaryOp&gt; 
+      <span class="type">In &amp;</span> <a name="boost.range_run_storage.transform_inplace"></a>transform_inplace(In &amp; in, UnaryOp <span class="bold"><b>const</b></span> &amp; unary_op);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.commit.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/commit.hpp" target="_top">boost/range_run_storage/commit.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/commit.html" title="Struct commit">op::commit</a> const &amp; <a href="boost/range_run_storage/commit.html" title="Global commit">commit</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/commit.html" title="Struct commit">commit</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.concepts.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/concepts.hpp" target="_top">boost/range_run_storage/concepts.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>namespace</b></span> concepts {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/concepts/Run.html" title="Struct template Run">Run</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/concepts/RangeRunStorage.html" title="Struct template RangeRunStorage">RangeRunStorage</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/concepts/InfiniteRangeRunStorage.html" title="Struct template InfiniteRangeRunStorage">InfiniteRangeRunStorage</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> OI, <span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/concepts/OrderedInserter.html" title="Struct template OrderedInserter">OrderedInserter</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/concepts/Mutable_RangeRunStorage.html" title="Struct template Mutable_RangeRunStorage">Mutable_RangeRunStorage</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/concepts/Mutable_InfiniteRangeRunStorage.html" title="Struct template Mutable_InfiniteRangeRunStorage">Mutable_InfiniteRangeRunStorage</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.difference1.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/difference1.hpp" target="_top">boost/range_run_storage/difference1.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Base&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/difference1.html" title="Struct template difference1">difference1</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Base&gt; <span class="bold"><b>struct</b></span> <a href="id268873-bb.html" title="Struct template is_dense_runs&lt;difference1&lt; Base &gt;&gt;">is_dense_runs</a>&lt;difference1&lt; Base &gt;&gt;;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.empty.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/empty.hpp" target="_top">boost/range_run_storage/empty.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/empty.html" title="Struct empty">op::empty</a> const &amp; <a href="boost/range_run_storage/empty.html" title="Global empty">empty</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/empty.html" title="Struct empty">empty</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.end_offset.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/end_offset.hpp" target="_top">boost/range_run_storage/end_offset.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/end_offset.html" title="Struct end_offset">op::end_offset</a> const &amp; <a href="boost/range_run_storage/end_offset.html" title="Global end_offset">end_offset</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/end_offset.html" title="Struct end_offset">end_offset</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.get_at.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/get_at.hpp" target="_top">boost/range_run_storage/get_at.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/get_at.html" title="Struct get_at">op::get_at</a> const &amp; <a href="boost/range_run_storage/get_at.html" title="Global get_at">get_at</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/get_at.html" title="Struct get_at">get_at</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.length.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/length.hpp" target="_top">boost/range_run_storage/length.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/length.html" title="Struct length">op::length</a> const &amp; <a href="boost/range_run_storage/length.html" title="Global length">length</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/length.html" title="Struct length">length</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.offset.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/offset.hpp" target="_top">boost/range_run_storage/offset.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/offset.html" title="Struct offset">op::offset</a> const &amp; <a href="boost/range_run_storage/offset.html" title="Global offset">offset</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/offset.html" title="Struct offset">offset</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.ordered_inserter.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/ordered_inserter.hpp" target="_top">boost/range_run_storage/ordered_inserter.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/ordered_inserter.html" title="Struct ordered_inserter">op::ordered_inserter</a> const &amp; <a href="boost/range_run_storage/ordered_inserter.html" title="Global ordered_inserter">ordered_inserter</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/ordered_inserter.html" title="Struct ordered_inserter">ordered_inserter</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.post_run.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/post_run.hpp" target="_top">boost/range_run_storage/post_run.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/post_run.html" title="Struct post_run">op::post_run</a> const &amp; <a href="boost/range_run_storage/post_run.html" title="Global post_run">post_run</a>;
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/post_value.html" title="Struct post_value">op::post_value</a> const &amp; <a href="boost/range_run_storage/post_value.html" title="Global post_value">post_value</a>;
+    <span class="bold"><b>namespace</b></span> concepts {
+    }
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/post_run.html" title="Struct post_run">post_run</a>;
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/post_value.html" title="Struct post_value">post_value</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.pre_run.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/pre_run.hpp" target="_top">boost/range_run_storage/pre_run.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/pre_run.html" title="Struct pre_run">op::pre_run</a> const &amp; <a href="boost/range_run_storage/pre_run.html" title="Global pre_run">pre_run</a>;
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/pre_value.html" title="Struct pre_value">op::pre_value</a> const &amp; <a href="boost/range_run_storage/pre_value.html" title="Global pre_value">pre_value</a>;
+    <span class="bold"><b>namespace</b></span> concepts {
+    }
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/pre_run.html" title="Struct pre_run">pre_run</a>;
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/pre_value.html" title="Struct pre_value">pre_value</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.runs.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/runs.hpp" target="_top">boost/range_run_storage/runs.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/runs.html" title="Struct runs">op::runs</a> const &amp; <a href="boost/range_run_storage/runs.html" title="Global runs">runs</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/runs.html" title="Struct runs">runs</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.set_at.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/set_at.hpp" target="_top">boost/range_run_storage/set_at.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/set_at.html" title="Struct set_at">op::set_at</a> const &amp; <a href="boost/range_run_storage/set_at.html" title="Global set_at">set_at</a>;
+    <span class="bold"><b>namespace</b></span> concepts {
+    }
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/set_at.html" title="Struct set_at">set_at</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.tag.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/tag.hpp" target="_top">boost/range_run_storage/tag.hpp</a>&gt;</h4></div></div></div></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.traits.is_dense_runs.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/traits/is_dense_runs.hpp" target="_top">boost/range_run_storage/traits/is_dense_runs.hpp</a>&gt;</h4></div></div></div>
+<p>Trait for detecting when the runs property map is "dense" -- runs of length one, and offsets monotonically increasing. </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Runs&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/traits/is_dense_runs.html" title="Struct template is_dense_runs">is_dense_runs</a>;
+
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Runs&gt; <span class="bold"><b>struct</b></span> <a href="id268056-bb.html" title="Struct template is_dense_runs&lt;Runs const&gt;">is_dense_runs</a>&lt;Runs <span class="bold"><b>const</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Runs&gt; <span class="bold"><b>struct</b></span> <a href="id268079-bb.html" title="Struct template is_dense_runs&lt;Runs volatile&gt;">is_dense_runs</a>&lt;Runs <span class="bold"><b>volatile</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Runs&gt; <span class="bold"><b>struct</b></span> <a href="id268103-bb.html" title="Struct template is_dense_runs&lt;Runs const volatile&gt;">is_dense_runs</a>&lt;Runs <span class="bold"><b>const</b></span> <span class="bold"><b>volatile</b></span>&gt;;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.traits.is_unit_run.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/traits/is_unit_run.hpp" target="_top">boost/range_run_storage/traits/is_unit_run.hpp</a>&gt;</h4></div></div></div>
+<p>Trait for detecting runs with length 1 </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> R&gt; <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/traits/is_unit_run.html" title="Struct template is_unit_run">is_unit_run</a>;
+
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> R&gt; <span class="bold"><b>struct</b></span> <a href="id262399-bb.html" title="Struct template is_unit_run&lt;R const&gt;">is_unit_run</a>&lt;R <span class="bold"><b>const</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> R&gt; <span class="bold"><b>struct</b></span> <a href="id262422-bb.html" title="Struct template is_unit_run&lt;R volatile&gt;">is_unit_run</a>&lt;R <span class="bold"><b>volatile</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> R&gt; <span class="bold"><b>struct</b></span> <a href="id262446-bb.html" title="Struct template is_unit_run&lt;R const volatile&gt;">is_unit_run</a>&lt;R <span class="bold"><b>const</b></span> <span class="bold"><b>volatile</b></span>&gt;;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.range_run_storage.zero.hpp"></a>Header &lt;<a href="../../boost/range_run_storage/zero.hpp" target="_top">boost/range_run_storage/zero.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>static</b></span> <a href="boost/range_run_storage/op/zero.html" title="Struct zero">op::zero</a> const &amp; <a href="boost/range_run_storage/zero.html" title="Global zero">zero</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/range_run_storage/op/zero.html" title="Struct zero">zero</a>;
+    }
+  }
+}</pre>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="boost/time_series/time_series_base.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="time_series/reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="Run.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

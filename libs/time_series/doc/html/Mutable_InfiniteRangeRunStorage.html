@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Concept Mutable_InfiniteRangeRunStorage</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="range_run_storage_reference.html" title="Range Run Storage Reference">
+<link rel="prev" href="Mutable_RangeRunStorage.html" title="Concept Mutable_RangeRunStorage">
+<link rel="next" href="id262542-bb.html" title="Struct template is_dense_runs&lt;address_difference1&lt; Base &gt;&gt;">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="Mutable_RangeRunStorage.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="id262542-bb.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="Mutable_InfiniteRangeRunStorage"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Concept Mutable_InfiniteRangeRunStorage</span></h2>
+<p>Mutable_InfiniteRangeRunStorage</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id514119"></a><h2>Description</h2>
+<p>A Mutable_InfiniteRangeRunStorage is an <a href="InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a> 
+    which can be modified.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id514137"></a><h2>Refinement of</h2>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="InfiniteRangeRunStorage.html" title="Concept InfiniteRangeRunStorage">InfiniteRangeRunStorage</a></p></li>
+<li><p><a href="Mutable_RangeRunStorage.html" title="Concept Mutable_RangeRunStorage">Mutable_RangeRunStorage</a></p></li>
+</ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id514161"></a><h2>Notation</h2>
+<div class="variablelist"><dl>
+<dt><span class="term">S</span></dt>
+<dd>A type playing the role of mutable-infinite-range-run-storage-type in the <a href="Mutable_InfiniteRangeRunStorage.html" title="Concept Mutable_InfiniteRangeRunStorage">Mutable_InfiniteRangeRunStorage</a> concept.</dd>
+<dt><span class="term"><tt class="varname">s</tt></span></dt>
+<dd>Object of type S</dd>
+<dt><span class="term"><tt class="varname">r</tt></span></dt>
+<dd>Object of type run_type</dd>
+<dt><span class="term"><tt class="varname">v</tt></span></dt>
+<dd>Object of type value_type</dd>
+</dl></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id514211"></a><h2>Valid expressions</h2>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Set Pre-Value</p></td>
+<td><p>boost::range_run_storage::pre_value(s, v)</p></td>
+<td><p><span class="type">void</span></p></td>
+<td><p>Sets the value associated with the pre-run for the sequence.</p></td>
+</tr>
+<tr>
+<td><p>Set Post-Value</p></td>
+<td><p>boost::range_run_storage::post_value(s, v)</p></td>
+<td><p><span class="type">void</span></p></td>
+<td><p>Sets the value associated with the post-run for the sequence.</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id514274"></a><h2>Models</h2>
+<div class="itemizedlist"><ul type="disc"><li><span class="simplelist"><span class="type">boost::time_series::dense_series&lt;double&gt;</span></span></li></ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id514288"></a><h2>See also</h2>
+<div class="itemizedlist"><ul type="disc"></ul></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="Mutable_RangeRunStorage.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="id262542-bb.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

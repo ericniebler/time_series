@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<concept name="O1SizeSequence" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="sequence-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A O1SizeSequence is a <conceptname>Sequence</conceptname> for which
+    the size of the sequence can be queried with O(1) complexity.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <notation variables="size">
+    <sample-value>
+      <type name="size_type" />
+    </sample-value>
+  </notation>
+
+  <notation variables="index">
+    <sample-value>
+      <type name="index_type" />
+    </sample-value>
+  </notation>
+
+  <refines const="no" concept="Sequence"/>
+
+  <associated-type name="size_type">
+    <get-member-type name="type">
+      <apply-template name="boost::sequence::traits::size_type">
+        <type name="S"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>A type representing the size of the sequence.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="index_type">
+    <get-member-type name="type">
+      <apply-template name="boost::sequence::traits::index_type">
+        <type name="S"/>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>A type that can act as an index into the sequence. Because
+      size_type may be a wrapper for a compile-time constant, e.g. 
+      mpl::integral_c&lt;std::ptrdiff_t, N&gt;, we need a distinct type in
+      order to be able to count at runtime.</simpara>
+    </description>
+  </associated-type>
+
+  <valid-expression name="Size">
+    <apply-function name="boost::sequence::size">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="size_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the size of the sequence <code>s</code>.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Index convertability">
+    <apply-function name="boost::sequence::size">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <convertible-to testable="yes">
+        <type name="index_type"/>
+      </convertible-to>
+    </return-type>
+    <semantics>Returns the size of the sequence <code>s</code>.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Index equal-to comparison 1">
+    <equal-to>
+      <sample-value><type name="size_type"/></sample-value>
+      <sample-value><type name="index_type"/></sample-value>
+    </equal-to>
+    <return-type>
+      <convertible-to testable="yes"><type name="bool"/></convertible-to>
+    </return-type>
+    <semantics>Compares an index to a size for equality.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Index equal-to comparison 2">
+    <equal-to>
+      <sample-value><type name="index_type"/></sample-value>
+      <sample-value><type name="size_type"/></sample-value>
+    </equal-to>
+    <return-type>
+      <convertible-to testable="yes"><type name="bool"/></convertible-to>
+    </return-type>
+    <semantics>Compares an index to a size for equality.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Index not-equal-to comparison 1">
+    <not-equal-to>
+      <sample-value><type name="size_type"/></sample-value>
+      <sample-value><type name="index_type"/></sample-value>
+    </not-equal-to>
+    <return-type>
+      <convertible-to testable="yes"><type name="bool"/></convertible-to>
+    </return-type>
+    <semantics>Compares an index to a size for inequality.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Index not-equal-to comparison 2">
+    <not-equal-to>
+      <sample-value><type name="index_type"/></sample-value>
+      <sample-value><type name="size_type"/></sample-value>
+    </not-equal-to>
+    <return-type>
+      <convertible-to testable="yes"><type name="bool"/></convertible-to>
+    </return-type>
+    <semantics>Compares an index to a size for inequality.</semantics>
+  </valid-expression>
+
+  <see-also name="Sequence" />
+  <see-also name="ReadablePropertyMap" />
+  
+<!--  
+  <example-model>
+    <type name="int" />
+  </example-model>
+-->
+
+</concept>

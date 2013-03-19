@@ -1,0 +1,2157 @@
+
+[library Boost.Time_series
+    [quickbook 1.3]
+    [authors [Niebler, Eric], [Troyer, Matthias], [Egloff, Daniel]]
+    [copyright 2006 Eric Niebler]
+    [category math]
+    [id time_series]
+    [dirname time_series]
+    [purpose 
+        Generic framework for computing with series of data points, sampled
+        at regular intervals.
+    ]
+    [license
+        Distributed under the Boost Software License, Version 1.0.
+        (See accompanying file LICENSE_1_0.txt or copy at
+        [@http://www.boost.org/LICENSE_1_0.txt])
+    ]
+]
+
+[/  Images   ]
+
+[def _note_                  [$images/note.png]]
+[def _alert_                 [$images/caution.png]]
+[def _detail_                [$images/note.png]]
+[def _tip_                   [$images/tip.png]]
+
+[/  Links   ]
+
+[def _boost_                 [@http://www.boost.org Boost]]
+[def _mpl_                   [@../../libs/mpl MPL]]
+[def _mpl_lambda_expression_ [@../../libs/mpl/doc/refmanual/lambda-expression.html MPL Lambda Expression]]
+[def _parameters_            [@../../libs/parameters Boost.Parameters]]
+
+[def _Run_                              [conceptref Run]]
+[def _Sequence_                         [conceptref Sequence]]
+[def _Mutable_Sequence_                 [conceptref Mutable_Sequence]]
+[def _RangeRunStorage_                  [conceptref RangeRunStorage]]
+[def _Mutable_RangeRunStorage_          [conceptref Mutable_RangeRunStorage]]
+[def _InfiniteRangeRunStorage_          [conceptref InfiniteRangeRunStorage]]
+[def _Mutable_InfiniteRangeRunStorage_  [conceptref Mutable_InfiniteRangeRunStorage]]
+[def _TimeSeries_                       [conceptref TimeSeries]]
+[def _Mutable_TimeSeries_               [conceptref Mutable_TimeSeries]]
+[def _OrderedInserter_                  [conceptref OrderedInserter]]
+[def _ReadablePropertyMap_              [conceptref ReadablePropertyMap]]
+[def _ReadWritePropertyMap_             [conceptref ReadWritePropertyMap]]
+[def _time_series_facade_               [classref boost::time_series::time_series_facade `time_series_facade<>`]]
+[def _dense_series_                     [classref boost::time_series::dense_series `dense_series<>`]]
+[def _delta_series_                     [classref boost::time_series::delta_series `delta_series<>`]]
+[def _delta_unit_series_                [classref boost::time_series::delta_unit_series `delta_unit_series<>`]]
+[def _sparse_series_                    [classref boost::time_series::sparse_series `sparse_series<>`]]
+[def _constant_series_                  [classref boost::time_series::constant_series `constant_series<>`]]
+[def _characteristic_series_            [classref boost::time_series::characteristic_series `characteristic_series<>`]]
+[def _characteristic_unit_series_       [classref boost::time_series::characteristic_unit_series `characteristic_unit_series<>`]]
+[def _heaviside_series_                 [classref boost::time_series::heaviside_series `heaviside_series<>`]]
+[def _heaviside_unit_series_            [classref boost::time_series::heaviside_unit_series `heaviside_unit_series<>`]]
+[def _inverse_heaviside_series_         [classref boost::time_series::inverse_heaviside_series `inverse_heaviside_series<>`]]
+[def _inverse_heaviside_unit_series_    [classref boost::time_series::inverse_heaviside_unit_series `inverse_heaviside_unit_series<>`]]
+[def _piecewise_constant_series_        [classref boost::time_series::piecewise_constant_series `piecewise_constant_series<>`]]
+[def _shifted_series_                   [classref boost::time_series::shifted_series `shifted_series<>`]]
+[def _scaled_series_                    [classref boost::time_series::scaled_series `scaled_series<>`]]
+[def _clipped_series_                   [classref boost::time_series::clipped_series `clipped_series<>`]]
+[def _ordered_inserter_                 [classref boost::time_series::ordered_inserter `ordered_inserter<>`]]
+[def _dereference_                      [classref boost::property_maps::dereference `dereference<>`]]
+[def _make_ordered_inserter_            [funcref boost::time_series::make_ordered_inserter `make_ordered_inserter()`]]
+[def _adjacent_difference_              [funcref boost::time_series::adjacent_difference `adjacent_difference()`]]
+[def _clip_                             [funcref boost::time_series::clip `clip()`]]
+[def _coarse_grain_                     [funcref boost::time_series::coarse_grain `coarse_grain()`]]
+[def _fine_grain_                       [funcref boost::time_series::fine_grain `fine_grain()`]]
+[def _integrate_                        [funcref boost::time_series::integrate `integrate()`]]
+[def _invert_elements_                  [funcref boost::time_series::invert_elements `invert_elements()`]]
+[def _invert_elements_inplace_          [funcref boost::time_series::invert_elements_inplace `invert_elements_inplace()`]]
+[def _invert_heaviside_                 [funcref boost::time_series::invert_heaviside `invert_heaviside()`]]
+[def _partial_sum_                      [funcref boost::time_series::partial_sum `partial_sum()`]]
+[def _period_sums_                      [funcref boost::time_series::period_sums `period_sums()`]]
+[def _piecewise_sample_                 [funcref boost::time_series::piecewise_sample `piecewise_sample()`]]
+[def _piecewise_surface_sample_         [funcref boost::time_series::piecewise_surface_sample `piecewise_surface_sample()`]]
+[def _rotate_left_                      [funcref boost::time_series::rotate_left `rotate_left()`]]
+[def _rotate_right_                     [funcref boost::time_series::rotate_right `rotate_right()`]]
+[def _shift_                            [funcref boost::time_series::shift `shift()`]]
+[def _subscript_                        [funcref boost::time_series::subscript `subscript()`]]
+[def _variable_period_sums_             [funcref boost::time_series::variable_period_sums `variable_period_sums()`]]
+[def _for_each_                         [funcref boost::range_run_storage::for_each `for_each()`]]
+[def _copy_                             [funcref boost::range_run_storage::copy `copy()`]]
+[def _transform_                        [funcref boost::range_run_storage::transform `transform()`]]
+[def _series_type_                      '''<replaceable>series-type</replaceable>''']
+[def _discretization_type_              '''<replaceable>discretization-type</replaceable>''']
+[def _value_type_                       '''<replaceable>value-type</replaceable>''']
+[def _offset_type_                      '''<replaceable>offset-type</replaceable>''']
+[def _zero_type_                        '''<replaceable>zero-type</replaceable>''']
+[def _unspecified_                      '''<replaceable>unspecified</replaceable>''']
+[def _ZKB_                              [@http://www.zkb.com Z'''&uuml;'''rcher Kantonalbank]]
+
+[/======================================]
+[section Preface]
+[/======================================]
+
+[:["Where do we find ourselves? In a series of which we do not know the extremes, 
+and believe that it has none.]\n['--Ralph Waldo Emerson]]
+
+[h3 Description]
+
+The purpose of the Boost.Time_series library is to provide data structures, 
+numerical operators and algorithms to operate on /time series/. A time series is
+a series of data points, sampled at regular intervals. The library provides numerous
+time series containers, each with different time/space trade-offs, and a hierarchy
+of concepts which allow the time series to be manipulated generically. The library also
+provides operators and algorithms which use the generic interfaces to perform
+calculations on time series and accumulate various statistics about them.
+
+Boost.Time_series does not yet contain all the algorithms one might want in order to perform
+full time series analysis. However, the key contribution of Boost.Time_series is 
+the framework and the rich hierarchy of concepts with which such algorithms can be written
+to efficiently and generically process series of data with widely divergent in-memory
+representations and performance characteristics. Boost.Time_series provides several such 
+series containers, as well as mechanisms for defining additional series types and algorithms
+that fit within the framework. Some examples of series types that are provided are: dense, sparse,
+piecewise constant, heaviside and others, as well as adaptors for providing shifted, scaled
+and clipped series views.
+
+[note Boost.Time_series is not (yet) an official Boost library.]
+
+[endsect]
+
+[section User's Guide]
+
+This section describes how to use the Boost.Time_series library to represent and manipulate
+series of data. For detailed information regarding specific components in
+Boost.Time_series, check the [link time_series.reference Reference] section.
+
+[/======================================]
+[h2 Hello, World!]
+[/======================================]
+
+Below is a complete example of how to use Boost.Time_series.
+
+    #include <iostream>
+    #include <boost/foreach.hpp>
+    #include <boost/time_series/dense_series.hpp>
+    #include <boost/time_series/sparse_series.hpp>
+    #include <boost/time_series/ordered_inserter.hpp>
+    #include <boost/time_series/numeric/numeric.hpp>
+    using namespace boost::time_series;
+
+    int main()
+    {
+        // A dense series is like a std::vector
+        dense_series< double > d( start=0, stop=4, value=2.2 );
+        
+        // A sparse series only stores its non-zeros
+        sparse_series< double > s;
+        
+        // Filling a sparse_series (or any series, actually) can be done
+        // with an ordered insertion, as follows:
+        make_ordered_inserter( s )
+            (4.0, 1)  // Insert value 4.0 at offset 1
+            (6.0, 3)  // Insert value 6.0 at offset 3
+        .commit();  // Commit the changes to sparse_series s.
+
+        // Multiplication is done element-wise. Multiplying a sparse
+        // series by a dense series yields a sparse series.
+        sparse_series< double > r = d * s;
+        
+        // All series are infinite, but a clipped range is a valid
+        // STL container, with iterators that make the storage look
+        // dense; that is, they traverse both the zeros and the 
+        // non-zeros, even if the storage is sparse.
+        BOOST_FOREACH( double val, clip( r, 0, 4 ) )
+        {
+            std::cout << val << std::endl;
+        }
+        
+        return 0;
+    }
+
+This program displays the following:
+
+[pre
+0
+8.8
+0
+13.2
+]
+
+[/======================================]
+[section Series Containers]
+[/======================================]
+
+Boost.Time_series offers the following series types for representing your data:
+
+[variablelist
+    [[_dense_series_]                   [A dense series, much like `std::vector<>`]]
+    [[_sparse_series_]                  [A sparse series where runs have unit length.]]
+    [[_piecewise_constant_series_]      [A series which has an arbitrary number of runs of arbitrary length.]]
+    [[_delta_series_]                   [A series which has exactly one run of unit length.]]
+    [[_delta_unit_series_]              [A delta series for which the run has a value of `1`.]]
+    [[_constant_series_]                [A series which has exactly one run from -Inf to +Inf]]
+    [[_characteristic_series_]          [A series which has exactly one run.]]
+    [[_characteristic_unit_series_]     [A characteristic series for which the run has a value of `1`.]]
+    [[_heaviside_series_]               [A series which has one run from some offset to +Inf.]]
+    [[_heaviside_unit_series_]          [A heaviside series for which the run has a value of `1`.]]
+    [[_inverse_heaviside_series_]       [A series which has one run from -Inf to some end offset.]]
+    [[_inverse_heaviside_unit_series_]  [An inverse heaviside series for which the run has a value of `1`.]]
+]
+
+In addition, Boost.Time_series provides the following series adaptors, which
+can be applied to any of the above series.
+
+[variablelist
+    [[_clipped_series_]                 [Makes the adapted series appear to have zeros outside some range.]]
+    [[_scaled_series_]                  [Multiplies all the elements of the adapted series by some constant factor.]]
+    [[_shifted_series_]                 [Shifts all the runs in a series by some constant offset.]]
+]
+
+[/======================================]
+[h3 Series Interface]
+[/======================================]
+
+All series types present the same interface, summarized below.
+
+    class _series_type_
+    {
+    public:
+        // Public typedefs
+        typedef _discretization_type_ discretization_type;
+        typedef _value_type_ value_type;
+        typedef _offset_type_ offset_type;
+        typedef _zero_type_ zero_type;
+        typedef _unspecified_ reference;
+        typedef reference const_reference;
+        
+        // Constructors
+        _series_type_()
+        _series_type_( A0 const &, A2 const &, ... );
+        
+        // Accessors
+        reference operator [](offset_type) const;
+        discretization_type discretization() const;
+        void discretization(discretization_type disc);
+
+        // Modifiers        
+        void swap( _series_type_ & );
+        
+        template< class Series >
+        _series_type_ & operator=(Series const &);
+    };
+    
+    void swap( _series_type_ &, _series_type_ & );
+
+In addition, all series satisfy the _InfiniteRangeRunStorage_ concept. Since
+_InfiniteRangeRunStorage_ is a refinement of the _RangeRunStorage_ and _Sequence_
+concepts, all series model those concept also.
+
+[/======================================]
+[section Series Initialization]
+[/======================================]
+
+Different series types require different initialization. All the 
+series types use named parameters for their constructor
+arguments. The allowable named parameters are:
+
+[variablelist
+    [[`start`]          [The start offset of an element or range of
+                         elements.]]
+    [[`stop`]           [The end offset of a range of elements.]]
+    [[`value`]          [The value of an element or range of
+                         elements.]]
+    [[`discretization`] [The "stride" of the series. This is used
+                         to specify whether a series represents daily
+                         or monthly data, for example.]]
+    [[`zero`]           [The value that should be assumed by the
+                         "zeros" of sparse storage.]]
+]
+
+Not all series will use all of these constructor parameters.
+The table below shows which series types accept which constructor 
+parameters.
+
+[table Series Construction Parameters
+    [[Series Type]                      [Named Construction Parameters]]
+    [[_characteristic_series_]          [`start`            ['(default = `0`)], 
+                                         `stop`             ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_characteristic_unit_series_]     [`start`            ['(default = `0`)], 
+                                         `stop`             ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_constant_series_]                [`value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_delta_series_]                   [`start`            ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_delta_unit_series_]              [`start`            ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_dense_series_]                   [`start`            ['(default = `0`)], 
+                                         `stop`             ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_heaviside_series_]               [`start`            ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_heaviside_unit_series_]          [`start`            ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_inverse_heaviside_series_]       [`stop`             ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_inverse_heaviside_unit_series_]  [`stop`             ['(default = `0`)], 
+                                         `value`            ['(default = `1`)], 
+                                         `discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_piecewise_constant_series_]      [`discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+    [[_sparse_series_]                  [`discretization`   ['(default = `1`)], 
+                                         `zero`             ['(default = `value_type()`)]]]
+]
+
+These constructor parameters can be used either positionally or with 
+the named parameter syntax. When used positionally, the order the 
+parameters appear in the table above determine how the library 
+interprets the parameters in the constructor. For example, consider 
+the following code:
+
+    // A delta series with a 42.0 at offset 512:
+    delta_series< double > delta1( start = 512, value = 42.0, discretization = 30 );
+
+    // Same as above
+    delta_series< double > delta2( 512, 42.0, 30 );
+
+
+[note It may seem odd that even the unit series have a `value`
+parameter. This is because `1` is not always convertible to the 
+series' value type. Consider a `delta_unit_series< std::vector< int > >`. 
+You may decide that for this series, the unit value should be 
+`std::vector< int >(3, 1)`. For unit series with scalar value 
+types such as `int`, `double` and `std::complex<>`, the `value` parameter
+is ignored.]
+
+[endsect]
+
+[/======================================]
+[section Zeros and Sparse Data]
+[/======================================]
+
+Every series type lets you specify the value of the zero elements. 
+By default, the zeros are default-constructed objects of the series'
+value type. That is not always what you want. For example, consider
+the case of a `sparse_series< std::vector< int > >`. If all the non-zeros
+of the series are vectors of size 3, you probably want the zero elements
+to also be vectors of size 3, where the integers are all zero. The
+code below demonstrates how to accomlish that.
+
+    std::vector< int > nil( 3, 0 ); // vector of 3 zeros
+    
+    // OK, use nil as the value of the zeros in the sparse series
+    sparse_series< std::vector< int > > s( zero = nil );
+
+Positionally, the zero parameter always assumes the final position
+in the constructor argument list.
+
+[endsect]
+
+[/======================================]
+[section Series Discretization and Strong Typing]
+[/======================================]
+
+In the examples seen so far, the discretization is specified with a plain
+integer. Arithmetic operations between series is only defined when the
+series have the same discretization. When the discretization is a plain integer,
+the discretizations are checked for compatibility at runtime. However, you
+can get compile-time checking of the discretization if you use compile-time
+constants for the discretization, as follows:
+
+    dense_series< double, monthly > d;
+    sparse_series< double, monthly > s;
+
+As you can see, there is an extra optional template parameter for
+specifying the Discretization. The Boost.Time_series library defines the
+following types for use as the Discretization template parameter:
+
+[table Time Series Resolutions
+    [[Discretization]   [Equivalent To]]
+    [[`daily`]          [`mpl::int_<1>`]]
+    [[`weekly`]         [`mpl::int_<7>`]]
+    [[`montly`]         [`mpl::int_<30>`]]
+    [[`quarterly`]      [`mpl::int_<90>`]]
+    [[`semi_yearly`]    [`mpl::int_<180>`]]
+    [[`yearly`]         [`mpl::int_<360>`]]
+]
+
+[endsect]
+
+[/======================================]
+[section Floating-point Offsets]
+[/======================================]
+
+Most of the series types allow you to use floating-point types instead of 
+integers for offsets and indices. For instance, you might want a `characteristic_series<>`
+where the series is non-zero from `-3.14` through `2.12`. For that, you
+would specify the third template parameter of `characteristic_series<>` to
+be `double`. For example:
+
+    // A characteristic_series where the values are ints,
+    // the discretization is daily, and offsets are doubles
+    characteristic_series< int, daily, double > c( start = -3.14, stop = 2.12, value = 42 );
+    
+    assert( 0 == c[ -4.11 ] );
+    assert( 42 == c[ 1.23 ] );
+
+When doing series arithmetic with two series, the offset types of the two series
+must be the same. 
+
+[note Some of the numeric algorithms do not work with series that have
+floating-point offsets. For instance, _partial_sum_ assumes integral offsets;
+in fact, the discrete nature of the algorithm prohibits its use with any
+series with floating-point offsets.]
+
+The only series type that does not support floating-point offsets is _dense_series_.
+
+[endsect]
+
+[/======================================]
+[section Populating a Series]
+[/======================================]
+
+All series types provide a generic mechanism for populating the series
+with data. The basic idea to to ask the series for an inserter object,
+push data into the inserter in order, and then commit the changes. The
+inserter object is called _ordered_inserter_. Below is an example of
+using _ordered_inserter_ to populate a _sparse_series_.
+
+    // Define a sparse_series
+    sparse_series< double > s;
+
+    // Make an inserter object for the series
+    ordered_inserter< sparse_series< double > > in( s );
+    
+    in( 1.1, 2 );  // Insert value 1.1 at offset 2
+    in( 2.2, 4 );  // Insert value 2.2 at offset 4
+    in( 3.3, 8 );  // Insert value 3.3 at offset 8
+    in( 4.4, 16 ); // Insert value 4.4 at offset 16
+
+    // Commit the changes to series s
+    in.commit();
+
+The _ordered_inserter_ object has three overloads of `operator()`,
+described below.
+
+    // Define a piecewise_constant_series
+    piecewise_constant_series< double > pwc;
+
+    // Make an inserter object for the series
+    ordered_inserter< piecewise_constant_series< double > > in( pwc );
+    
+    in( 1.1, 2, 6 );  // Insert value 1.1 at offsets 2 through 6
+    in( 2.2, 8 );     // Insert value 2.2 at offset 8
+    in( 3.3 );        // Insert value 3.3 at the next offset (9)
+
+    // Commit the changes to series pwc
+    in.commit();
+
+All of the `operator()` overloads return a reference to `*this`, so
+the insertions can be chained. In addition, there is a 
+_make_ordered_inserter_ helper function. These can be used together
+to simply and efficiently populate series:
+
+    piecewise_constant_series< double > pwc( 64 );
+
+    make_ordered_inserter( pwc )
+        (1.1, 2, 6)  // Insert value 1.1 at offsets 2 through 6
+        (2.2, 8)     // Insert value 2.2 at offset 8
+        (3.3)        // Insert value 3.3 at the next offset (9)
+    .commit();
+
+The _ordered_inserter_ object can also behave like an output iterator.
+When used in this way, the following syntactic constructs are equivalent
+for a given _ordered_inserter_ `in`.
+
+[table
+    [[Output Iterator Syntax]                       [Equivalent Ordered Inserter Syntax]]
+    [[`*in++ = val;`]                               [`in( val );`]]
+    [[`*in++ = make_pair( val, off );`]               [`in( val, off );`]]
+    [[`*in++ = make_tuple( val, off );`]              [`in( val, off );`]]
+    [[`*in++ = make_tuple( val, off, end );`]         [`in( val, off, end );`]]
+]
+
+These equivalencies are designed to permit the _ordered_inserter_ to 
+work well with `zip_iterator<>` from the Boost.Iterator library. For
+example, the following code inserts the specified values into the 
+specified offsets in a sparse series.
+
+    sparse_series< double > s;
+
+    // Use boost::array to define the values and offsets
+    array< double,4 > values  = {1.1, 2.2, 3.3, 4.4};
+    array< int,4 >    offsets = {  2,   4,   8,  16};
+
+    // Use boost::zip_iterator to iterate over both the
+    // values and offsets in parallel.
+    std::copy(
+        make_zip_iterator( make_tuple( values.begin(), offsets.begin() ) )
+      , make_zip_iterator( make_tuple( values.end(), offsets.end() ) )
+      , make_ordered_inserter( s )
+    ).commit();
+
+In the above example, `make_ordered_inserter( s )` returns an inserter
+object for the sparse series `s` that is used as an output iterator
+by `std::copy`. The ordered inserter is assigned each (value, offset)
+tuple in turn. Finally, `std::copy` returns the inserter, and we call
+`commit()` on it, which writes all the (value, offset) tuples into 
+the sparse series.
+
+[endsect]
+
+[endsect]
+
+[/======================================]
+[section Series Algorithms]
+[/======================================]
+
+This section describes the operations you can perform on time series.
+
+[/======================================]
+[section Arithmetic]
+[/======================================]
+
+Times series can be added, subtracted, multiplied and divided by other
+series. The arithmetic is element-wise and is only defined when the two
+series have the same discretization. The resulting series, though it may
+have a different type, will have the same discretization as the arguments.
+The example below shows that adding a dense series and a sparse series
+yields a dense series.
+
+    dense_series< double > d( discretization = 30 );
+    sparse_series< double > s( discretization = 30 );
+    
+    // ... series d and s are populated with data ...
+    
+    dense_series< double > res = d + s;
+    assert( 30 == res.discretization() );
+
+[endsect]
+
+[/======================================]
+[section Promotion]
+[/======================================]
+
+Adding or multiplying two series often results in a series of a different
+type. Boost.Time_series picks the most space-efficient storage capable of
+holding the result. The promotion rules are as specified below.
+
+[h5 Series Addition Promotion Rules]
+
+* If both operands are _constant_series_, the result is a
+  _constant_series_.
+* Else, if either operand is a _dense_series_, the result is a
+  _dense_series_.
+* Else, if either operand is one of: _characteristic_series_,
+  _heaviside_series_, _inverse_heaviside_series_, _constant_series_
+  or _piecewise_constant_series_, (or a unit series of any of these
+  types), the result is a _piecewise_constant_series_.
+* Else, if either series is one of _sparse_series_, _delta_series_,
+  or _delta_unit_series_, the result is a _sparse_series_.
+
+The series promotion rules for subtraction are identical to those for
+addition.
+
+[h5 Series Multiplication Promotion Rules]
+
+* If both operands are a _constant_series_, the result is a
+  _constant_series_.
+* Else, if one operand is a _constant_series_,
+  * If the other operand is a unit series (eg, _delta_unit_series_),
+    the result is the corresponding non-unit series type (eg,
+    _delta_series_).
+  * Else, the result is the type of the other operand (eg, a
+    _constant_series_ times a _dense_series_ is a _dense_series_).
+* Else, if both operands are _delta_unit_series_, the result is a
+  _delta_unit_series_.
+* Else, if either operand is a _delta_series_ or a _delta_unit_series_,
+  the result is a _delta_series_.
+* Else, if either operand is a _sparse_series_, the result is a
+  _sparse_series_.
+* Else, if both operands are one of _heaviside_series_,
+  _inverse_heaviside_series_, or _characteristic_series_, (or a
+  unit series of any of these types), then
+  * If both operands have the same type, the result is of that type.
+  * Else, if both operands are unit series, the result is a
+    _characteristic_unit_series_.
+  * Else, the result is a _characteristic_series_.
+* Else, if either operand is one of _heaviside_series_,
+  _inverse_heaviside_series_, or _characteristic_series_, (or a
+  unit series of any of these types), then the result is the type
+  of the other operand.
+* Else, if both operands are _piecewise_constant_series_, the
+  result is a _piecewise_constant_series_.
+* Else, the result is a _dense_series_.
+
+The series promotion rules for division are identical, except that
+division by anything other than a _dense_series_, _constant_series_,
+or _piecewise_constant_series_ is undefined.
+
+[note For the sake of the above promotion rules, a _clipped_series_, a
+_shifted_series_ and a _scaled_series_ behave as if they were of the same
+type as the series they adapt.]
+
+[endsect]
+
+[/======================================]
+[section Conversions]
+[/======================================]
+
+It's possible to assign a series of one type to a series of another.
+This involves a conversion. Not all conversions are allowed, however.
+For instance, it makes no sense to assign a _dense_series_ to a 
+_delta_series_. The allowed conversions are described below.
+
+Conversions are allowed if and only if at least one of the following
+is true.
+
+* The source and destination types are the same.
+* The destination type is _dense_series_, or _sparse_series_, or
+  _piecewise_constant_series_.
+* The source type is _delta_unit_series_, _heaviside_unit_series_,
+  _inverse_heaviside_unit_series_, or _characteristic_unit_series_,
+  and the destination type is a _characteristic_series_ or a
+  _characteristic_unit_series_.
+* The source type is _delta_series_, _heaviside_series_,
+  _inverse_heaviside_series_, or _characteristic_series_, and
+  the destination type is a _characteristic_series_.
+
+In addition to the rules above, conversions are only permitted between
+series of the same discretization, and when the source series' value_type
+is convertible to the destination series' value_type.
+
+[note For the sake of the above conversion rules, a _clipped_series_, a
+_shifted_series_ and a _scaled_series_ behaves as if they were of the same
+type as the series they adapt.]
+
+[endsect]
+
+[/======================================]
+[section Algorithms]
+[/======================================]
+
+The Boost.Time_series library provides a set of algorithms to 
+manipulate and calculate with series.
+
+[section [^adjacent_difference()]]
+
+    // Overload (1) 
+    template< class Series >
+    sparse_series< _value_type_, _discretization_type_, _offset_type_ >
+    adjacent_difference( Series const & series );
+
+    // Overload (2)
+    template< class Series, class Out >
+    ordered_inserter< Out >
+    adjacent_difference( Series const & series, ordered_inserter< Out > out );
+
+Like `std::adjacent_difference()`, Boost.Time_series's _adjacent_difference_ 
+computes the successive differences between each element and its predecessor
+in a series. The first overload simply returns the result in a _sparse_series_.
+
+If a _sparse_series_ is not the desired return type, Boost.Time_series also
+provides the second, more general overload that accepts and returns an ordered 
+inserter to any series type. You must call `.commit()` on the returned ordered 
+inserter when you are done with it.
+
+For more implementation details, see the reference for _adjacent_difference_.
+
+[endsect]
+
+[section [^clip()]]
+
+    // Overload (1)
+    template<class Series, class Start, class Stop>
+    clipped_series<Series> const
+    clip(Series & series, Start start, Stop stop);
+
+    // Overload (2)
+    template<class Series, class Start, class Stop>
+    clipped_series<Series const> const
+    clip(Series const & series, Start start, Stop stop);
+
+The _clip_ algorithm clips a _TimeSeries_ to a [^\[start,stop)] range, where 
+the resulting series view has zeros outside of the specified range. It returns
+a _clipped_series_ view object.
+
+_clip_ requires that the `Start` and `Stop` types are convertible to the 
+series' `offset_type`.
+
+For more implementation details, see the reference for _clip_.
+
+[endsect]
+
+[section [^coarse_grain()]]
+
+    // Overload (1)
+    template <class Series, class Discretization>
+    sparse_series< _value_type_, Discretization >
+    coarse_grain( Series const & series, Discretization discretization );
+
+    // Overload (2)
+    template <class Series, class Discretization, class Out>
+    ordered_inserter< Out >
+    coarse_grain( Series const & series, Discretization discretization, ordered_inserter< Out > out );
+
+Boost.Time_series's _coarse_grain_ algorithm converts a _TimeSeries_ to 
+a series of a coarser discretization. It picks the values at the coarse
+grained points. The first overload returns the result in a _sparse_series_.
+
+If a _sparse_series_ is not the desired return type, Boost.Time_series also 
+provides the second, more general overload that accepts and returns an ordered 
+inserter to any series type. You must call `.commit()` on the returned ordered
+inserter when you are done with it.
+
+For more implementation details, see the reference for _coarse_grain_.
+
+[endsect]
+
+[section [^fine_grain()]]
+
+    // Overload (1)
+    template< class Series, class Discretization >
+    piecewise_constant_series< _value_type_, Discretization >
+    fine_grain( Series const & series, Discretization discretization );
+    
+    // Overload (1)
+    template< class Series, class Discretization, class UpSampler >
+    typename mpl::apply< UpSampler, _value_type_, Discretization >::type
+    fine_grain( Series const & series, Discretization discretization, UpSampler up_sampler );
+    
+    // Overload (3)    
+    template< class Series, class Discretization, class Out >
+    ordered_inserter< Out >
+    fine_grain( Series const & base, Discretization discretization, ordered_inserter< Out > out );
+    
+    // Overload (4)
+    template< class Series, class Discretization, class UpSampler, class Out >
+    ordered_inserter< Out >
+    fine_grain(Series const & base, Discretization discretization, UpSampler upsampler
+      , ordered_inserter< Out > out);
+
+Boost.Time_series's _fine_grain_ algorithm converts a _TimeSeries_ to
+a series of finer discretization. The first overload returns a piecewise 
+constant sequence where the function jumps at the coarse-grained
+points. 
+
+The second overload is more general, and accepts an extra
+/up-sampler/ parameter that specifies how the algorithm should
+behave. Boost.Time_series provides the following objects for
+use as the up-sampler parameter:
+
+[variablelist
+    [[piecewise_upsample]   [Causes the second _fine_grain_ overload to behave
+                             like the first.]]
+    [[sparse_upsample]      [Sets non-zero values at the coarse-grain points,
+                             and zeros elsewhere. Return type is a 
+                             _sparse_series_.]]
+]
+
+For finer control of the type of the resulting series, Boost.Time_series
+provides the third and fourth overloads, which behave as the first two do,
+except that they take and return an ordered inserter into which the resulting 
+sequence will be written. You must `.commit()` the returned inserter when you 
+are done with it.
+
+For more implementation details, see the reference for _fine_grain_.
+
+[endsect]
+
+[section [^integrate()]]
+
+    template< class Series >
+    _value_type_ integrate( Series const & series );
+
+The integral of a series is calculated by multiplying the value of each run in 
+the series by the run's length, summing all the results, and multiplying the 
+sum by the series' discretization.
+
+For more implementation details, see the reference for _integrate_.
+
+[endsect]
+
+[section [^invert_elements()]]
+
+    // Overload (1)
+    template<class Series>
+    Series const
+    invert_elements(Series const & series);
+
+    // Overload (2)
+    template<class Series, class Out>
+    ordered_inserter<Out>
+    invert_elements(Series const & series, ordered_inserter<Out> out);
+
+    // "Overload" (3)
+    template<class Series>
+    Series &
+    invert_elements_inplace(Series & series);
+
+_invert_elements_ inverts the elements of a _TimeSeries_; that is, for
+each element `x` in the series, `x = 1. / x`. The first overload returns 
+a new series of the same type as the one passed in. 
+
+If you would prefer the new series to have a different type, the second 
+overload accepts and returns an ordered inserter, into which the new 
+series will be written. You must call `.commit()` on the returned 
+ordered inserter when you are done with it.
+
+If you have a _Mutable_TimeSeries_ and you would like to modify it in
+place, you can use _invert_elements_inplace_.
+
+For more implementation details, see the reference for _invert_elements_
+and _invert_elements_inplace_.
+
+[endsect]
+
+[section [^invert_heaviside()]]
+
+    template< class Value, class Discretization, class Offset >
+    inverse_heaviside_series< Value, Discretization, Offset > const
+    invert_heaviside( heaviside_series< Value, Discretization, Offset > const & series );
+
+    template< class Value, class Discretization, class Offset >
+    inverse_heaviside_unit_series< Value, Discretization, Offset > const
+    invert_heaviside( heaviside_unit_series< Value, Discretization, Offset > const & series );
+
+    template< class Value, class Discretization, class Offset >
+    heaviside_series< Value, Discretization, Offset > const
+    invert_heaviside( inverse_heaviside_series< Value, Discretization, Offset > const & series );
+
+    template< class Value, class Discretization, class Offset >
+    heaviside_unit_series< Value, Discretization, Offset > const
+    invert_heaviside( inverse_heaviside_unit_series< Value, Discretization, Offset > const & series );
+
+Given a _heaviside_series_, _invert_heaviside_ will return the corresponding 
+_inverse_heaviside_series_ with the same jump offset, and ['vice versa]. This
+function is guaranteed to not throw an exception (unless the series' `value_type`'s
+copy constructor can throw).
+
+For more implementation details, see the reference for _invert_heaviside_.
+
+[endsect]
+
+[section [^partial_sum()]]
+
+    // Overload (1)
+    template< class Series >
+    piecewise_constant_series< _value_type_, _discretization_type_ >
+    partial_sum( Series const & series );
+
+    // Overload (2)
+    template< class Series, class Out >
+    ordered_inserter< Out >
+    partial_sum( Series const & series, ordered_inserter< Out > out )
+
+Like `std::partial_sum()`, Boost.Time_series's _partial_sum_ computes
+a series of sums in a series from the first element through the 
+['i]-th element and stores the result of each such sum in the 
+['i]-th element of a _piecewise_constant_series_.
+
+If a _piecewise_constant_series_ is not the desired return type,
+Boost.Time_series provides the second, more general overload, which
+accepts and returns an ordered inserter to any series type. You
+must call `.commit()` on the returned ordered inserter when you are
+done with it.
+
+For more implementation details, see the reference for _partial_sum_.
+
+[endsect]
+
+[section [^period_sums()]]
+
+    // Overload (1)
+    template< class Series, class Offset, class Length >
+    sparse_series< _value_type_, _discretization_type_, Offset >
+    period_sums( Series const &series, Offset start, Length length )
+
+    // Overload (2)
+    template< class Series, class Offset, class Length, class Out >
+    ordered_inserter< Out >
+    period_sums(Series const & series, Offset start, Length length
+      , ordered_inserter< Out > out);
+
+Period sums are the results of `std::accumulate()` applied to
+partitions of the sequence into fixed-size ranges. These are e.g., 
+interest payments summer over all days in each quarter. The resulting
+series has the various period sums stored in the first location in 
+the range. By default, the results are returned in a _sparse_series_.
+
+If a _sparse_series_ is not the desired return type, Boost.Time_series 
+provides the second, more general overload, which accepts and returns 
+an ordered inserter to any series type. You must call `.commit()` on 
+the returned ordered inserter when you are done with it.
+
+[note If you would prefer the sums be stored elsewhere besides the
+first location in the period, you can use _shift_ on the result of 
+_period_sums_. For example, if the interest payment is due at the end 
+of the quarter instead of the beginning, you could to shift the 
+result by a quarter.]
+
+For more implementation details, see the reference for _period_sums_.
+
+[endsect]
+
+[section [^piecewise_sample()]]
+
+    // Overload (1)
+    template<class Series, class Periods>
+    piecewise_constant_series<``[~Series-value-type]``, ``[~Series-discretization-type]``, ``[~Periods-value-type]``>
+    piecewise_sample(Series const &series, Periods const &periods);
+
+    // Overload (2)
+    template<class Series, class Periods, class Out>
+    ordered_inserter<Out>
+    piecewise_sample(Series const &series, Periods const &periods, ordered_inserter<Out> out);
+
+The _piecewise_sample_ algorithm creates a piecewise constant series by sampling
+one series at steps specified by the `Range` called `periods`. The steps are 
+specified with periods as follows:
+
+* `[-inf,*boost::begin(periods))`
+* `[*boost::begin(periods),*(boost::begin(periods)+1))`
+* `[*(boost::begin(periods)+1),*(boost::begin(periods)+2))`
+* `...`
+* `[*(boost::end(periods)-1),inf)`
+
+For example, the array `int periods[] = {-10, 10}`, defines the following periods:
+`[-inf, -10), [-10, 10), [10, inf)`. When used with _piecewise_sample_, these periods
+define the begin and end offsets of the runs in the resulting series. The values of
+the runs are the values of the input series sampled at the offsets `-inf, -10, 10`.
+
+For more implementation details, see the reference for _piecewise_sample_.
+
+[endsect]
+
+[section [^piecewise_surface_sample()]]
+
+    // Overload (1)
+    template<class Series, class XPeriods, class YPeriods>
+    piecewise_constant_series<``[~Series-value-type]``, ``[~Series-discretization-type]``, ``[~XPeriods-value-type]``>
+    piecewise_surface_sample(Series const &series, XPeriods const &x_periods, YPeriods const &y_periods)
+
+    // Overload (2)
+    template<class Series, class XPeriods, class YPeriods, class Out>
+    ordered_inserter<Out>
+    piecewise_surface_sample(Series const &series, XPeriods const &x_periods, YPeriods const &y_periods, ordered_inserter<Out> out)
+
+The _piecewise_surface_sample_ algorithm calculates a piecewise constant surface 
+by sampling series at steps defined by two ranges representing the sample points
+for x and y coordinate of the surface. The `x` periods are specified 
+as follows:
+
+* `[-inf,*boost::begin(x_periods))`
+* `[*boost::begin(x_periods),*(boost::begin(x_periods)+1))`
+* `[*(boost::begin(x_periods)+1),*(boost::begin(x_periods)+2))`
+* `...`
+* `[*(boost::end(x_periods)-1),inf)`
+
+... and likewise for `y` periods.
+
+For more implementation details, see the reference for _piecewise_surface_sample_.
+
+[endsect]
+
+[section [^rotate_left()]]
+
+    // Overload (1)
+    template<class Series>
+    sparse_series<_value_type_, _discretization_type_, _offset_type_>
+    rotate_left(Series const &series);
+
+    // Overload (2)
+    template<class Series>
+    sparse_series<_value_type_, _discretization_type_, _offset_type_>
+    rotate_left(Series const &series, _value_type_ const &value);
+    
+    // Overload (3)
+    template<class Series, class Out>
+    ordered_inserter<Out>
+    rotate_left(Series const &series, ordered_inserter<Out> out);
+    
+    // Overload (4)
+    template<class Series, class Out>
+    ordered_inserter<Out>
+    rotate_left(Series const &series, _value_type_ const &value, ordered_inserter<Out> out);
+
+The _rotate_left_ algorithm rotates a series left, in the sense that the ['i]-th run
+assumes the value of the ['(i+1)]-th run. The final run in the series assumes the value
+of the `value` parameter if specified; otherwise, the last run is dropped.
+
+By default, the result is returned in a _sparse_series_. If a _sparse_series_ is
+not desired, Boost.Time_series provides additional overloads that accept and return
+an ordered inserter to any series type, into which the resulting series is written. 
+You must call `.commit()` on the returned ordered inserter when you are done with it.
+
+For more implementation details, see the reference for _rotate_left_.
+
+[endsect]
+
+[section [^rotate_right()]]
+
+    // Overload (1)
+    template<class Series>
+    sparse_series<_value_type_, _discretization_type_, _offset_type_>
+    rotate_right(Series const &series);
+    
+    // Overload (2)
+    template<class Series>
+    sparse_series<_value_type_, _discretization_type_, _offset_type_>
+    rotate_right(Series const &series, _value_type_ const &value);
+    
+    // Overload (3)
+    template<class Series, class Out>
+    ordered_inserter<Out>
+    rotate_right(Series const &series, ordered_inserter<Out> out);
+    
+    // Overload (4)
+    template<class Series, class Out>
+    ordered_inserter<Out>
+    rotate_right(Series const &series, _value_type_ const &value, ordered_inserter<Out> out);
+
+The _rotate_right_ algorithm rotates a series right, in the sense that the ['i]-th run
+assumes the value of the ['(i-1)]-th run. The first run in the series assumes the value
+of the `value` parameter if specified; otherwise, the first run is dropped.
+
+By default, the result is returned in a _sparse_series_. If a _sparse_series_ is
+not desired, Boost.Time_series provides additional overloads that accept and return
+an ordered inserter to any series type, into which the resulting series is written. 
+You must call `.commit()` on the returned ordered inserter when you are done with it.
+
+For more implementation details, see the reference for _rotate_right_.
+
+[endsect]
+
+[section [^shift()]]
+
+    // Overload (1)
+    template< class Series, class Offset >
+    shifted_series< Series > const shift( Series & in, Offset offset );
+    
+    // Overload (2)
+    template< class Series, class Offset >
+    shifted_series< Series const > const shift( Series const & in, Offset offset );
+
+The _shift_ algorithm takes a series and an offset and shifts all the
+elements in the series by that offset. Actually, the _shift_ algorithm 
+returns a _shifted_series_ adaptor, which holds the unshifted series
+by reference and presents a shifted view. 
+
+The offset can be positive, which shifts the elements to the right, or
+negative, which shifts the elements to the left. In either case, the new
+elements that are shifted into the series are zeros.
+
+For more implementation details, see the reference for _shift_.
+
+[endsect]
+
+[section [^subscript()]]
+
+    // Overload (1)
+    template<class Series, class Indices>
+    sparse_series<
+        ``[~Series-value-type]``, ``[~Series-discretization-type]``, ``[~Indices-offset-type]``
+    >
+    subscript(Series const &series, Indices const &indices);
+
+    // Overload (2)
+    template<class Series, class Indices, class Out>
+    ordered_inserter<Out>
+    subscript(Series const &series, Indices const &indices, ordered_inserter<Out> out);
+
+The _subscript_ algorithm builds a new series from an existing series and an "index"
+series, where the new series has the following values and offsets:
+
+* `(series[ index_offset_0 + index_value_0 ], index_offset_0)`
+* `(series[ index_offset_1 + index_value_1 ], index_offset_1)`
+* `(series[ index_offset_2 + index_value_2 ], index_offset_2)`
+* `...`
+
+where =index_offset_['N]= is the offset of the [^['N]]-th run in the index series,
+and =index_value_['N]= is the value of the [^['N]]-th run in the index series.
+
+By default, the result is returned in a _sparse_series_. If a _sparse_series_ is
+not desired, Boost.Time_series provides an additional overload that accepts and returns
+an ordered inserter to any series type, into which the resulting series is written. 
+You must call `.commit()` on the returned ordered inserter when you are done with it.
+
+For more implementation details, see the reference for _subscript_.
+
+[endsect]
+
+[section [^variable_period_sums()]]
+
+    // Overload (1)
+    template<class Series, class Periods>
+    sparse_series<_value_type_, _discretization_type_, _offset_type_>
+    variable_period_sums(Series const &series, Periods const &periods);
+
+    // Overload (2)
+    template<class Series, class Periods, class Out>
+    ordered_inserter<Out>
+    variable_period_sums(Series const &series, Periods const &periods, ordered_inserter<Out> out);
+
+The algorithm _variable_period_sums_ is like _period_sums_ except that
+the periods are allowed to be irregular. They are specified in a `Range`,
+such that:
+
+* `[-inf,*boost::begin(periods))`
+* `[*boost::begin(periods),*(boost::begin(periods)+1))`
+* `[*(boost::begin(periods)+1),*(boost::begin(periods)+2))`
+* `...`
+* `[*(boost::end(periods)-1),inf)`
+
+The resulting series has the various period sums stored in the first 
+location in the period. By default, the results are returned in a 
+_sparse_series_.
+
+If a _sparse_series_ is not the desired return type, Boost.Time_series 
+provides the second, more general overload, which accepts and returns 
+an ordered inserter to any series type. You must call `.commit()` on 
+the returned ordered inserter when you are done with it.
+
+For more implementation details, see the reference for _variable_period_sums_.
+
+[endsect]
+
+[endsect]
+
+[endsect]
+
+[/======================================]
+[section Extensibility]
+[/======================================]
+
+This section describes how to extend the Boost.Time_series library
+by adding new algorithms that work with the series types, and how to 
+define new series types that satisfy the _TimeSeries_ concept.
+
+[/======================================]
+[section The TimeSeries Concept]
+[/======================================]
+
+All of the series types in the Time_series library, whether they are
+dense or sparse or constant or even an adapted view of any of those,
+share a common interface and can be processed generically. This is 
+because they all model the same concept: _TimeSeries_. The _TimeSeries_
+concept itself is a refinement of a lower-level interface, called
+_InfiniteRangeRunStorage_. Understanding how _InfiniteRangeRunStorage_
+can be used to represent and manipulate all these different types of
+series is key to being able to extend the Time_series library.
+
+[blurb *The Range-Run Abstraction*\n
+\n
+The range-run abstraction is the core of the Time_series library. Just
+as iterators in the STL make it possible to traverse the elements of 
+an STL contaier without knowing the details of how it is layed out in 
+memory, so too does the range-run abstraction.\n
+\n
+The easiest way to visualize range-run storage is as an
+array of (value, offset, end_offset) tuples. Each tuple in the array
+represents a /run/ of elements with the same value, stretching from
+the offset to the end-offset. The run is half-open -- the offset
+is inclusive, but the end-offset is exclusive -- just as STL iterator
+ranges are, but offsets are position indicators, not iterators.\n
+\n
+The Range_run_storage library provides utilities and a handful of 
+algorithms for stepping through and manipulating the runs in a series.
+]
+
+The following table shows all the valid expressions on models of the 
+_TimeSeries_ concept. In the table, `S` is a (possibly const-qualified) 
+type which models _TimeSeries_, `s` is an object of type `S`, and 
+`o` is an object of `S`'s `offset_type`. All types and functions are
+assumed to be in the `::boost` namespace, except the `TimeSeries<>`
+template, which is in the `::boost::time_series::concepts` namespace.
+
+[table TimeSeries Valid Expressions
+[
+    [Expression]
+    [Type]
+    [Semantics]
+]
+[
+    [`sequence::begin( s )`]
+    [`TimeSeries< S >::cursor`]
+    [A cursor that can be used to traverse the elements and runs of `s`.]
+]
+[
+    [`sequence::end( s )`]
+    [`TimeSeries< S >::end_cursor`]
+    [A cursor that can be used to mark the end of the traversal of the elements and runs
+     of `s`.(Note: for all series types in the Time_series library, `end_cursor` is the
+     same type as `cursor`.)]
+]
+[
+    [`sequence::elements( s )`]
+    [`TimeSeries< S >::elements`]
+    [A [conceptref ReadablePropertyMap] that, when accessed with a cursor, returns the 
+     element at the specified position.]
+]
+[
+    [`range_run_storage::runs( s )`]
+    [`TimeSeries< S >::runs`]
+    [A [conceptref ReadablePropertyMap] that, when accessed with a cursor, returns the 
+     [conceptref Run] at the specified position.]
+]
+[
+    [`range_run_storage::get_at( s, o )`]
+    [`TimeSeries< S >::value_type`]
+    [Returns the element at the offset `o`. This is generally an O(log N) operation,
+     except for dense series, where it is O(1).]
+]
+[
+    [`range_run_storage::zero( s )`]
+    [`TimeSeries< S >::zero_type`]
+    [Returns the value of the zero elements of the series. `zero_type` must be 
+     convertible to `value_type`.]
+]
+[
+    [`range_run_storage::pre_run( s )`]
+    [`TimeSeries< S >::pre_run_type`]
+    [A [conceptref Run] that comes before the runs in the `runs` property map. Unlike
+     the runs in the `runs` property map, this run may be infinite or empty.]
+]
+[
+    [`range_run_storage::pre_value( s )`]
+    [`TimeSeries< S >::value_type`]
+    [The value associated with the `pre_run`, if there is one.]
+]
+[
+    [`range_run_storage::post_run( s )`]
+    [`TimeSeries< S >::post_run_type`]
+    [A [conceptref Run] that comes after the runs in the `runs` property map. Unlike
+     the runs in the `runs` property map, this run may be infinite or empty.]
+]
+[
+    [`range_run_storage::post_value( s )`]
+    [`TimeSeries< S >::value_type`]
+    [The value associated with the `post_run`, if there is one.]
+]
+[
+    [`s.discretization()`]
+    [`TimeSeries< S >::discretization_type`]
+    [A value which represents the series' /discretization/.]
+]
+[
+    [`s[o]`]
+    [`TimeSeries< S >::value_type`]
+    [Same as `range_run_storage::get_at( s, o )`.]
+]
+]
+
+Every series type in the Boost.Time_series library exposes all of its data
+via these functions. In addition, most of the series types provide mechanisms
+for mutating the data, or building an entirely new series. These series are
+models of the _Mutable_TimeSeries_ concept, which has the following valid 
+expressions in addition to those of the _TimeSeries_ concept. In this table,
+`S` is a (possibly const-qualified) type which models _Mutable_TimeSeries_, 
+`s` is an object of type `S`, `r` is an object of `S`'s `run_type`, and 
+`v` is an object of `S`'s `value_type`.
+
+[table Mutable_TimeSeries Valid Expressions
+[
+    [Expression]
+    [Type]
+    [Semantics]
+]
+[
+    [`range_run_storage::set_at( s, r, v )`]
+    [`void`]
+    [Sets a run `r` within `s` to value `v`. This operation is O(N) in the worst case,
+     and invalidates any cursors to `s`.]
+]
+[
+    [`range_run_storage::zero( s, v )`]
+    [`void`]
+    [Sets the value of the zero elements of the series.]
+]
+[
+    [`range_run_storage::pre_value( s, v )`]
+    [`void`]
+    [Sets a the value of the pre-run within `s` to `v`.]
+]
+[
+    [`range_run_storage::post_value( s, v )`]
+    [`void`]
+    [Sets a the value of the post-run within `s` to `v`.]
+]
+[
+    [`range_run_storage::ordered_inserter( s )`]
+    [`Mutable_TimeSeries< S >::ordered_inserter_type`]
+    [Returns an _OrderedInserter_ for `s` that can be used to build
+     a new series in `s`.]
+]
+]
+
+In addition, the `elements` property map of _Mutable_TimeSeries_ is a model of
+[conceptref ReadWritePropertyMap], which means the elements of the series can 
+be written to. All of the series types besides the views (_clipped_series_, 
+_scaled_series_ and _shifted_series_) are models of _Mutable_TimeSeries_.
+
+The _OrderedInserter_ concept makes efficient initialization of time series possible.
+You use an _OrderedInserter_ by pushing runs and values into it /in order/, and when
+you are done, you call `commit()` on it. The _OrderedInserter_ concept has the following
+valid expressions. In the table below, `o` is a model of an _OrderedInserter_, `r` is a 
+run, and `v` is a value.
+
+[table OrderedInserter Valid Expressions
+[
+    [Expression]
+    [Type]
+    [Semantics]
+]
+[
+    [`range_run_storage::set_at( o, r, v )`]
+    [`void`]
+    [Adds a run `r` with value `v`. This operation is amortized O(1). The offset of 
+     the run `r` must be greater than or equal to the end-offset of any run added
+     previously.]
+]
+[
+    [`range_run_storage::commit( o )`]
+    [`void`]
+    [Writes all the runs and values into the underlying series. The complexity is O(1).]
+]
+]
+
+[endsect]
+
+[/======================================]
+[section Defining New TimeSeries algorithms]
+[/======================================]
+
+The easiest way to implement a new Time_series algorithm is to implement
+it in terms of the lower-level InfiniteRangeRunStorage algorithms: _copy_,
+_for_each_, and _transform_. These algorithms take care of the details of
+stepping through a series one run at a time, or in the case of the 2-series
+variant of _transform_, stepping through two series in tandem. 
+
+[h3 Using `range_run_storage::for_each()`]
+
+The simplest of these algorithms is _for_each_. It accepts an 
+InfiniteRangeRunStorage and a TernaryFunction. For each run in the series,
+the function is invoked with the run's value, offset and end offset. 
+The following example uses _for_each_ to print a series to `std::cout`:
+
+    // A TernaryFunction for printing runs to std::cout
+    struct display_run
+    {
+        template< class Value, class Offset >
+        void operator()( Value const & value, Offset start, Offset stop ) const
+        {
+            std::cout
+                << " value = " << value << ", "
+                << " offset = " << start << ", "
+                << " end offset = " << stop << '\n';
+        }
+    };
+
+    // Uses for_each() and display_run to print a series to std::cout
+    template< class Series >
+    void print_series( Series const & series )
+    {
+        range_run_storage::for_each( series, display_run() );
+    }
+
+Many of the TimeSeries algorithms are trivially implementable in terms of
+_for_each_; for example, see _adjacent_difference_.
+
+[h3 Using `range_run_storage::copy()`]
+
+Another option would be to use the _copy_ algorithm, which is like _for_each_
+except that it accepts an _OrderedInserter_ instead of a TernaryFunction. The
+_OrderedInserter_ interface is more complicated, but also more powerful. All 
+models of _Mutable_TimeSeries_ expose an _OrderedInserter_ so they can be 
+modified, but anything that satisfies the _OrderedInserter_ interface can be
+used by _copy_ -- it doesn't necessarily have to be an inserter into a series.
+It may calculate a single value, for instance.
+
+The _OrderedInserter_ interface offers more opportunities for optimization 
+than TernaryFunction. When your algorithm can be made more efficient when handling
+unit-length runs (as with sparse, dense and delta series), you will want to 
+use _copy_ instead of _for_each_, because _copy_ makes that information available
+at compile time.
+
+[h3 Using `range_run_storage::transform()`]
+
+For more complex tasks, the _transform_ algorithm is indespensible. There are
+two basic variants, which are analogous to the two `std::transform()` overloads in the
+standard: one that takes one series, and another that takes two.
+
+Here is an example of using _transform_ to negate every element in a series
+and write the result into another, using only the low-level InfiniteRangeRunStorage
+interface:
+
+    dense_series< double > from, to;
+    ...
+    Mutable_InfiniteRangeRunStorage< dense_series< double > >::
+        ordered_inserter_type out( range_run_storage::ordered_inserter( to ) );
+    
+    range_run_storage::transform( from, std::negate< double >(), out );
+    range_run_storage::commit( out );
+
+And here is an example of using _transform_ to add two series and write the result
+into a third:
+
+    piecewise_constant_series< double > left, right, to;
+    ...
+    Mutable_InfiniteRangeRunStorage< dense_series< double > >::
+        ordered_inserter_type out( range_run_storage::ordered_inserter( to ) );
+    
+    range_run_storage::transform( left, right, std::plus< double >(), out );
+    range_run_storage::commit( out );
+
+This does what you would expect: it performs an element-wise addition of the two
+series. Note that the runs in one series may or may not overlap with runs in the other.
+Where runs do overlap, the result will be the addition of the two runs' values. Elsewhere,
+the result is the value from the one run plus the zero of the other series.
+
+Some complicated algorithms need to do something different depending on whether or
+not runs overlap. There is a special version of _transform_ you can use in those
+situations. This version lets you specify three functions: a binary one to call when
+runs overlap, and two unary ones to call when a left run doesn't overlap a right and
+/vice versa/. These three functions may or may not return the same type. Below is a 
+longer example that shows how you would use this version of _transform_ to detect
+in an _OrderedInserter_ the different ways the runs overlap.
+
+    struct left_t {};
+    struct right_t {};
+    struct both_t {};
+
+    left_t  do_left( int ) { return left_t(); }
+    right_t do_right( int ) { return right_t(); }
+    both_t  do_both( int,int ) { return both_t(); }
+
+    struct stub_ordered_inserter
+    {
+        typedef std::pair< std::ptrdiff_t, std::ptrdiff_t > run_t;
+        
+        void set_at( run_t, left_t ) {}  // for left runs only
+        void set_at( run_t, right_t ) {} // for right runs only
+        void set_at( run_t, both_t ) {}  // where left and right overlap
+    };
+
+    ...
+
+    time_series::piecewise_constant_series< int > left, right;
+
+    // Call transform() with different functions for where runs do and do not overlap.
+    stub_ordered_inserter o;
+    range_run_storage::transform( left, right, do_both, do_left, do_right, o );
+
+Now imagine that the series `left` and `right` contain one run each:
+
+[pre
+left  = [0, 2) of value 1 
+right = [1, 3) of value 2
+]
+
+What is the sequence of operations executed by _transform_? It depends on how
+the runs from `left` and `right` overlap.  The following table shows the different
+sub-runs of the two sequence and the operations _transform_ performs for each:
+
+[table
+    [[Left sub-runs]            [Right sub-runs]            [overlap]       [operation]]
+    [[[^\[0,1)] of value `1`]   []                          [no overlap]    [`do_left(1)`]]
+    [[[^\[1,2)] of value `1`]   [[^\[1,2)] of value `2`]    [overlap]       [`do_both(1,2)`]]
+    [[]                         [[^\[2,3)] of value `2`]    [no overlap]    [`do_right(2)`]]
+]
+
+This example demonstrates a number of interesting and useful features
+of the _transform_ function and _OrderedInserter_'s in general. First, note
+that the return types of the three functions `do_both()`, `do_left()`, and
+`do_right()` can be used to dispatch to different member functions of
+`stub_ordered_inserter`. This trick is used in the implementation of many
+of the Time_series algorithms. Also, note that all we need to do to 
+make a valid _OrderedInserter_ is to define an appropriate `set_at()` 
+member function. This takes advantage of the default implementations of
+`range_run_storage::set_at()` and `range_run_storage::commit()`, the former
+calling the `set_at()` member function and the later being a no-op.
+
+[h3 Programming To The RangeRunStorage Interface]
+
+Sometimes, the existing InfiniteRangeRunStorage algorithms are not enough to
+implement a new TimeSeries algorithm, and you need to write your own. In that
+case, understanding the _TimeSeries_ concept is crucial. When implementing a
+new algorithm over a _TimeSeries_ (or an _InfiniteRangeRunStorage_), it can help
+to start with an existing algorithm and modify it to suit your needs. Here, for
+example, is how _for_each_ might be implemented:
+
+    namespace seq = boost::sequence;
+    namespace rrs = boost::range_run_storage;
+    
+    // Call a ternary function for every (value, offset, end_offset) in 
+    // an InfiniteRangeRunStorage
+    //
+    template< class In, class TernaryOp >
+    TernaryOp for_each( In &in, TernaryOp fun )
+    {
+        using rrs::concepts::InfiniteRangeRunStorage;
+
+        typedef typename InfiniteRangeRunStorage< In >::cursor cursor_type;
+        typedef typename InfiniteRangeRunStorage< In >::runs runs_type;
+        typedef typename InfiniteRangeRunStorage< In >::run_type run_type;
+        typedef typename InfiniteRangeRunStorage< In >::elements elements_type;
+        typedef typename InfiniteRangeRunStorage< In >::post_run_type post_run_type;
+        typedef typename InfiniteRangeRunStorage< In >::pre_run_type pre_run_type;
+
+        // Execute "fun" on the pre_run
+        pre_run_type pre_run( rrs::pre_run( in ) );
+        if(!rrs::empty( pre_run ))
+        {
+            fun( rrs::pre_value( in ), rrs::offset( pre_run ), rrs::end_offset( pre_run ) );
+        }
+
+        runs_type runs = rrs::runs( in );
+        elements_type elements = seq::elements( in );
+        cursor_type begin = seq::begin( in );
+        cursor_type end = seq::end( in );
+
+        // Execute "fun" on the runs in the "runs" property map
+        for( ; begin != end; ++begin )
+        {
+            run_type run = runs( *begin );
+            fun( elements( *begin ), rrs::offset( run ), rrs::end_offset( run ) );
+        }
+
+        // Execute fun on the post_run
+        post_run_type post_run( rrs::post_run( in ) );
+        if( !rrs::empty( post_run ) )
+        {
+            fun( rrs::post_value( in ), rrs::offset( post_run ), rrs::end_offset( post_run ) );
+        }
+
+        return fun;
+    }
+
+Notice how we first process the pre-run, then the runs in the `runs` property
+map, and finally the post-run.
+
+Stepping through two series in tandem is a much more difficult problem. Try
+to express your new algorithm in terms of _transform_ if at all possible.
+
+[endsect]
+
+[/======================================]
+[section Defining a New TimeSeries Type]
+[/======================================]
+
+Understanding the _TimeSeries_ concept is the first step to implementing a new
+_TimeSeries_ type. Once you know the basics, the code is unsurprising and rather
+mechanical. Let's see how it works by implementing a basic _TimeSeries_ that has
+a fixed size:
+
+    template< class Value, size_t Size, class Discretization = int >
+    struct fixed_series;
+    
+The _TimeSeries_ concept is at the top of a refinement heirarchy of concepts. We
+can begin at the bottom and work our way up the refinement heirarchy until we are
+done.
+
+[h3 Modelling the Sequence Concept]
+
+The concept at the bottom of the hierarchy is _Sequence_, so we will begin there,
+by making the following `fixed_storage<>` model _Sequence_.
+
+    template< class Value, size_t Size >
+    struct fixed_storage
+    {
+        typedef Value value_type;
+        enum size_type { size = Size };
+        fixed_storage() : elements_() {}
+        Value & operator[](ptrdiff_t n) { return elements_[n]; }
+        Value const & operator[](ptrdiff_t n) const { return elements_[n]; }
+    private:
+        Value elements_[ Size ];
+    };
+
+The simplest way to make `fixed_storage<>` a _Sequence_ is to give it
+STL iterators and `begin()` and `end()` member functions. That would make
+it a valid Range, which is by definition a valid _Sequence_. But let's 
+see how to use the _Sequence_ customization points to make this a valid
+_Sequence_ non-intrusively.
+
+First, we'll need to define some cursors. A cursor is nothing more that
+a position indicator. It must be incrementable and dereferencable. For 
+position, we can use a plain `ptrdiff_t`, but we must wrap it in a
+`counting_iterator<>` from the Boost.Iterator library to make it
+dereferencable.
+
+The _Sequence_ customization points use tag dispatching, so let's define
+a tag type and a specialization of `boost::sequence::impl::tag<>` as follows:
+
+    struct fixed_storage_tag;
+    
+    namespace boost { namespace sequence { namespace impl
+    {
+        template< class T, size_t N >
+        struct tag< fixed_storage< T, N > >
+        {
+            typedef fixed_storage_tag type;
+        };
+    }}}
+
+Now we can hook the `sequence::begin()` and `sequence::end()` functions
+by specializing their implementation templates in the `sequence::impl`
+namespace:
+
+    namespace boost { namespace sequence { namespace impl
+    {
+        template< class S >
+        struct begin< S, fixed_storage_tag >
+        {
+            typedef counting_iterator< ptrdiff_t > result_type;
+            result_type operator()(S &) const
+            {
+                return result_type( 0 );
+            }
+        };
+
+        template< class S >
+        struct end< S, fixed_storage_tag >
+        {
+            typedef counting_iterator< ptrdiff_t > result_type;
+            result_type operator()( S & ) const
+            {
+                return result_type( S::size );
+            }
+        };
+    }}}
+
+With these definitions, `sequence::begin( s )` will return a 
+`counting_iterator< ptrdiff_t >(0)` when passed a `fixed_storage<>`. 
+
+[note There is no distinction between const cursors and non-const
+cursors, as there is with iterators. In the _Sequence_ concept,
+cursors are purely position indicators, and the const-ness is best
+handled by the `elements` property map, which we implement next.]
+
+To complete the _Sequence_ concept, we need to implement the 
+`sequence::elements()` customization point. For that, we need a 
+_ReadablePropertyMap_ that converts a `ptrdiff_t` to an element in
+the `fixed_storage<>`. That's fairly straightforward; the only trick
+is getting the const-ness of the return type correct.
+
+    template< class S >
+    struct indexable_elements
+    {
+        typedef typename S::value_type value_type;
+        typedef
+            typename mpl::if_< is_const< S >, value_type const &, value_type & >::type
+        result_type;
+        
+        indexable_elements( S & s ) : s_( s ) {}
+        
+        result_type operator()( ptrdiff_t n ) const
+        {
+            return s_[ n ];
+        }
+    private:
+        S & s_;
+    };
+
+Now we can use the `indexable_elements<>` template to implement the
+`sequence::elements()` customization point:
+
+    namespace boost { namespace sequence { namespace impl
+    {
+        template< class S >
+        struct elements< S, fixed_storage_tag >
+        {
+            typedef indexable_elements< S > result_type;
+            
+            result_type operator()( S & s ) const
+            {
+                return result_type( s );
+            }
+        };
+    }}}
+
+And that's it. The `fixed_storage<>` type is now a model of the _Sequence_
+concept.
+
+[note Making `fixed_storage<>` model the _Mutable_Sequence_ concept would involve a
+small change to `indexable_elements<>` to make it a _ReadWritePropertyMap_.]
+
+[h3 Modelling the RangeRunStorage Concept]
+
+To make `fixed_storage<>` model the _RangeRunStorage_ concept, we need to 
+implement the `runs()`, `zero()`, and `get_at()` customization points. Let's look
+at `runs()` first. It must return a _ReadablePropertyMap_ that, when used together
+with a cursor, returns the associated run. Recall that our cursor is merely
+`counting_iterator< ptrdiff_t >`, and that for our `fixed_storage<>`, all the runs
+will have a length of `1`. We can use the `unit_run<>` template provided by the
+Range_run_storage library to trivially implement our runs property map:
+
+    struct fixed_runs
+    {
+        typedef range_run_storage::unit_run< ptrdiff_t > result_type;
+        
+        result_type operator()( ptrdiff_t n ) const
+        {
+            return result_type( n );
+        }
+    };
+    
+Then we specialize the `runs<>` template in the `range_run_storage::impl` namespace
+as follows:
+
+    namespace boost { namespace range_run_storage { namespace impl
+    {
+        template< class S >
+        struct runs< S, fixed_storage_tag >
+        {
+            typedef fixed_runs result_type;
+        
+            result_type operator()( S & ) const
+            {
+                return result_type();
+            }
+        };
+    }}}
+
+There is one optimization we should take care of while we're at it. Our
+`runs` property map is ['dense]; that is, the runs are all unit length, and
+the offsets are monotonically increasing. Many low-level algorithms can use
+this information to select a more efficient implementation. We can use the
+`is_dense_runs<>` trait to enable this optimization for our `runs` property
+map, as follows:
+
+    namespace boost { namespace range_run_storage { namespace traits
+    {
+        template<>
+        struct is_dense_runs< fixed_runs >
+          : mpl::true_
+        {};
+    }}}
+
+OK, now we're done with the `runs` property map. Next is `zero()`. The `zero()`
+function returns the value the series takes outside the defined range. It has
+a default implementation which returns a const reference to a default constructed
+object of the series' value type. In our case, it would return a `double` of 
+value `0.0`. We decide that this is an acceptable default for us, and we leave it
+alone.
+
+Finally, we have `get_at()`. When implementing `get_at()`, keep in mind that
+a _RangeRunStorage_ has a defined value everywhere, it just may be zero. You
+need to check the index and return something sensible. This affects the return
+type, since you cannot return a non-const reference to the series' zero.
+
+    namespace boost { namespace range_run_storage { namespace impl
+    {
+        template< class S, class I >
+        struct get_at< S, I, fixed_storage_tag >
+        {
+            typedef typename S::value_type const & result_type;
+            
+            result_type operator()( S & s, I & i ) const
+            {
+                if( i >= 0 && i < S::size )
+                    return s[i];
+                
+                return range_run_storage::zero( s );
+            }
+        };
+    }}}
+
+And with that, we're done satisfying the _RangeRunStorage_ concept 
+requirements.
+
+[h3 Modelling the InfiniteRangeRunStorage Concept]
+
+The _InfiniteRangeRunStorage_ concept refines the _RangeRunStorage_ concept
+with the addition of four customization points: `pre_run()`, `pre_value()`, 
+`post_run()` and `post_value()`. These are two extra runs before and after
+the runs in the `runs` property map. Unlike the runs in the property map, 
+the pre- and post-runs may be infinite or empty. The default implementations
+of these customization points return empty runs. That means that any
+_RangeRunStorage_ is also an _InfiniteRangeRunStorage_. If our series type
+cannot have a run from -Inf or to +Inf, we don't have to do anything extra
+beyond what we have done already.
+
+If we wanted our `fixed_storage<>` to have pre- and post-runs we could add
+them by partially specializing the appropriate templates in the
+`range_run_storage::impl` namespace, as follows:
+
+    namespace boost { namespace range_run_storage { namespace impl
+    {
+        template< class S >
+        struct pre_run< S, fixed_storage_tag >
+        {
+            typedef ``[~some-run-type]`` result_type;
+            
+            result_type operator()( S & s ) const
+            {
+                return ``[~the-pre-run]``;
+            }
+        };
+
+        template< class S >
+        struct pre_value< S, fixed_storage_tag >
+        {
+            typedef typename S::value_type result_type;
+            
+            result_type operator()( S & s ) const
+            {
+                return ``[~the-value-of-the-pre-run]``;
+            }
+        };
+    }}}
+
+And likewise for the post-run.
+
+[h3 Making Your Series Mutable]
+
+To make your series mutable, you first need to make the series model
+_Mutable_Sequence_. That involves extending the `elements` property
+map to allow writing to the elements of the `fixed_storage<>`. Our new
+`indexable_elements<>` property map looks like this:
+
+    template< class S >
+    struct indexable_elements
+    {
+        typedef typename S::value_type value_type;
+        typedef
+            typename mpl::if_< is_const< S >, value_type const &, value_type & >::type
+        reference;
+        
+        template<typename Signature> struct result
+        {
+            typedef void type;
+        };
+        
+        template<typename This, typename A> struct result< This( A ) >
+        {
+            typedef reference type; // single-argument invocations return a reference
+        };
+        
+        indexable_elements( S & s ) : s_( s ) {}
+        
+        reference operator()( ptrdiff_t n ) const
+        {
+            return s_[ n ];
+        }
+
+        void operator()( ptrdiff_t n, value_type const & v ) const
+        {
+            s_[ n ] = v;
+        }
+    private:
+        S & s_;
+    };
+
+With this change, the `fixed_storage<>` type models _Mutable_Sequence_, and its
+elements can be modified in-place. For instance, the following code would set
+the first element of a `fixed_storage<int, 10>` to `42`:
+
+    fixed_storage<int, 10> fs;
+    sequence::elements(fs)(*sequence::begin(fs), 42);
+
+To model _Mutable_RangeRunStorage_, you need to implement the `set_at()`, `zero()` and 
+`ordered_inserter()` customization points. `Set_at()` is easily implemented,
+as follows:
+
+    namespace boost { namespace range_run_storage { namespace impl
+    {
+        template< class S, class R, class V >
+        struct set_at< S, R, V, fixed_storage_tag >
+        {
+            typedef void result_type;
+            
+            void operator()( S & s, R & r, V & v ) const
+            {
+                ptrdiff_t off = rrs::offset( r );
+                ptrdiff_t endoff = rrs::end_offset( r );
+                BOOST_ASSERT( off >= 0 && endoff < S::size );
+                std::fill( &s[0] + off, &s[0] + endoff, v );
+            }
+        };
+    }}}
+
+A _Mutable_RangeRunStorage_ lets you modify the zero elements of a series with the 
+`range_run_storage::zero( series, value )` syntax. The default implementation
+of this API merely asserts that the new zero value is the same as the old. If you
+would like a different implementation, you can hook this API as follows:
+
+    namespace boost { namespace range_run_storage { namespace impl
+    {
+        template< class S, class V >
+        struct set_zero< S, V, fixed_storage_tag >
+        {
+            typedef void result_type;
+            
+            void operator()( S & s, V & v ) const
+            {
+                ``[~the-zero-of-s]`` = v;
+            }
+        };
+    }}}
+
+Implementing `ordered_inserter()` is a bit trickier, and involves defining
+and inserter type that satisfies the _OrderedInserter_ concept. Inserters
+receive runs /in order/, and changes are committed at the end. Your inserter
+should make no changes to the underlying storage until the commit occurs; in
+particular, the inserter should not invalidate any of the series' cursors until
+the commit is called.
+
+    template< class S >
+    struct fixed_storage_inserter
+    {
+        fixed_storage_inserter( S & s )
+          : old_( s ), new_( new S ), offset_( 0 ) {}
+        
+        template< class R, class V >
+        void set_at( R & r, V & v )
+        {
+            ptrdiff_t off = rrs::offset( r );
+            ptrdiff_t endoff = rrs::end_offset( r );
+            BOOST_ASSERT( off >= offset_ && endoff < S::size );
+            std::fill( &(*new_)[0] + offset_, &(*new_)[0] + off, rrs::zero( old_ ) );
+            std::fill( &(*new_)[0] + off, &(*new_)[0] + endoff, v );
+            offset_ = endoff;
+        }
+
+        void commit()
+        {
+            std::fill( &(*new_)[0] + offset_, &(*new_)[0] + S::size, rrs::zero( old_ ) );
+            using std::swap;
+            swap( old_, *new_ );
+        }
+    private:
+        S & old_;
+        shared_ptr< S > new_;
+        ptrdiff_t offset_;
+    };
+
+As an extra nicety, the above inserter object is cheap to copy since it holds
+its new data in a `shared_ptr<>`. This can sometimes be useful in case the inserter
+ever gets used as an STL output iterator by higher-level wrappers.
+
+Now that we have an appropriately defined inserter object, we need to "wire it
+up" to the _OrderedInserter_ and _Mutable_RangeRunStorage_ customization points.
+First, we define a tag type, like we did for `fixed_storage<>`:
+
+    struct fixed_storage_inserter_tag;
+    
+    namespace boost { namespace sequence { namespace impl
+    {
+        template< class S >
+        struct tag< fixed_storage_inserter< S > >
+        {
+            typedef fixed_storage_inserter_tag type;
+        };
+    }}}
+
+Then we implement the _OrderedInserter_ customization points, as follows:
+
+    namespace boost { namespace range_run_storage { namespace impl
+    {
+        template< class S, class R, class V >
+        struct set_at< S, R, V, fixed_storage_inserter_tag >
+        {
+            typedef void result_type;
+            void operator()( S & s, R & r, V & v ) const
+            {
+                s.set_at( r, v );
+            }
+        };
+
+        template< class S >
+        struct commit< S, fixed_storage_inserter_tag >
+        {
+            typedef void result_type;
+            void operator ()( S & s ) const
+            {
+                s.commit();
+            }
+        };
+    }}}
+
+Finally, we hook the `ordered_inserter()` customization point to return
+one of our `fixed_storage_inserter<>` objects:
+
+    namespace boost { namespace range_run_storage { namespace impl
+    {
+        template< class S >
+        struct ordered_inserter< S, fixed_storage_tag >
+        {
+            typedef fixed_storage_inserter< S > result_type;
+            result_type operator()( S & s ) const
+            {
+                return result_type( s );
+            }
+        };
+    }}}
+
+Now, our `fixed_storage<>` type models _Mutable_RangeRunStorage_. To make it
+model _Mutable_InfiniteRangeRunStorage_, we need to implement a way to mutate
+the values of the pre- and post-run. For storage types like `fixed_storage<>`
+that do not have pre- and post-runs, we don't need to do anything. If we 
+did have pre- and post-runs, we could make them mutable as follows:
+
+    namespace boost { namespace range_run_storage { namespace impl
+    {
+        template< class S, class V >
+        struct set_pre_value< S, V, fixed_storage_tag >
+        {
+            typedef void result_type;
+            
+            void operator()( S & s, V & v ) const
+            {
+                ``[~the-value-of-the-pre-run]`` = v;
+            }
+        };
+    }}}
+
+We would do the same for the post-run.
+
+Now, our `fixed_storage<>` type is a full-fledged model of the 
+_Mutable_InfiniteRangeRunStorage_ concept, and we can do things like this:
+
+    // define a delta series
+    delta_series< int > delta( start = 5, value = 42 );
+    
+    // define an empty fixed_storage
+    fixed_storage< int, 16 > fixed;
+    
+    // make an ordered inserter for the fixed_storage
+    fixed_storage_inserter< fixed_storage< int, 16 > >
+        out = range_run_storage::ordered_inserter( fixed );
+    
+    // copy the delta_series into the fixed_storage inserter
+    range_run_storage::copy( delta, out );
+    
+    // commit the changes to the fixed_storage
+    range_run_storage::commit( out );
+    
+    // OK! The fixed_storage will be 0 everywhere except at offset 5
+    BOOST_ASSERT( 42 == fixed[ 5 ] );
+
+[h3 Using _time_series_facade_]
+
+Our `fixed_storage<>` type models _Mutable_InfiniteRangeRunStorage_, but it
+does not yet satisfy the _TimeSeries_ concept because it doesn't have a
+discretization. It would be a simple matter to define a wrapper that uses
+`fixed_storage<>` as a backing store and added a `discretization()` member
+function and indexed access. The Time_series library already provides such
+a wrapper that does that and much more, like:
+
+* Providing an intuitive named-parameter construction syntax,
+* Allowing conversion from any other _TimeSeries_ type,
+* Defining Boolean series comparison operators, and
+* Defining a `std::ostream` insertion operator.
+
+Using _time_series_facade_ is fairly straight-forward. First, we define a type
+`fixed_series<>` that inherits from _time_series_facade_:
+
+    template< class T, size_t N, class Disc = int >
+    struct fixed_series
+      : time_series_facade< fixed_series< T, N, Disc >, fixed_storage< T, N >, Disc >
+    {
+        typedef
+            time_series_facade< fixed_series< T, N, Disc >, fixed_storage< T, N >, Disc >
+        base_type;
+        
+        // Use operator= from time_series_facade, which allows all models
+        // of TimeSeries to be assigned to a fixed_series<>
+        using base_type::operator=;
+        
+        // Define time series constructors that use named parameters
+        BOOST_TIME_SERIES_DEFINE_CTORS( fixed_series )
+    };
+
+Here, we use the [macroref BOOST_TIME_SERIES_DEFINE_CTORS] macro to generate the
+`fixed_series<>` constructors. Already, we can declare a `fixed_series<>` object 
+as: `fixed_series< double, 64 > fs;` and the result is a valid _TimeSeries_. 
+Before we can use named parameters to specify a discretization, we have to teach 
+_time_series_facade_ what the named parameters for our `fixed_series<>` are. For 
+that, we use a little utility in the `boost::constructors` namespace:
+
+    namespace boost { namespace constructors { namespace impl
+    {
+        struct fixed_series_tag;
+
+        template< class T, size_t N, class Disc >
+        struct tag< fixed_series< T, N, Disc > >
+        {
+            typedef fixed_series_tag type;
+        };
+
+        template< class T >
+        struct construct< T, fixed_series_tag >
+          : arg_pack_construct
+        {
+            // OK, for fixed_series<>, the only allowable constructor
+            // parameter is the discretization, and it is optional.
+            typedef parameter::parameters<
+                parameter::optional< time_series::tag::discretization >
+            > args_type;
+        };
+    }}}
+
+Now we can say the following:
+
+    // A fixed-size series with a discretization of 30
+    fixed_series< double, 64 > fs1( time_series::discretization = 30 );
+    
+    // Same as above
+    fixed_series< double, 64 > fs2( 30 );
+
+And with that, we're finally done implementing `fixed_series<>`. Whew!
+
+[endsect]
+
+[endsect]
+
+[endsect]
+
+[section Acknowledgements]
+
+Many people contributed to the design and implementation of Boost.Time_series. I would
+like to thank Daniel Egloff of _ZKB_ for helping to conceive the library and for his
+many suggested improvements. Matthias Troyer specified the library and contributed usage 
+examples which gave the project its early direction. David Abrahams made innumerable 
+suggestions and contributed the underlying code for the  _Sequence_ concept and the 
+tag-dispatched customization points. Daniel Wallin wrote the python wrapper and several
+of the numeric algorithms. 
+
+I would like to thank _ZKB_ for sponsoring the work on Boost.Time_series and graciously
+donating it to the community. 
+
+[endsect]
+
+[section Reference]
+
+[xinclude tslibrary.boostbook]
+
+[xinclude rrslibrary.boostbook]
+
+[xinclude seqlibrary.boostbook]
+
+[xinclude pmlibrary.boostbook]
+
+[endsect]

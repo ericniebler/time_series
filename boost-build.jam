@@ -1,0 +1,14 @@
+# Set the BOOST environment variable on your command-line or in the
+# environment to point at the root of your regular Boost installation.
+# Defaults to finding the boost installation in the same directory as
+# the directory containing this file.
+# BOOST_ROOT ?= $(.boost-build-file:D)/../../../cvs/boost ;
+#if --v2 in $(ARGV)
+#{
+#    JAMFILE = [Jj]amfile.v2 ;
+    boost-build $(BOOST_ROOT)/tools/build/v2 ;
+#}
+#else
+#{
+#    boost-build $(BOOST_ROOT)/tools/build/v1 ;
+#}

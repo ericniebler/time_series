@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<concept name="Mutable_TimeSeries" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="mutable-infinite-range-run-storage-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A Mutable_TimeSeries is a <conceptname>TimeSeries</conceptname> 
+    which can be modified.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <notation variables="d">
+    <sample-value>
+      <type name="discretization_type" />
+    </sample-value>
+  </notation>
+
+  <refines const="no" concept="TimeSeries"/>
+  <refines const="no" concept="Mutable_InfiniteRangeRunStorage"/>
+
+  <valid-expression name="Set Discretization">
+    <apply-method name="discretization">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+      <sample-value>
+        <type name="discretization_type" />
+      </sample-value>
+    </apply-method>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="void"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Sets the series' discretization. Complexity: O(1)</semantics>
+  </valid-expression>
+
+  <see-also name="ReadablePropertyMap" />
+  <see-also name="Sequence" />
+  <see-also name="RangeRunStorage" />
+  <see-also name="InfiniteRangeRunStorage" />
+  <see-also name="Mutable_InfiniteRangeRunStorage" />
+  <see-also name="TimeSeries" />
+
+  <example-model>
+    <type name="boost::time_series::dense_series&lt;double&gt;" />
+  </example-model>
+
+</concept>

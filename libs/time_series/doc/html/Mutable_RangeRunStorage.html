@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Concept Mutable_RangeRunStorage</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="range_run_storage_reference.html" title="Range Run Storage Reference">
+<link rel="prev" href="OrderedInserter.html" title="Concept OrderedInserter">
+<link rel="next" href="Mutable_InfiniteRangeRunStorage.html" title="Concept Mutable_InfiniteRangeRunStorage">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="OrderedInserter.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="Mutable_InfiniteRangeRunStorage.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="Mutable_RangeRunStorage"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Concept Mutable_RangeRunStorage</span></h2>
+<p>Mutable_RangeRunStorage</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513794"></a><h2>Description</h2>
+<p>A Mutable_RangeRunStorage is a <a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a> 
+    which can be modified.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513812"></a><h2>Refinement of</h2>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a></p></li>
+<li><p><a href="Mutable_Sequence.html" title="Concept Mutable_Sequence">Mutable_Sequence</a></p></li>
+</ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513836"></a><h2>Associated types</h2>
+<div class="itemizedlist"><ul type="disc"><li>
+<p><span class="bold"><b>ordered_inserter_type</b></span></p>
+<pre class="literallayout">boost::result_of&lt;boost::range_run_storage::op::ordered_inserter(boost::add_reference&lt;S&gt;::type)&gt;::type</pre>
+<p>
+      </p>
+<p>The type of an <a href="OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a> that can be used
+      to insert values and runs into <tt class="computeroutput">S</tt>.</p>
+<p>
+    </p>
+</li></ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513881"></a><h2>Notation</h2>
+<div class="variablelist"><dl>
+<dt><span class="term">S</span></dt>
+<dd>A type playing the role of mutable-range-run-storage-type in the <a href="Mutable_RangeRunStorage.html" title="Concept Mutable_RangeRunStorage">Mutable_RangeRunStorage</a> concept.</dd>
+<dt><span class="term"><tt class="varname">s</tt></span></dt>
+<dd>Object of type S</dd>
+<dt><span class="term"><tt class="varname">r</tt></span></dt>
+<dd>Object of type run_type</dd>
+<dt><span class="term"><tt class="varname">v</tt></span></dt>
+<dd>Object of type value_type</dd>
+</dl></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id513930"></a><h2>Valid expressions</h2>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>Get OrderedInserter</p></td>
+<td><p>boost::range_run_storage::ordered_inserter(s)</p></td>
+<td><p><span class="type">ordered_inserter_type</span></p></td>
+<td><p>Returns an <a href="OrderedInserter.html" title="Concept OrderedInserter">OrderedInserter</a> that can be used
+      to insert values and runs into <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+<tr>
+<td><p>SetAt</p></td>
+<td><p>boost::range_run_storage::set_at(s, r, v)</p></td>
+<td><p><span class="type">void</span></p></td>
+<td><p>Sets a run <tt class="computeroutput">r</tt> within <tt class="computeroutput">s</tt> to value <tt class="computeroutput">v</tt>.
+      This operation is O(N) in the worst case, and invalidates any cursors to
+      <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+<tr>
+<td><p>SetZero</p></td>
+<td><p>boost::range_run_storage::zero(s, v)</p></td>
+<td><p><span class="type">void</span></p></td>
+<td><p>Sets to value of the zero elements of <tt class="computeroutput">s</tt> to value <tt class="computeroutput">v</tt>.
+      This operation is O(1), and does not invalidate any cursors to <tt class="computeroutput">s</tt>.</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id514071"></a><h2>Models</h2>
+<div class="itemizedlist"><ul type="disc"><li><span class="simplelist"><span class="type">boost::time_series::dense_series&lt;double&gt;</span></span></li></ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id514086"></a><h2>See also</h2>
+<div class="itemizedlist"><ul type="disc"><li><p><a href="Mutable_Sequence.html" title="Concept Mutable_Sequence">Mutable_Sequence</a></p></li></ul></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="OrderedInserter.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="range_run_storage_reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="Mutable_InfiniteRangeRunStorage.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

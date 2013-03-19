@@ -1,0 +1,985 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Reference</title>
+<link rel="stylesheet" href="../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="prev" href="acknowledgements.html" title="Acknowledgements">
+<link rel="next" href="../TimeSeries.html" title="Concept TimeSeries">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../boost.png"></td>
+<td align="center"><a href="../../../index.htm">Home</a></td>
+<td align="center"><a href="../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="acknowledgements.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="../TimeSeries.html"><img src="../images/next.png" alt="Next"></a>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="time_series.reference"></a><a href="reference.html" title="Reference">Reference</a></h2></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="reference.html#time_series_reference">Time Series Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="reference.html#time_series_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.characteristic_series.hpp">Header &lt;boost/time_series/characteristic_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.clipped_series.hpp">Header &lt;boost/time_series/clipped_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.concepts.hpp">Header &lt;boost/time_series/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.constant_series.hpp">Header &lt;boost/time_series/constant_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.delta_series.hpp">Header &lt;boost/time_series/delta_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.dense_series.hpp">Header &lt;boost/time_series/dense_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.heaviside_series.hpp">Header &lt;boost/time_series/heaviside_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.inverse_heaviside_series.hpp">Header &lt;boost/time_series/inverse_heaviside_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.adjacent_difference.hpp">Header &lt;boost/time_series/numeric/adjacent_difference.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.clip.hpp">Header &lt;boost/time_series/numeric/clip.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.coarse_grain.hpp">Header &lt;boost/time_series/numeric/coarse_grain.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.fine_grain.hpp">Header &lt;boost/time_series/numeric/fine_grain.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.integrate.hpp">Header &lt;boost/time_series/numeric/integrate.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.invert_elements.hpp">Header &lt;boost/time_series/numeric/invert_elements.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.invert_heaviside.hpp">Header &lt;boost/time_series/numeric/invert_heaviside.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.numeric.hpp">Header &lt;boost/time_series/numeric/numeric.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.partial_sum.hpp">Header &lt;boost/time_series/numeric/partial_sum.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.period_sums.hpp">Header &lt;boost/time_series/numeric/period_sums.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.piecewise_sample.hpp">Header &lt;boost/time_series/numeric/piecewise_sample.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.piecewise_surface_sample.hpp">Header &lt;boost/time_series/numeric/piecewise_surface_sample.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.rotate_left.hpp">Header &lt;boost/time_series/numeric/rotate_left.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.rotate_right.hpp">Header &lt;boost/time_series/numeric/rotate_right.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.shift.hpp">Header &lt;boost/time_series/numeric/shift.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.subscript.hpp">Header &lt;boost/time_series/numeric/subscript.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.variable_period_sums.hpp">Header &lt;boost/time_series/numeric/variable_period_sums.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.ordered_inserter.hpp">Header &lt;boost/time_series/ordered_inserter.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.piecewise_constant_series.hpp">Header &lt;boost/time_series/piecewise_constant_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.python.series.hpp">Header &lt;boost/time_series/python/series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.scaled_series.hpp">Header &lt;boost/time_series/scaled_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.shifted_series.hpp">Header &lt;boost/time_series/shifted_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.sparse_series.hpp">Header &lt;boost/time_series/sparse_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.time_series_facade.hpp">Header &lt;boost/time_series/time_series_facade.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.time_series_fwd.hpp">Header &lt;boost/time_series/time_series_fwd.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.time_series_typeof.hpp">Header &lt;boost/time_series/time_series_typeof.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.traits.discretization_type.hpp">Header &lt;boost/time_series/traits/discretization_type.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.traits.is_time_series.hpp">Header &lt;boost/time_series/traits/is_time_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.traits.storage_category.hpp">Header &lt;boost/time_series/traits/storage_category.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.utility.series_stl_iterator.hpp">Header &lt;boost/time_series/utility/series_stl_iterator.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.utility.time_series_base.hpp">Header &lt;boost/time_series/utility/time_series_base.hpp&gt;</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="../range_run_storage_reference.html">Range Run Storage Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="../range_run_storage_reference.html#range_run_storage_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.address_difference1.hpp">Header &lt;boost/range_run_storage/address_difference1.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.copy.hpp">Header &lt;boost/range_run_storage/algorithm/copy.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.first_last.hpp">Header &lt;boost/range_run_storage/algorithm/first_last.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.for_each.hpp">Header &lt;boost/range_run_storage/algorithm/for_each.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.transform.hpp">Header &lt;boost/range_run_storage/algorithm/transform.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.commit.hpp">Header &lt;boost/range_run_storage/commit.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.concepts.hpp">Header &lt;boost/range_run_storage/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.difference1.hpp">Header &lt;boost/range_run_storage/difference1.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.empty.hpp">Header &lt;boost/range_run_storage/empty.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.end_offset.hpp">Header &lt;boost/range_run_storage/end_offset.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.get_at.hpp">Header &lt;boost/range_run_storage/get_at.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.length.hpp">Header &lt;boost/range_run_storage/length.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.offset.hpp">Header &lt;boost/range_run_storage/offset.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.ordered_inserter.hpp">Header &lt;boost/range_run_storage/ordered_inserter.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.post_run.hpp">Header &lt;boost/range_run_storage/post_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.pre_run.hpp">Header &lt;boost/range_run_storage/pre_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.runs.hpp">Header &lt;boost/range_run_storage/runs.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.set_at.hpp">Header &lt;boost/range_run_storage/set_at.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.tag.hpp">Header &lt;boost/range_run_storage/tag.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.traits.is_dense_runs.hpp">Header &lt;boost/range_run_storage/traits/is_dense_runs.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.traits.is_unit_run.hpp">Header &lt;boost/range_run_storage/traits/is_unit_run.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../range_run_storage_reference.html#header.boost.range_run_storage.zero.hpp">Header &lt;boost/range_run_storage/zero.hpp&gt;</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="../sequence_reference.html">Sequence Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="../sequence_reference.html#sequence_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.begin.hpp">Header &lt;boost/sequence/begin.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.composed.hpp">Header &lt;boost/sequence/composed.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.concepts.hpp">Header &lt;boost/sequence/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.elements.hpp">Header &lt;boost/sequence/elements.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.end.hpp">Header &lt;boost/sequence/end.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.insert.hpp">Header &lt;boost/sequence/insert.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.size.hpp">Header &lt;boost/sequence/size.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.tag.hpp">Header &lt;boost/sequence/tag.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.traits.has_static_size.hpp">Header &lt;boost/sequence/traits/has_static_size.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.traits.index_type.hpp">Header &lt;boost/sequence/traits/index_type.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../sequence_reference.html#header.boost.sequence.traits.size_type.hpp">Header &lt;boost/sequence/traits/size_type.hpp&gt;</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="../property_map_reference.html">Property Map Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="../property_map_reference.html#property_map_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="../property_map_reference.html#header.boost.property_map.concepts.hpp">Header &lt;boost/property_map/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../property_map_reference.html#header.boost.property_map.dereference.hpp">Header &lt;boost/property_map/dereference.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../property_map_reference.html#header.boost.property_map.identity.hpp">Header &lt;boost/property_map/identity.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="../property_map_reference.html#header.boost.property_map.traits.value_type.hpp">Header &lt;boost/property_map/traits/value_type.hpp&gt;</a></span></dt>
+</dl></dd>
+</dl></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="time_series_reference"></a>Time Series Reference</h3></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="reference.html#time_series_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.characteristic_series.hpp">Header &lt;boost/time_series/characteristic_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.clipped_series.hpp">Header &lt;boost/time_series/clipped_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.concepts.hpp">Header &lt;boost/time_series/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.constant_series.hpp">Header &lt;boost/time_series/constant_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.delta_series.hpp">Header &lt;boost/time_series/delta_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.dense_series.hpp">Header &lt;boost/time_series/dense_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.heaviside_series.hpp">Header &lt;boost/time_series/heaviside_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.inverse_heaviside_series.hpp">Header &lt;boost/time_series/inverse_heaviside_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.adjacent_difference.hpp">Header &lt;boost/time_series/numeric/adjacent_difference.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.clip.hpp">Header &lt;boost/time_series/numeric/clip.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.coarse_grain.hpp">Header &lt;boost/time_series/numeric/coarse_grain.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.fine_grain.hpp">Header &lt;boost/time_series/numeric/fine_grain.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.integrate.hpp">Header &lt;boost/time_series/numeric/integrate.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.invert_elements.hpp">Header &lt;boost/time_series/numeric/invert_elements.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.invert_heaviside.hpp">Header &lt;boost/time_series/numeric/invert_heaviside.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.numeric.hpp">Header &lt;boost/time_series/numeric/numeric.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.partial_sum.hpp">Header &lt;boost/time_series/numeric/partial_sum.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.period_sums.hpp">Header &lt;boost/time_series/numeric/period_sums.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.piecewise_sample.hpp">Header &lt;boost/time_series/numeric/piecewise_sample.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.piecewise_surface_sample.hpp">Header &lt;boost/time_series/numeric/piecewise_surface_sample.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.rotate_left.hpp">Header &lt;boost/time_series/numeric/rotate_left.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.rotate_right.hpp">Header &lt;boost/time_series/numeric/rotate_right.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.shift.hpp">Header &lt;boost/time_series/numeric/shift.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.subscript.hpp">Header &lt;boost/time_series/numeric/subscript.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.numeric.variable_period_sums.hpp">Header &lt;boost/time_series/numeric/variable_period_sums.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.ordered_inserter.hpp">Header &lt;boost/time_series/ordered_inserter.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.piecewise_constant_series.hpp">Header &lt;boost/time_series/piecewise_constant_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.python.series.hpp">Header &lt;boost/time_series/python/series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.scaled_series.hpp">Header &lt;boost/time_series/scaled_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.shifted_series.hpp">Header &lt;boost/time_series/shifted_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.sparse_series.hpp">Header &lt;boost/time_series/sparse_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.time_series_facade.hpp">Header &lt;boost/time_series/time_series_facade.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.time_series_fwd.hpp">Header &lt;boost/time_series/time_series_fwd.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.time_series_typeof.hpp">Header &lt;boost/time_series/time_series_typeof.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.traits.discretization_type.hpp">Header &lt;boost/time_series/traits/discretization_type.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.traits.is_time_series.hpp">Header &lt;boost/time_series/traits/is_time_series.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.traits.storage_category.hpp">Header &lt;boost/time_series/traits/storage_category.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.utility.series_stl_iterator.hpp">Header &lt;boost/time_series/utility/series_stl_iterator.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#header.boost.time_series.utility.time_series_base.hpp">Header &lt;boost/time_series/utility/time_series_base.hpp&gt;</a></span></dt>
+</dl></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="time_series_reference.concepts"></a>Concepts</h4></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><a href="../TimeSeries.html" title="Concept TimeSeries">TimeSeries</a></li>
+<li><a href="../Mutable_TimeSeries.html" title="Concept Mutable_TimeSeries">Mutable_TimeSeries</a></li>
+</ul></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.characteristic_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/characteristic_series.hpp" target="_top">boost/time_series/characteristic_series.hpp</a>&gt;</h4></div></div></div>
+<p>A time series that uses characteristic storage </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/characteristic_unit_series.html" title="Struct template characteristic_unit_series">characteristic_unit_series</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/characteristic_series.html" title="Struct template characteristic_series">characteristic_series</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.clipped_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/clipped_series.hpp" target="_top">boost/time_series/clipped_series.hpp</a>&gt;</h4></div></div></div>
+<p>A clipped series that satisfies the <tt class="computeroutput">InfiniteRangeRunStorage</tt> concept </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> foreach {
+  }
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/clipped_series.html" title="Struct template clipped_series">clipped_series</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.concepts.hpp"></a>Header &lt;<a href="../../../boost/time_series/concepts.hpp" target="_top">boost/time_series/concepts.hpp</a>&gt;</h4></div></div></div>
+<p>Defines the <tt class="computeroutput">TimeSeries</tt> and <tt class="computeroutput">Mutable_TimeSeries</tt> concepts </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>namespace</b></span> concepts {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">TimeSeries</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/concepts/Mutable_TimeSeries.html" title="Struct template Mutable_TimeSeries">Mutable_TimeSeries</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.constant_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/constant_series.hpp" target="_top">boost/time_series/constant_series.hpp</a>&gt;</h4></div></div></div>
+<p>A time series that uses constant storage </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/constant_series.html" title="Struct template constant_series">constant_series</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.delta_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/delta_series.hpp" target="_top">boost/time_series/delta_series.hpp</a>&gt;</h4></div></div></div>
+<p>A time series that uses delta storage </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/delta_unit_series.html" title="Struct template delta_unit_series">delta_unit_series</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/delta_series.html" title="Struct template delta_series">delta_series</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.dense_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/dense_series.hpp" target="_top">boost/time_series/dense_series.hpp</a>&gt;</h4></div></div></div>
+<p>A time series that uses dense storage </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/dense_series.html" title="Struct template dense_series">dense_series</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization&gt; 
+      <span class="type">std::pair&lt; Value *, std::size_t &gt;</span> 
+      <a href="../boost/time_series/get_raw_buffer.html" title="Function get_raw_buffer">get_raw_buffer</a>(<a href="../boost/time_series/dense_series.html" title="Struct template dense_series">dense_series</a>&lt; Value, Discretization &gt; &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization&gt; 
+      <span class="type">std::pair&lt; Value <span class="bold"><b>const</b></span> *, std::size_t &gt;</span> 
+      <a href="../boost/time_series/get_raw_buffer.html" title="Function get_raw_buffer">get_raw_buffer</a>(<a href="../boost/time_series/dense_series.html" title="Struct template dense_series">dense_series</a>&lt; Value, Discretization &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.heaviside_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/heaviside_series.hpp" target="_top">boost/time_series/heaviside_series.hpp</a>&gt;</h4></div></div></div>
+<p>A time series that uses heaviside storage </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/heaviside_unit_series.html" title="Struct template heaviside_unit_series">heaviside_unit_series</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/heaviside_series.html" title="Struct template heaviside_series">heaviside_series</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type">Offset</span> <a href="../id255114-bb.html" title="Function jump_offset">jump_offset</a>(<a href="../boost/time_series/heaviside_series.html" title="Struct template heaviside_series">heaviside_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type">Offset</span> <a href="../id255114-bb.html" title="Function jump_offset">jump_offset</a>(<a href="../boost/time_series/heaviside_unit_series.html" title="Struct template heaviside_unit_series">heaviside_unit_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.inverse_heaviside_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/inverse_heaviside_series.hpp" target="_top">boost/time_series/inverse_heaviside_series.hpp</a>&gt;</h4></div></div></div>
+<p>A time series that uses inverse_heaviside storage </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/inverse_heaviside_unit_series.html" title="Struct template inverse_heaviside_unit_series">inverse_heaviside_unit_series</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/inverse_heaviside_series.html" title="Struct template inverse_heaviside_series">inverse_heaviside_series</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type">Offset</span> <a href="../id251965-bb.html" title="Function jump_offset">jump_offset</a>(<a href="../boost/time_series/inverse_heaviside_series.html" title="Struct template inverse_heaviside_series">inverse_heaviside_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type">Offset</span> <a href="../id251965-bb.html" title="Function jump_offset">jump_offset</a>(<a href="../boost/time_series/inverse_heaviside_unit_series.html" title="Struct template inverse_heaviside_unit_series">inverse_heaviside_unit_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.adjacent_difference.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/adjacent_difference.hpp" target="_top">boost/time_series/numeric/adjacent_difference.hpp</a>&gt;</h4></div></div></div>
+<p>Like <tt class="computeroutput">std::adjacent_difference</tt>, but for Series </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/adjacent_difference.html" title="Function adjacent_difference">adjacent_difference</a>(Series <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+      <a href="../boost/time_series/adjacent_difference.html" title="Function adjacent_difference">adjacent_difference</a>(Series <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.clip.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/clip.hpp" target="_top">boost/time_series/numeric/clip.hpp</a>&gt;</h4></div></div></div>
+<p>Defined the mathematical operator s on time series </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Start, <span class="bold"><b>typename</b></span> Stop&gt; 
+      <span class="type"><a href="../boost/time_series/clipped_series.html" title="Struct template clipped_series">clipped_series</a>&lt; Series &gt; <span class="bold"><b>const</b></span></span> <a href="../boost/time_series/clip.html" title="Function clip">clip</a>(Series &amp;, Start, Stop);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Start, <span class="bold"><b>typename</b></span> Stop&gt; 
+      <span class="type"><a href="../boost/time_series/clipped_series.html" title="Struct template clipped_series">clipped_series</a>&lt; Series <span class="bold"><b>const</b></span>  &gt; <span class="bold"><b>const</b></span></span> <a href="../boost/time_series/clip.html" title="Function clip">clip</a>(Series <span class="bold"><b>const</b></span> &amp;, Start, Stop);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.coarse_grain.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/coarse_grain.hpp" target="_top">boost/time_series/numeric/coarse_grain.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/coarse_grain.html" title="Function coarse_grain">coarse_grain</a>(Series <span class="bold"><b>const</b></span> &amp;, Discretization, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type Discretization &gt;</span> 
+      <a href="../boost/time_series/coarse_grain.html" title="Function coarse_grain">coarse_grain</a>(Series <span class="bold"><b>const</b></span> &amp;, Discretization);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.fine_grain.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/fine_grain.hpp" target="_top">boost/time_series/numeric/fine_grain.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>static</b></span> <a href="../boost/time_series/samplers/piecewise_upsample.html" title="Struct piecewise_upsample">samplers::piecewise_upsample</a> const &amp; <a href="../boost/time_series/piecewise_upsample.html" title="Global piecewise_upsample">piecewise_upsample</a>;
+    <span class="bold"><b>static</b></span> <a href="../boost/time_series/samplers/sparse_upsample.html" title="Struct sparse_upsample">samplers::sparse_upsample</a> const &amp; <a href="../boost/time_series/sparse_upsample.html" title="Global sparse_upsample">sparse_upsample</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> UpSampler, 
+             <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/fine_grain.html" title="Function fine_grain">fine_grain</a>(Series <span class="bold"><b>const</b></span> &amp;, Discretization, 
+                 <a href="../boost/time_series/samplers/sampler_base.html" title="Struct template sampler_base">samplers::sampler_base</a>&lt; UpSampler &gt; <span class="bold"><b>const</b></span> &amp;, 
+                 <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/fine_grain.html" title="Function fine_grain">fine_grain</a>(Series <span class="bold"><b>const</b></span> &amp;, Discretization, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> UpSampler&gt; 
+      <span class="type">mpl::apply_wrap2&lt; UpSampler <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type, Discretization &gt;::type</span> 
+      <a href="../boost/time_series/fine_grain.html" title="Function fine_grain">fine_grain</a>(Series <span class="bold"><b>const</b></span> &amp;, Discretization, 
+                 <a href="../boost/time_series/samplers/sampler_base.html" title="Struct template sampler_base">samplers::sampler_base</a>&lt; UpSampler &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization&gt; 
+      <span class="type">mpl::apply_wrap2&lt; <a href="../boost/time_series/samplers/piecewise_upsample.html" title="Struct piecewise_upsample">samplers::piecewise_upsample</a> <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type, Discretization &gt;::type</span> 
+      <a href="../boost/time_series/fine_grain.html" title="Function fine_grain">fine_grain</a>(Series <span class="bold"><b>const</b></span> &amp;, Discretization);
+    <span class="bold"><b>namespace</b></span> samplers {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Derived&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/samplers/sampler_base.html" title="Struct template sampler_base">sampler_base</a>;
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/samplers/piecewise_upsample.html" title="Struct piecewise_upsample">piecewise_upsample</a>;
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/samplers/sparse_upsample.html" title="Struct sparse_upsample">sparse_upsample</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.integrate.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/integrate.hpp" target="_top">boost/time_series/numeric/integrate.hpp</a>&gt;</h4></div></div></div>
+<p>Like <tt class="computeroutput">std::accumulate</tt> for the whole series, multiplied by the discretization </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type"><a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type</span> 
+      <a href="../boost/time_series/integrate.html" title="Function template integrate">integrate</a>(Series <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.invert_elements.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/invert_elements.hpp" target="_top">boost/time_series/numeric/invert_elements.hpp</a>&gt;</h4></div></div></div>
+<p>Construct a new series from the old where each element is inverted. </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/invert_elements.html" title="Function invert_elements">invert_elements</a>(Series <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="type">Series <span class="bold"><b>const</b></span></span> <a href="../boost/time_series/invert_elements.html" title="Function invert_elements">invert_elements</a>(Series <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="type">Series &amp;</span> <a href="../boost/time_series/invert_elements_inplace.html" title="Function template invert_elements_inplace">invert_elements_inplace</a>(Series &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.invert_heaviside.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/invert_heaviside.hpp" target="_top">boost/time_series/numeric/invert_heaviside.hpp</a>&gt;</h4></div></div></div>
+<p>From a Heaviside series, construct the inverse Heaviside series with the corresponding jump offset, and vice versa. </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type"><a href="../boost/time_series/inverse_heaviside_series.html" title="Struct template inverse_heaviside_series">inverse_heaviside_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span></span> 
+      <a href="../boost/time_series/invert_heaviside.html" title="Function invert_heaviside">invert_heaviside</a>(<a href="../boost/time_series/heaviside_series.html" title="Struct template heaviside_series">heaviside_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type"><a href="../boost/time_series/inverse_heaviside_unit_series.html" title="Struct template inverse_heaviside_unit_series">inverse_heaviside_unit_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span></span> 
+      <a href="../boost/time_series/invert_heaviside.html" title="Function invert_heaviside">invert_heaviside</a>(<a href="../boost/time_series/heaviside_unit_series.html" title="Struct template heaviside_unit_series">heaviside_unit_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type"><a href="../boost/time_series/heaviside_series.html" title="Struct template heaviside_series">heaviside_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span></span> 
+      <a href="../boost/time_series/invert_heaviside.html" title="Function invert_heaviside">invert_heaviside</a>(<a href="../boost/time_series/inverse_heaviside_series.html" title="Struct template inverse_heaviside_series">inverse_heaviside_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type"><a href="../boost/time_series/heaviside_unit_series.html" title="Struct template heaviside_unit_series">heaviside_unit_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span></span> 
+      <a href="../boost/time_series/invert_heaviside.html" title="Function invert_heaviside">invert_heaviside</a>(<a href="../boost/time_series/inverse_heaviside_unit_series.html" title="Struct template inverse_heaviside_unit_series">inverse_heaviside_unit_series</a>&lt; Value, Discretization, Offset &gt; <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.numeric.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/numeric.hpp" target="_top">boost/time_series/numeric/numeric.hpp</a>&gt;</h4></div></div></div>
+<p>Defined the mathematical operator s on time series </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type"><span class="emphasis"><em>unspecified</em></span></span> <a name="id255309-bb"></a><span class="bold"><b>operator</b></span>+(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; <span class="bold"><b>const</b></span> &amp; left, 
+                            <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type"><span class="emphasis"><em>unspecified</em></span></span> <a name="id138129-bb"></a><span class="bold"><b>operator</b></span>-(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; <span class="bold"><b>const</b></span> &amp; left, 
+                            <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type"><span class="emphasis"><em>unspecified</em></span></span> <a name="id174510-bb"></a><span class="bold"><b>operator</b></span>*(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; <span class="bold"><b>const</b></span> &amp; left, 
+                            <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type"><span class="emphasis"><em>unspecified</em></span></span> <a name="id256258-bb"></a><span class="bold"><b>operator</b></span>/(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; <span class="bold"><b>const</b></span> &amp; left, 
+                            <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type">Left &amp;</span> <a name="id255068-bb"></a><span class="bold"><b>operator</b></span>+=(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; &amp; left, 
+                        <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type">Left &amp;</span> <a name="id254872-bb"></a><span class="bold"><b>operator</b></span>-=(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; &amp; left, 
+                        <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type">Left &amp;</span> <a name="id252430-bb"></a><span class="bold"><b>operator</b></span>*=(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; &amp; left, 
+                        <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type">Left &amp;</span> <a name="id258662-bb"></a><span class="bold"><b>operator</b></span>/=(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; &amp; left, 
+                        <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Factor&gt; 
+      <span class="type">disable_if&lt; <a href="../boost/time_series/traits/is_time_series.html" title="Struct template is_time_series">traits::is_time_series</a>&lt; Factor &gt;, <a href="../boost/time_series/scaled_series.html" title="Struct template scaled_series">scaled_series</a>&lt; Series <span class="bold"><b>const</b></span>, Factor &gt; <span class="bold"><b>const</b></span>  &gt;::type</span> 
+      <a name="id254670-bb"></a><span class="bold"><b>operator</b></span>*(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Series &gt; <span class="bold"><b>const</b></span> &amp; left, Factor <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Factor, <span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type">disable_if&lt; <a href="../boost/time_series/traits/is_time_series.html" title="Struct template is_time_series">traits::is_time_series</a>&lt; Factor &gt;, <a href="../boost/time_series/scaled_series.html" title="Struct template scaled_series">scaled_series</a>&lt; Series <span class="bold"><b>const</b></span>, Factor &gt; <span class="bold"><b>const</b></span>  &gt;::type</span> 
+      <a name="id252721-bb"></a><span class="bold"><b>operator</b></span>*(Factor <span class="bold"><b>const</b></span> &amp; left, <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Series &gt; <span class="bold"><b>const</b></span> &amp; right);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Factor&gt; 
+      <span class="type">disable_if&lt; <a href="../boost/time_series/traits/is_time_series.html" title="Struct template is_time_series">traits::is_time_series</a>&lt; Factor &gt;, Series &amp; &gt;::type</span> 
+      <a name="id254381-bb"></a><span class="bold"><b>operator</b></span>*=(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Series &gt; &amp; left, Factor <span class="bold"><b>const</b></span> &amp; right);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.partial_sum.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/partial_sum.hpp" target="_top">boost/time_series/numeric/partial_sum.hpp</a>&gt;</h4></div></div></div>
+<p>Like std::accumulate for the whole series, multiplied by the discretization </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/partial_sum.html" title="Function partial_sum">partial_sum</a>(Series <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type"><a href="../boost/time_series/piecewise_constant_series.html" title="Struct template piecewise_constant_series">piecewise_constant_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type &gt;</span> 
+      <a href="../boost/time_series/partial_sum.html" title="Function partial_sum">partial_sum</a>(Series <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.period_sums.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/period_sums.hpp" target="_top">boost/time_series/numeric/period_sums.hpp</a>&gt;</h4></div></div></div>
+<p>Calculate the sums within fixed-width ranges in a series </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Offset, <span class="bold"><b>typename</b></span> Length, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/period_sums.html" title="Function period_sums">period_sums</a>(Series <span class="bold"><b>const</b></span> &amp;, Offset, Length, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Offset, <span class="bold"><b>typename</b></span> Length&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, Offset &gt;</span> 
+      <a href="../boost/time_series/period_sums.html" title="Function period_sums">period_sums</a>(Series <span class="bold"><b>const</b></span> &amp;, Offset, Length);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.piecewise_sample.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/piecewise_sample.hpp" target="_top">boost/time_series/numeric/piecewise_sample.hpp</a>&gt;</h4></div></div></div>
+<p>Calculate a piecewise constant series by sampling one series at steps specified by a <tt class="computeroutput">Range</tt>. </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Periods, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/piecewise_sample.html" title="Function piecewise_sample">piecewise_sample</a>(Series <span class="bold"><b>const</b></span> &amp;, Periods <span class="bold"><b>const</b></span> &amp;, 
+                       <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Periods&gt; 
+      <span class="type"><a href="../boost/time_series/piecewise_constant_series.html" title="Struct template piecewise_constant_series">piecewise_constant_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> concepts::RandomAccessRange&lt; Periods &gt;::value_type &gt;</span> 
+      <a href="../boost/time_series/piecewise_sample.html" title="Function piecewise_sample">piecewise_sample</a>(Series <span class="bold"><b>const</b></span> &amp;, Periods <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.piecewise_surface_sample.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/piecewise_surface_sample.hpp" target="_top">boost/time_series/numeric/piecewise_surface_sample.hpp</a>&gt;</h4></div></div></div>
+<p>Calculate a piecewise constant surface by sampling series at steps defined by two range representing the sample points for x and y coordinate of the surface. </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> XPeriods, <span class="bold"><b>typename</b></span> YPeriods, 
+             <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/piecewise_surface_sample.html" title="Function piecewise_surface_sample">piecewise_surface_sample</a>(Series <span class="bold"><b>const</b></span> &amp;, XPeriods <span class="bold"><b>const</b></span> &amp;, 
+                               YPeriods <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> XPeriods, <span class="bold"><b>typename</b></span> YPeriods&gt; 
+      <span class="type"><a href="../boost/time_series/piecewise_constant_series.html" title="Struct template piecewise_constant_series">piecewise_constant_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> concepts::RandomAccessRange&lt; XPeriods &gt;::value_type &gt;</span> 
+      <a href="../boost/time_series/piecewise_surface_sample.html" title="Function piecewise_surface_sample">piecewise_surface_sample</a>(Series <span class="bold"><b>const</b></span> &amp;, XPeriods <span class="bold"><b>const</b></span> &amp;, 
+                               YPeriods <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.rotate_left.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/rotate_left.hpp" target="_top">boost/time_series/numeric/rotate_left.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/rotate_left.html" title="Function rotate_left">rotate_left</a>(Series <span class="bold"><b>const</b></span> &amp;, 
+                  <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>const</b></span> &amp;, 
+                  <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/rotate_left.html" title="Function rotate_left">rotate_left</a>(Series <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+      <a href="../boost/time_series/rotate_left.html" title="Function rotate_left">rotate_left</a>(Series <span class="bold"><b>const</b></span> &amp;, 
+                  <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+      <a href="../boost/time_series/rotate_left.html" title="Function rotate_left">rotate_left</a>(Series <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.rotate_right.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/rotate_right.hpp" target="_top">boost/time_series/numeric/rotate_right.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/rotate_right.html" title="Function rotate_right">rotate_right</a>(Series <span class="bold"><b>const</b></span> &amp;, 
+                   <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>const</b></span> &amp;, 
+                   <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/rotate_right.html" title="Function rotate_right">rotate_right</a>(Series <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+      <a href="../boost/time_series/rotate_right.html" title="Function rotate_right">rotate_right</a>(Series <span class="bold"><b>const</b></span> &amp;, 
+                   <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+      <a href="../boost/time_series/rotate_right.html" title="Function rotate_right">rotate_right</a>(Series <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.shift.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/shift.hpp" target="_top">boost/time_series/numeric/shift.hpp</a>&gt;</h4></div></div></div>
+<p>Defined the mathematical operator s on time series </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type"><a href="../boost/time_series/shifted_series.html" title="Struct template shifted_series">shifted_series</a>&lt; Series &gt; <span class="bold"><b>const</b></span></span> <a href="../boost/time_series/shift.html" title="Function shift">shift</a>(Series &amp;, Offset);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type"><a href="../boost/time_series/shifted_series.html" title="Struct template shifted_series">shifted_series</a>&lt; Series <span class="bold"><b>const</b></span>  &gt; <span class="bold"><b>const</b></span></span> <a href="../boost/time_series/shift.html" title="Function shift">shift</a>(Series <span class="bold"><b>const</b></span> &amp;, Offset);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.subscript.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/subscript.hpp" target="_top">boost/time_series/numeric/subscript.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Indices, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/subscript.html" title="Function subscript">subscript</a>(Series <span class="bold"><b>const</b></span> &amp;, Indices <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Indices&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Indices <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+      <a href="../boost/time_series/subscript.html" title="Function subscript">subscript</a>(Series <span class="bold"><b>const</b></span> &amp;, Indices <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.numeric.variable_period_sums.hpp"></a>Header &lt;<a href="../../../boost/time_series/numeric/variable_period_sums.hpp" target="_top">boost/time_series/numeric/variable_period_sums.hpp</a>&gt;</h4></div></div></div>
+<p>Calculate the sums within variable-width ranges in a series </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Periods, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/variable_period_sums.html" title="Function variable_period_sums">variable_period_sums</a>(Series <span class="bold"><b>const</b></span> &amp;, Periods <span class="bold"><b>const</b></span> &amp;, 
+                           <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Periods&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+      <a href="../boost/time_series/variable_period_sums.html" title="Function variable_period_sums">variable_period_sums</a>(Series <span class="bold"><b>const</b></span> &amp;, Periods <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Periods, <span class="bold"><b>typename</b></span> Shifts, <span class="bold"><b>typename</b></span> Out&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+      <a href="../boost/time_series/shifted_variable_period_sums.html" title="Function shifted_variable_period_sums">shifted_variable_period_sums</a>(Series <span class="bold"><b>const</b></span> &amp;, Periods <span class="bold"><b>const</b></span> &amp;, 
+                                   Shifts <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Periods, <span class="bold"><b>typename</b></span> Shifts&gt; 
+      <span class="type"><a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="../boost/time_series/concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+      <a href="../boost/time_series/shifted_variable_period_sums.html" title="Function shifted_variable_period_sums">shifted_variable_period_sums</a>(Series <span class="bold"><b>const</b></span> &amp;, Periods <span class="bold"><b>const</b></span> &amp;, 
+                                   Shifts <span class="bold"><b>const</b></span> &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.ordered_inserter.hpp"></a>Header &lt;<a href="../../../boost/time_series/ordered_inserter.hpp" target="_top">boost/time_series/ordered_inserter.hpp</a>&gt;</h4></div></div></div>
+<p>Definition of the <tt class="computeroutput">ordered_inserter&lt;&gt;</tt> class template, and the <tt class="computeroutput">make_ordered_inserter()</tt> helper function. </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Series &gt;</span> <a href="../boost/time_series/make_ordered_inserter.html" title="Function make_ordered_inserter">make_ordered_inserter</a>(Series &amp;, Offset);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type"><a href="../boost/time_series/ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Series &gt;</span> <a href="../boost/time_series/make_ordered_inserter.html" title="Function make_ordered_inserter">make_ordered_inserter</a>(Series &amp;);
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.piecewise_constant_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/piecewise_constant_series.hpp" target="_top">boost/time_series/piecewise_constant_series.hpp</a>&gt;</h4></div></div></div>
+<p>A time series that uses piecewise_constant storage </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/piecewise_constant_series.html" title="Struct template piecewise_constant_series">piecewise_constant_series</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.python.series.hpp"></a>Header &lt;<a href="../../../boost/time_series/python/series.hpp" target="_top">boost/time_series/python/series.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>namespace</b></span> python_ {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/python_/python_clipped_series.html" title="Struct template python_clipped_series">python_clipped_series</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/python_/python_inserter.html" title="Struct template python_inserter">python_inserter</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/python_/python_series.html" title="Struct template python_series">python_series</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>bool</b></span> Positive&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/python_/python_infinity.html" title="Struct template python_infinity">python_infinity</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+        <span class="type">std::string</span> <a name="boost.time_series.python_.python_series_repr"></a>python_series_repr(Series <span class="bold"><b>const</b></span> &amp; s);
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Offset&gt; 
+        <span class="type">Offset</span> <a name="boost.time_series.python_.extract_offset"></a>extract_offset(python::object <span class="bold"><b>const</b></span> &amp; o);
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Args&gt; 
+        <span class="type">std::auto_ptr&lt; Series &gt;</span> 
+        <a name="boost.time_series.python_.python_make_series_constructor"></a>python_make_series_constructor(python::tuple <span class="bold"><b>const</b></span> &amp; o);
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.scaled_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/scaled_series.hpp" target="_top">boost/time_series/scaled_series.hpp</a>&gt;</h4></div></div></div>
+<p>A scaled series that satisfies the <tt class="computeroutput">InfiniteRangeRunStorage</tt> concept </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Factor&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/scaled_series.html" title="Struct template scaled_series">scaled_series</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.shifted_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/shifted_series.hpp" target="_top">boost/time_series/shifted_series.hpp</a>&gt;</h4></div></div></div>
+<p>A shifted series that satisfies the <tt class="computeroutput">InfiniteRangeRunStorage</tt> concept </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/shifted_series.html" title="Struct template shifted_series">shifted_series</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.sparse_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/sparse_series.hpp" target="_top">boost/time_series/sparse_series.hpp</a>&gt;</h4></div></div></div>
+<p>A time series that uses sparse storage </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Value, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Offset&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/sparse_series.html" title="Struct template sparse_series">sparse_series</a>;
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.time_series_facade.hpp"></a>Header &lt;<a href="../../../boost/time_series/time_series_facade.hpp" target="_top">boost/time_series/time_series_facade.hpp</a>&gt;</h4></div></div></div>
+<p>Includes all of the Time_Series Library </p>
+<pre class="synopsis">
+
+<a href="../BOOST_TIME_SERIES_DEFINE_CTORS.html" title="Macro BOOST_TIME_SERIES_DEFINE_CTORS">BOOST_TIME_SERIES_DEFINE_CTORS</a>(series_name)</pre>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> constructors {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> range_run_storage {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> impl {
+    }
+  }
+  <span class="bold"><b>namespace</b></span> serialization {
+  }
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Derived, <span class="bold"><b>typename</b></span> Storage, <span class="bold"><b>typename</b></span> Discretization&gt; 
+      <span class="bold"><b>struct</b></span> <a href="../boost/time_series/time_series_facade.html" title="Struct template time_series_facade">time_series_facade</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Derived, <span class="bold"><b>typename</b></span> Storage, <span class="bold"><b>typename</b></span> Discretization&gt; 
+      <span class="type"><span class="bold"><b>void</b></span></span> <a href="../boost/time_series/swap.html" title="Function template swap">swap</a>(<a href="../boost/time_series/time_series_facade.html" title="Struct template time_series_facade">time_series_facade</a>&lt; Derived, Storage, Discretization &gt; &amp;, 
+                <a href="../boost/time_series/time_series_facade.html" title="Struct template time_series_facade">time_series_facade</a>&lt; Derived, Storage, Discretization &gt; &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type"><span class="bold"><b>bool</b></span></span> <a href="../id273083-bb.html" title="Function template operator=="><span class="bold"><b>operator</b></span>==</a>(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; <span class="bold"><b>const</b></span> &amp;, 
+                      <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Left, <span class="bold"><b>typename</b></span> Right&gt; 
+      <span class="type"><span class="bold"><b>bool</b></span></span> <a href="../id273165-bb.html" title="Function template operator!="><span class="bold"><b>operator</b></span>!=</a>(<a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Left &gt; <span class="bold"><b>const</b></span> &amp;, 
+                      <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Right &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Char, <span class="bold"><b>typename</b></span> Traits, <span class="bold"><b>typename</b></span> Series&gt; 
+      <span class="type">std::basic_ostream&lt; Char, Traits &gt; &amp;</span> 
+      <a href="../id273247-bb.html" title="Function template operator&lt;&lt;"><span class="bold"><b>operator</b></span>&lt;&lt;</a>(std::basic_ostream&lt; Char, Traits &gt; &amp;, 
+                 <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>&lt; Series &gt; <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.time_series_fwd.hpp"></a>Header &lt;<a href="../../../boost/time_series/time_series_fwd.hpp" target="_top">boost/time_series/time_series_fwd.hpp</a>&gt;</h4></div></div></div>
+<p>Includes all of the Time_Series Library </p>
+<pre class="synopsis">
+
+<a href="../BOOST_PARAMETER_MAX_ARITY.html" title="Macro BOOST_PARAMETER_MAX_ARITY">BOOST_PARAMETER_MAX_ARITY</a></pre>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/piecewise_constant_storage_tag.html" title="Struct piecewise_constant_storage_tag">piecewise_constant_storage_tag</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/dense_storage_tag.html" title="Struct dense_storage_tag">dense_storage_tag</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/sparse_storage_tag.html" title="Struct sparse_storage_tag">sparse_storage_tag</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/characteristic_storage_tag.html" title="Struct characteristic_storage_tag">characteristic_storage_tag</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/delta_storage_tag.html" title="Struct delta_storage_tag">delta_storage_tag</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/constant_storage_tag.html" title="Struct constant_storage_tag">constant_storage_tag</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/heaviside_storage_tag.html" title="Struct heaviside_storage_tag">heaviside_storage_tag</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/inverse_heaviside_storage_tag.html" title="Struct inverse_heaviside_storage_tag">inverse_heaviside_storage_tag</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Tag&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/scaled_storage_tag.html" title="Struct template scaled_storage_tag">scaled_storage_tag</a>;
+
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Tag&gt; <span class="bold"><b>struct</b></span> <a href="../id273523-bb.html" title="Struct template scaled_storage_tag&lt;scaled_storage_tag&lt; Tag &gt;&gt;">scaled_storage_tag</a>&lt;scaled_storage_tag&lt; Tag &gt;&gt;;
+
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/daily.html" title="Struct daily">daily</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/weekly.html" title="Struct weekly">weekly</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/monthly.html" title="Struct monthly">monthly</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/quarterly.html" title="Struct quarterly">quarterly</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/semi_yearly.html" title="Struct semi_yearly">semi_yearly</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/yearly.html" title="Struct yearly">yearly</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/unit.html" title="Struct unit">unit</a>;
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/any.html" title="Struct any">any</a>;
+
+    <span class="bold"><b>typedef</b></span> mpl::int_&lt; 7 &gt; days_per_week;
+    <span class="bold"><b>typedef</b></span> mpl::int_&lt; 30 &gt; days_per_month;
+    <span class="bold"><b>typedef</b></span> mpl::int_&lt; 90 &gt; days_per_quarter;
+    <span class="bold"><b>typedef</b></span> mpl::int_&lt; 180 &gt; days_per_semi_year;
+    <span class="bold"><b>typedef</b></span> mpl::int_&lt; 360 &gt; days_per_year;
+
+    <span class="bold"><b>static</b></span> ::boost::parameter::keyword&lt; tag::discretization &gt; const &amp; <a href="../boost/time_series/discretization.html" title="Global discretization">discretization</a>;
+    <span class="bold"><b>static</b></span> ::boost::parameter::keyword&lt; tag::zero &gt; const &amp; <a href="../boost/time_series/zero.html" title="Global zero">zero</a>;
+    <span class="bold"><b>static</b></span> ::boost::parameter::keyword&lt; tag::value &gt; const &amp; <a href="../boost/time_series/value.html" title="Global value">value</a>;
+    <span class="bold"><b>static</b></span> ::boost::parameter::keyword&lt; tag::start &gt; const &amp; <a href="../boost/time_series/start.html" title="Global start">start</a>;
+    <span class="bold"><b>static</b></span> ::boost::parameter::keyword&lt; tag::stop &gt; const &amp; <a href="../boost/time_series/stop.html" title="Global stop">stop</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> T&gt; <span class="type"><span class="bold"><b>bool</b></span></span> <a name="id273631-bb"></a><span class="bold"><b>operator</b></span>==(<a href="../boost/time_series/any.html" title="Struct any">any</a>, T <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> T&gt; <span class="type"><span class="bold"><b>bool</b></span></span> <a name="id273664-bb"></a><span class="bold"><b>operator</b></span>!=(<a href="../boost/time_series/any.html" title="Struct any">any</a>, T <span class="bold"><b>const</b></span> &amp;);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> T&gt; <span class="type"><span class="bold"><b>bool</b></span></span> <a name="id273697-bb"></a><span class="bold"><b>operator</b></span>==(T <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/any.html" title="Struct any">any</a>);
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> T&gt; <span class="type"><span class="bold"><b>bool</b></span></span> <a name="id273730-bb"></a><span class="bold"><b>operator</b></span>!=(T <span class="bold"><b>const</b></span> &amp;, <a href="../boost/time_series/any.html" title="Struct any">any</a>);
+    <span class="bold"><b>namespace</b></span> tag {
+    }
+    <span class="bold"><b>namespace</b></span> traits {
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.time_series_typeof.hpp"></a>Header &lt;<a href="../../../boost/time_series/time_series_typeof.hpp" target="_top">boost/time_series/time_series_typeof.hpp</a>&gt;</h4></div></div></div>
+<p>Type registrations for the Boost.Typeof library </p>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.traits.discretization_type.hpp"></a>Header &lt;<a href="../../../boost/time_series/traits/discretization_type.hpp" target="_top">boost/time_series/traits/discretization_type.hpp</a>&gt;</h4></div></div></div>
+<p>Given a series, return the type of the discretization </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/traits/discretization_type.html" title="Struct template discretization_type">discretization_type</a>;
+
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id273886-bb.html" title="Struct template discretization_type&lt;S const&gt;">discretization_type</a>&lt;S <span class="bold"><b>const</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id273910-bb.html" title="Struct template discretization_type&lt;S volatile&gt;">discretization_type</a>&lt;S <span class="bold"><b>volatile</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id273933-bb.html" title="Struct template discretization_type&lt;S volatile const&gt;">discretization_type</a>&lt;S <span class="bold"><b>volatile</b></span> <span class="bold"><b>const</b></span>&gt;;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.traits.is_time_series.hpp"></a>Header &lt;<a href="../../../boost/time_series/traits/is_time_series.hpp" target="_top">boost/time_series/traits/is_time_series.hpp</a>&gt;</h4></div></div></div>
+<p>An index property map with an integer offset and a clip range </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/traits/is_time_series.html" title="Struct template is_time_series">is_time_series</a>;
+
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id273995-bb.html" title="Struct template is_time_series&lt;S const&gt;">is_time_series</a>&lt;S <span class="bold"><b>const</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id274020-bb.html" title="Struct template is_time_series&lt;S volatile&gt;">is_time_series</a>&lt;S <span class="bold"><b>volatile</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id274044-bb.html" title="Struct template is_time_series&lt;S volatile const&gt;">is_time_series</a>&lt;S <span class="bold"><b>volatile</b></span> <span class="bold"><b>const</b></span>&gt;;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.traits.storage_category.hpp"></a>Header &lt;<a href="../../../boost/time_series/traits/storage_category.hpp" target="_top">boost/time_series/traits/storage_category.hpp</a>&gt;</h4></div></div></div>
+<p>Given a concrete storage type, fetch its associated storage tag </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/traits/storage_category.html" title="Struct template storage_category">storage_category</a>;
+
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id274106-bb.html" title="Struct template storage_category&lt;S const&gt;">storage_category</a>&lt;S <span class="bold"><b>const</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id274130-bb.html" title="Struct template storage_category&lt;S volatile&gt;">storage_category</a>&lt;S <span class="bold"><b>volatile</b></span>&gt;;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="../id274153-bb.html" title="Struct template storage_category&lt;S volatile const&gt;">storage_category</a>&lt;S <span class="bold"><b>volatile</b></span> <span class="bold"><b>const</b></span>&gt;;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.utility.series_stl_iterator.hpp"></a>Header &lt;<a href="../../../boost/time_series/utility/series_stl_iterator.hpp" target="_top">boost/time_series/utility/series_stl_iterator.hpp</a>&gt;</h4></div></div></div>
+<p>An STL-compatible iterator over a range/run storage that makes it look like a continuous sequence </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/series_stl_iterator.html" title="Struct template series_stl_iterator">series_stl_iterator</a>;
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.time_series.utility.time_series_base.hpp"></a>Header &lt;<a href="../../../boost/time_series/utility/time_series_base.hpp" target="_top">boost/time_series/utility/time_series_base.hpp</a>&gt;</h4></div></div></div>
+<p>CRTP base class for all series </p>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> time_series {
+    <span class="bold"><b>struct</b></span> <a href="../boost/time_series/time_series_root.html" title="Struct time_series_root">time_series_root</a>;
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Derived&gt; <span class="bold"><b>struct</b></span> <a href="../boost/time_series/time_series_base.html" title="Struct template time_series_base">time_series_base</a>;
+  }
+}</pre>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="acknowledgements.html"><img src="../images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../images/home.png" alt="Home"></a><a accesskey="n" href="../TimeSeries.html"><img src="../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

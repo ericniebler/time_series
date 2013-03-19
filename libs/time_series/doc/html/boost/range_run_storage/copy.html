@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Function template copy</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.copy.hpp" title="Header &lt;boost/range_run_storage/algorithm/copy.hpp&gt;">
+<link rel="prev" href="address_difference1.html" title="Struct template address_difference1">
+<link rel="next" href="first_run.html" title="Function template first_run">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="address_difference1.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.copy.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="first_run.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.range_run_storage.copy"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Function template copy</span></h2>
+<p>boost::range_run_storage::copy &#8212; Copies the runs and values from an <tt class="computeroutput">InfiniteRangeRunStorage</tt> to an <tt class="computeroutput">OrderedInserter</tt>. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis">
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> In, <span class="bold"><b>typename</b></span> Out&gt; <span class="type">Out &amp;</span> copy(In <span class="bold"><b>const</b></span> &amp; in, Out &amp; out);</pre></div>
+<div class="refsect1" lang="en">
+<a name="id514852"></a><h2>Description</h2>
+<p>Copies the runs and values from an <tt class="computeroutput">InfiniteRangeRunStorage</tt> to an <tt class="computeroutput">OrderedInserter</tt>. Complexity is O(N).</p>
+<p>
+
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">in</tt></span></td>
+<td><p>An <tt class="computeroutput">InfiniteRangeRunStorage</tt> from which to copy elements and values. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">out</tt></span></td>
+<td><p>An <tt class="computeroutput">OrderedInserter</tt> to receive the elements and values </p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">In</tt> is a model of <tt class="computeroutput">InfiniteRangeRunStorage</tt>. </p>
+<p><tt class="computeroutput">Out</tt> is a model of <tt class="computeroutput">OrderedInserter</tt>. </p>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p>A reference to <tt class="computeroutput">out</tt>. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Notes:</span></td>
+<td><p>You must call <tt class="computeroutput">range_run_storage::commit()</tt> on the return value to commit the changes. </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="address_difference1.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../range_run_storage_reference.html#header.boost.range_run_storage.algorithm.copy.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="first_run.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

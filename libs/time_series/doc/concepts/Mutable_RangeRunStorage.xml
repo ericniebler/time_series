@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<concept name="Mutable_RangeRunStorage" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="mutable-range-run-storage-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A Mutable_RangeRunStorage is a <conceptname>RangeRunStorage</conceptname> 
+    which can be modified.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <notation variables="r">
+    <sample-value>
+      <type name="run_type" />
+    </sample-value>
+  </notation>
+
+  <notation variables="v">
+    <sample-value>
+      <type name="value_type" />
+    </sample-value>
+  </notation>
+
+  <refines const="no" concept="RangeRunStorage"/>
+  <refines const="no" concept="Mutable_Sequence"/>
+
+  <associated-type name="ordered_inserter_type">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::range_run_storage::op::ordered_inserter">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="S"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of an <conceptname>OrderedInserter</conceptname> that can be used
+      to insert values and runs into <code>S</code>.</simpara>
+    </description>
+  </associated-type>
+
+  <valid-expression name="Get OrderedInserter">
+    <apply-function name="boost::range_run_storage::ordered_inserter">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="ordered_inserter_type"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns an <conceptname>OrderedInserter</conceptname> that can be used
+      to insert values and runs into <code>s</code>.</semantics>
+  </valid-expression>
+
+  <valid-expression name="SetAt">
+    <apply-function name="boost::range_run_storage::set_at">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+      <sample-value>
+        <type name="run_type" />
+      </sample-value>
+      <sample-value>
+        <type name="value_type" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="void"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Sets a run <code>r</code> within <code>s</code> to value <code>v</code>.
+      This operation is O(N) in the worst case, and invalidates any cursors to
+      <code>s</code>.</semantics>
+  </valid-expression>
+
+  <valid-expression name="SetZero">
+    <apply-function name="boost::range_run_storage::zero">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+      <sample-value>
+        <type name="value_type" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="void"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Sets to value of the zero elements of <code>s</code> to value <code>v</code>.
+      This operation is O(1), and does not invalidate any cursors to <code>s</code>.</semantics>
+  </valid-expression>
+
+  <see-also name="Sequence" />
+  <see-also name="ReadablePropertyMap" />
+
+  <example-model>
+    <type name="boost::time_series::dense_series&lt;double&gt;" />
+  </example-model>
+
+</concept>

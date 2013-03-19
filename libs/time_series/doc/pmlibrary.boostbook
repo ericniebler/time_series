@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="yes"?>
+<library-reference id="property_map_reference" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Property Map Reference</title>
+    <xi:include href="concepts/ReadablePropertyMap.xml"/>
+    <xi:include href="concepts/WritablePropertyMap.xml"/>
+    <xi:include href="concepts/ReadWritePropertyMap.xml"/>
+    <xi:include href="pmdoc.boostbook" xpointer="xpointer(//header)"/>
+</library-reference>

@@ -1,0 +1,189 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Sequence Reference</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="time_series/reference.html" title="Reference">
+<link rel="prev" href="boost/range_run_storage/zero.html" title="Global zero">
+<link rel="next" href="Sequence.html" title="Concept Sequence">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="boost/range_run_storage/zero.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="time_series/reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="Sequence.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sequence_reference"></a>Sequence Reference</h3></div></div></div>
+<div class="toc"><dl>
+<dt><span class="section"><a href="sequence_reference.html#sequence_reference.concepts">Concepts</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.begin.hpp">Header &lt;boost/sequence/begin.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.composed.hpp">Header &lt;boost/sequence/composed.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.concepts.hpp">Header &lt;boost/sequence/concepts.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.elements.hpp">Header &lt;boost/sequence/elements.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.end.hpp">Header &lt;boost/sequence/end.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.insert.hpp">Header &lt;boost/sequence/insert.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.size.hpp">Header &lt;boost/sequence/size.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.tag.hpp">Header &lt;boost/sequence/tag.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.traits.has_static_size.hpp">Header &lt;boost/sequence/traits/has_static_size.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.traits.index_type.hpp">Header &lt;boost/sequence/traits/index_type.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="sequence_reference.html#header.boost.sequence.traits.size_type.hpp">Header &lt;boost/sequence/traits/size_type.hpp&gt;</a></span></dt>
+</dl></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="sequence_reference.concepts"></a>Concepts</h4></div></div></div>
+<div class="itemizedlist"><ul type="disc">
+<li><a href="Sequence.html" title="Concept Sequence">Sequence</a></li>
+<li><a href="O1SizeSequence.html" title="Concept O1SizeSequence">O1SizeSequence</a></li>
+<li><a href="Mutable_Sequence.html" title="Concept Mutable_Sequence">Mutable_Sequence</a></li>
+</ul></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.begin.hpp"></a>Header &lt;<a href="../../boost/sequence/begin.hpp" target="_top">boost/sequence/begin.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>static</b></span> <a href="boost/sequence/op/begin.html" title="Struct begin">op::begin</a> const &amp; <a href="boost/sequence/begin.html" title="Global begin">begin</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/sequence/op/begin.html" title="Struct begin">begin</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.composed.hpp"></a>Header &lt;<a href="../../boost/sequence/composed.hpp" target="_top">boost/sequence/composed.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Cursor, <span class="bold"><b>typename</b></span> Mapping = property_maps::identity&gt; 
+      <span class="bold"><b>struct</b></span> <a href="boost/sequence/composed.html" title="Struct template composed">composed</a>;
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.concepts.hpp"></a>Header &lt;<a href="../../boost/sequence/concepts.hpp" target="_top">boost/sequence/concepts.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> concepts {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/Sequence.html" title="Struct template Sequence">Sequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/O1SizeSequence.html" title="Struct template O1SizeSequence">O1SizeSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/LvalueSequence.html" title="Struct template LvalueSequence">LvalueSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/SinglePassSequence.html" title="Struct template SinglePassSequence">SinglePassSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/ForwardSequence.html" title="Struct template ForwardSequence">ForwardSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/BidirectionalSequence.html" title="Struct template BidirectionalSequence">BidirectionalSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/RandomAccessSequence.html" title="Struct template RandomAccessSequence">RandomAccessSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/Mutable_Sequence.html" title="Struct template Mutable_Sequence">Mutable_Sequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/Mutable_SinglePassSequence.html" title="Struct template Mutable_SinglePassSequence">Mutable_SinglePassSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/Mutable_ForwardSequence.html" title="Struct template Mutable_ForwardSequence">Mutable_ForwardSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/Mutable_BidirectionalSequence.html" title="Struct template Mutable_BidirectionalSequence">Mutable_BidirectionalSequence</a>;
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/concepts/Mutable_RandomAccessSequence.html" title="Struct template Mutable_RandomAccessSequence">Mutable_RandomAccessSequence</a>;
+    }
+  }
+}<span class="bold"><b>namespace</b></span> boost_concepts {
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.elements.hpp"></a>Header &lt;<a href="../../boost/sequence/elements.hpp" target="_top">boost/sequence/elements.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>static</b></span> <a href="boost/sequence/op/elements.html" title="Struct elements">op::elements</a> const &amp; <a href="boost/sequence/elements.html" title="Global elements">elements</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/sequence/op/elements.html" title="Struct elements">elements</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.end.hpp"></a>Header &lt;<a href="../../boost/sequence/end.hpp" target="_top">boost/sequence/end.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>static</b></span> <a href="boost/sequence/op/end.html" title="Struct end">op::end</a> const &amp; <a href="boost/sequence/end.html" title="Global end">end</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/sequence/op/end.html" title="Struct end">end</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.insert.hpp"></a>Header &lt;<a href="../../boost/sequence/insert.hpp" target="_top">boost/sequence/insert.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>static</b></span> <a href="boost/sequence/op/insert.html" title="Struct insert">op::insert</a> const &amp; <a href="boost/sequence/insert.html" title="Global insert">insert</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/sequence/op/insert.html" title="Struct insert">insert</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.size.hpp"></a>Header &lt;<a href="../../boost/sequence/size.hpp" target="_top">boost/sequence/size.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>static</b></span> <a href="boost/sequence/op/size.html" title="Struct size">op::size</a> const &amp; <a href="boost/sequence/size.html" title="Global size">size</a>;
+    <span class="bold"><b>namespace</b></span> op {
+      <span class="bold"><b>struct</b></span> <a href="boost/sequence/op/size.html" title="Struct size">size</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.tag.hpp"></a>Header &lt;<a href="../../boost/sequence/tag.hpp" target="_top">boost/sequence/tag.hpp</a>&gt;</h4></div></div></div></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.traits.has_static_size.hpp"></a>Header &lt;<a href="../../boost/sequence/traits/has_static_size.hpp" target="_top">boost/sequence/traits/has_static_size.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/traits/has_static_size.html" title="Struct template has_static_size">has_static_size</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.traits.index_type.hpp"></a>Header &lt;<a href="../../boost/sequence/traits/index_type.hpp" target="_top">boost/sequence/traits/index_type.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/traits/index_type.html" title="Struct template index_type">index_type</a>;
+    }
+  }
+}</pre>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="header.boost.sequence.traits.size_type.hpp"></a>Header &lt;<a href="../../boost/sequence/traits/size_type.hpp" target="_top">boost/sequence/traits/size_type.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="bold"><b>namespace</b></span> boost {
+  <span class="bold"><b>namespace</b></span> sequence {
+    <span class="bold"><b>namespace</b></span> traits {
+      <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> S&gt; <span class="bold"><b>struct</b></span> <a href="boost/sequence/traits/size_type.html" title="Struct template size_type">size_type</a>;
+    }
+  }
+}</pre>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="boost/range_run_storage/zero.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="time_series/reference.html"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="Sequence.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

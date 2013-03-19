@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Function fine_grain</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../time_series/reference.html#header.boost.time_series.numeric.fine_grain.hpp" title="Header &lt;boost/time_series/numeric/fine_grain.hpp&gt;">
+<link rel="prev" href="samplers/sparse_upsample.html" title="Struct sparse_upsample">
+<link rel="next" href="piecewise_upsample.html" title="Global piecewise_upsample">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="samplers/sparse_upsample.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.numeric.fine_grain.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="piecewise_upsample.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.fine_grain"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Function fine_grain</span></h2>
+<p>boost::time_series::fine_grain &#8212; Generate a series of finer discretization from a series of coarser discretization according to a sampling policy. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis">
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> UpSampler, 
+         <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+  fine_grain(Series <span class="bold"><b>const</b></span> &amp; series, Discretization discretization, 
+             <a href="samplers/sampler_base.html" title="Struct template sampler_base">samplers::sampler_base</a>&lt; UpSampler &gt; <span class="bold"><b>const</b></span> &amp; upsampler, 
+             <a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt; out);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+  fine_grain(Series <span class="bold"><b>const</b></span> &amp; series, Discretization discretization, 
+             <a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt; out);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization, <span class="bold"><b>typename</b></span> UpSampler&gt; 
+  <span class="type">mpl::apply_wrap2&lt; UpSampler <span class="bold"><b>typename</b></span> <a href="concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type, Discretization &gt;::type</span> 
+  fine_grain(Series <span class="bold"><b>const</b></span> &amp; series, Discretization discretization, 
+             <a href="samplers/sampler_base.html" title="Struct template sampler_base">samplers::sampler_base</a>&lt; UpSampler &gt; <span class="bold"><b>const</b></span> &amp; upsampler);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Discretization&gt; 
+  <span class="type">mpl::apply_wrap2&lt; <a href="samplers/piecewise_upsample.html" title="Struct piecewise_upsample">samplers::piecewise_upsample</a> <span class="bold"><b>typename</b></span> <a href="concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type, Discretization &gt;::type</span> 
+  fine_grain(Series <span class="bold"><b>const</b></span> &amp; series, Discretization discretization);</pre></div>
+<div class="refsect1" lang="en">
+<a name="id490462"></a><h2>Description</h2>
+<p>Generate a series of finer discretization from a series of coarser discretization according to a sampling policy.</p>
+<p>
+
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">discretization</tt></span></td>
+<td><p>The finer discretization. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">out</tt></span></td>
+<td><p>An <tt class="computeroutput">OrderedInserter</tt> into which to write the finer series. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">series</tt></span></td>
+<td><p>The input series. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">upsampler</tt></span></td>
+<td><p>The sampling policy. Could be <tt class="computeroutput">piecewise_upsample</tt> or <tt class="computeroutput">sparse_upsample</tt>. </p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td><p>The coarser discretization is a multiple of the finer discretization. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p>If you specify an <tt class="computeroutput">OrderedInserter</tt>, the return value is a copy of the <tt class="computeroutput">OrderedInserter</tt>. Otherwise, if you specify the <tt class="computeroutput">sparse_upsample</tt>, the return value is a <tt class="computeroutput">sparse_series&lt;&gt;</tt> containing the finer-grained series. Otherwise, if you specify the <tt class="computeroutput">piecewise_upsample</tt>, the return value is a <tt class="computeroutput">piecewise_constant_series&lt;&gt;</tt> containing the finer-grained series. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Notes:</span></td>
+<td><p>If using the version that takes an <tt class="computeroutput">OrderedInserter</tt>, you must call <tt class="computeroutput">.commit()</tt> on the returned <tt class="computeroutput">OrderedInserter</tt> when you are done with it. </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="samplers/sparse_upsample.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.numeric.fine_grain.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="piecewise_upsample.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Function adjacent_difference</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../time_series/reference.html#header.boost.time_series.numeric.adjacent_difference.hpp" title="Header &lt;boost/time_series/numeric/adjacent_difference.hpp&gt;">
+<link rel="prev" href="../../id251965-bb.html" title="Function jump_offset">
+<link rel="next" href="clip.html" title="Function clip">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../../id251965-bb.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.numeric.adjacent_difference.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="clip.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.adjacent_difference"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Function adjacent_difference</span></h2>
+<p>boost::time_series::adjacent_difference &#8212; Calculate the adjacent difference of a series. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis">
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series, <span class="bold"><b>typename</b></span> Out&gt; 
+  <span class="type"><a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt;</span> 
+  adjacent_difference(Series <span class="bold"><b>const</b></span> &amp; series, <a href="ordered_inserter.html" title="Struct template ordered_inserter">ordered_inserter</a>&lt; Out &gt; out);
+<span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; 
+  <span class="type"><a href="sparse_series.html" title="Struct template sparse_series">sparse_series</a>&lt; <span class="bold"><b>typename</b></span> <a href="concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::value_type <span class="bold"><b>typename</b></span> <a href="concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::discretization_type, <span class="bold"><b>typename</b></span> <a href="concepts/TimeSeries.html" title="Struct template TimeSeries">concepts::TimeSeries</a>&lt; Series <span class="bold"><b>const</b></span>  &gt;::offset_type &gt;</span> 
+  adjacent_difference(Series <span class="bold"><b>const</b></span> &amp; series);</pre></div>
+<div class="refsect1" lang="en">
+<a name="id488065"></a><h2>Description</h2>
+<p>Calculate the adjacent difference of a series, much like <tt class="computeroutput">std::adjacent_difference</tt>.</p>
+<p>
+
+
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">out</tt></span></td>
+<td><p>The ordered inserter to receive the adjacent difference result.</p></td>
+</tr>
+<tr>
+<td>
+<span class="term"><tt class="computeroutput">series</tt></span></td>
+<td><p>The input series. </p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p><tt class="computeroutput">Series</tt> is a model of the <tt class="computeroutput">TimeSeries</tt> concept. </p>
+<p><tt class="computeroutput">Out</tt> is a model of the <tt class="computeroutput">OrderedInserter</tt> concept. </p>
+<p>For variaibles <tt class="computeroutput">x</tt> and <tt class="computeroutput">y</tt> of the series' <tt class="computeroutput">value_type</tt>, the expression <tt class="computeroutput"></tt>(x-y) must be convertible to <tt class="computeroutput">value_type</tt>. </p>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p>A <tt class="computeroutput">sparse_series&lt;&gt;</tt> if no ordered inserter is specified; otherwise, the ordered inserter. </p></td>
+</tr>
+<tr>
+<td>
+<span class="term">Notes:</span></td>
+<td><p>If using the version that takes an <tt class="computeroutput">OrderedInserter</tt>, you must call <tt class="computeroutput">.commit()</tt> on the returned <tt class="computeroutput">OrderedInserter</tt> when you are done with it. </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../../id251965-bb.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.numeric.adjacent_difference.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="clip.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

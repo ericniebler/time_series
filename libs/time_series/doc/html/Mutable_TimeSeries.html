@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Concept Mutable_TimeSeries</title>
+<link rel="stylesheet" href="boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="time_series/reference.html#time_series_reference" title="Time Series Reference">
+<link rel="prev" href="TimeSeries.html" title="Concept TimeSeries">
+<link rel="next" href="boost/time_series/characteristic_unit_series.html" title="Struct template characteristic_unit_series">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../boost.png"></td>
+<td align="center"><a href="../../index.htm">Home</a></td>
+<td align="center"><a href="libraries.html">Libraries</a></td>
+<td align="center"><a href="../../people/people.htm">People</a></td>
+<td align="center"><a href="../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="TimeSeries.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="time_series/reference.html#time_series_reference"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="boost/time_series/characteristic_unit_series.html"><img src="images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="Mutable_TimeSeries"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Concept Mutable_TimeSeries</span></h2>
+<p>Mutable_TimeSeries</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id480033"></a><h2>Description</h2>
+<p>A Mutable_TimeSeries is a <a href="TimeSeries.html" title="Concept TimeSeries">TimeSeries</a> 
+    which can be modified.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id480051"></a><h2>Refinement of</h2>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="TimeSeries.html" title="Concept TimeSeries">TimeSeries</a></p></li>
+<li><p><a href="Mutable_InfiniteRangeRunStorage.html" title="Concept Mutable_InfiniteRangeRunStorage">Mutable_InfiniteRangeRunStorage</a></p></li>
+</ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id480075"></a><h2>Notation</h2>
+<div class="variablelist"><dl>
+<dt><span class="term">S</span></dt>
+<dd>A type playing the role of mutable-infinite-range-run-storage-type in the <a href="Mutable_TimeSeries.html" title="Concept Mutable_TimeSeries">Mutable_TimeSeries</a> concept.</dd>
+<dt><span class="term"><tt class="varname">s</tt></span></dt>
+<dd>Object of type S</dd>
+<dt><span class="term"><tt class="varname">d</tt></span></dt>
+<dd>Object of type discretization_type</dd>
+</dl></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id480115"></a><h2>Valid expressions</h2>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Expression</th>
+<th>Type</th>
+<th>Semantics</th>
+</tr></thead>
+<tbody><tr>
+<td><p>Set Discretization</p></td>
+<td><p>s.discretization(d)</p></td>
+<td><p><span class="type">void</span></p></td>
+<td><p>Sets the series' discretization. Complexity: O(1)</p></td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id480158"></a><h2>Models</h2>
+<div class="itemizedlist"><ul type="disc"><li><span class="simplelist"><span class="type">boost::time_series::dense_series&lt;double&gt;</span></span></li></ul></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id480173"></a><h2>See also</h2>
+<div class="itemizedlist"><ul type="disc">
+<li><p><a href="Mutable_InfiniteRangeRunStorage.html" title="Concept Mutable_InfiniteRangeRunStorage">Mutable_InfiniteRangeRunStorage</a></p></li>
+<li><p><a href="RangeRunStorage.html" title="Concept RangeRunStorage">RangeRunStorage</a></p></li>
+<li><p><a href="ReadablePropertyMap.html" title="Concept ReadablePropertyMap">ReadablePropertyMap</a></p></li>
+<li><p><a href="Sequence.html" title="Concept Sequence">Sequence</a></p></li>
+</ul></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="TimeSeries.html"><img src="images/prev.png" alt="Prev"></a><a accesskey="u" href="time_series/reference.html#time_series_reference"><img src="images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="images/home.png" alt="Home"></a><a accesskey="n" href="boost/time_series/characteristic_unit_series.html"><img src="images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

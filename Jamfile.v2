@@ -1,0 +1,18 @@
+use-project /boost
+   : $(BOOST_ROOT)
+   ;
+
+project zkb
+   :
+     #requirements <include>./boost/backports/&&$(BOOST_ROOT)
+     requirements <include>$(BOOST_ROOT)
+     # disable auto-linking for all targets here,
+     # primarily because it caused troubles with V2
+     <define>BOOST_ALL_NO_LIB=1
+   :
+     #usage-requirements <include>./boost/backports/&&$(BOOST_ROOT)
+     usage-requirements <include>$(BOOST_ROOT)
+   :
+     build-dir bin.v2
+   ;
+

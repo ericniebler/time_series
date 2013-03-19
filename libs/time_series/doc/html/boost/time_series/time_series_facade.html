@@ -1,0 +1,217 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Struct template time_series_facade</title>
+<link rel="stylesheet" href="../../boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.66.1">
+<link rel="start" href="../../index.html" title="Chapter 1. Boost.Time_series">
+<link rel="up" href="../../time_series/reference.html#header.boost.time_series.time_series_facade.hpp" title="Header &lt;boost/time_series/time_series_facade.hpp&gt;">
+<link rel="prev" href="sparse_series.html" title="Struct template sparse_series">
+<link rel="next" href="swap.html" title="Function template swap">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%">
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.htm">Home</a></td>
+<td align="center"><a href="../../libraries.html">Libraries</a></td>
+<td align="center"><a href="../../../../people/people.htm">People</a></td>
+<td align="center"><a href="../../../../more/faq.htm">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="sparse_series.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.time_series_facade.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="swap.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+<div class="refentry" lang="en">
+<a name="boost.time_series.time_series_facade"></a><div class="titlepage"></div>
+<div class="refnamediv">
+<h2><span class="refentrytitle">Struct template time_series_facade</span></h2>
+<p>boost::time_series::time_series_facade &#8212; Represents a series of observations at regular intervals. </p>
+</div>
+<h2 xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv-title">Synopsis</h2>
+<div xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" class="refsynopsisdiv"><pre class="synopsis"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Derived, <span class="bold"><b>typename</b></span> Storage, <span class="bold"><b>typename</b></span> Discretization&gt; 
+<span class="bold"><b>struct</b></span> time_series_facade
+  :  : <span class="bold"><b>public</b></span> boost::time_series::time_series_base&lt; Derived &gt;
+{
+  <span class="emphasis"><em>// types</em></span>
+  <span class="bold"><b>typedef</b></span> Storage                                                                         storage_type;       
+  <span class="bold"><b>typedef</b></span> Discretization                                                                  discretization_type;
+  <span class="bold"><b>typedef</b></span> range_run_storage::concepts::InfiniteRangeRunStorage&lt; Storage &gt;                 storage_concept;    
+  <span class="bold"><b>typedef</b></span> storage_concept::value_type                                                     value_type;         
+  <span class="bold"><b>typedef</b></span> storage_concept::offset_type                                                    offset_type;        
+  <span class="bold"><b>typedef</b></span> storage_concept::zero_type                                                      zero_type;          
+  <span class="bold"><b>typedef</b></span> result_of&lt; range_run_storage::op::get_at(storage_type &amp;, offset_type &amp;) &gt;::type reference;          
+  <span class="bold"><b>typedef</b></span> reference                                                                       const_reference;    
+
+  <span class="emphasis"><em>// <a href="time_series_facade.html#boost.time_series.time_series_facadeconstruct-copy-destruct">construct/copy/destruct</a></em></span>
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Args&gt; <a href="time_series_facade.html#id272803-bb">time_series_facade</a>(Args <span class="bold"><b>const</b></span> &amp;);
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; time_series_facade&amp; <a href="time_series_facade.html#id272855-bb"><span class="bold"><b>operator</b></span>=</a>(Series <span class="bold"><b>const</b></span> &amp;);
+
+  <span class="emphasis"><em>// <a href="time_series_facade.html#id272667-bb">public member functions</a></em></span>
+  <span class="type">reference</span> <a href="time_series_facade.html#id272672-bb"><span class="bold"><b>operator</b></span>[]</a>(offset_type) <span class="bold"><b>const</b></span>;
+  <span class="type">discretization_type</span> <a href="time_series_facade.html#id272719-bb">discretization</a>() <span class="bold"><b>const</b></span>;
+  <span class="type"><span class="bold"><b>void</b></span></span> <a href="time_series_facade.html#id272739-bb">discretization</a>(discretization_type) ;
+  <span class="type"><span class="bold"><b>void</b></span></span> <a href="time_series_facade.html#id272760-bb">swap</a>(<a href="time_series_facade.html" title="Struct template time_series_facade">time_series_facade</a>&lt; Derived, Storage, Discretization &gt; &amp;) ;
+
+  <span class="emphasis"><em>// <a href="time_series_facade.html#id272929-bb">private member functions</a></em></span>
+  <span class="type">storage_type &amp;</span> <a href="time_series_facade.html#id272933-bb">data</a>() ;
+  <span class="type">storage_type <span class="bold"><b>const</b></span> &amp;</span> <a href="time_series_facade.html#id272942-bb">data</a>() <span class="bold"><b>const</b></span>;
+  <span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Archive&gt; <span class="type"><span class="bold"><b>void</b></span></span> <a href="time_series_facade.html#id272952-bb">serialize</a>(Archive &amp;, <span class="bold"><b>unsigned</b></span> <span class="bold"><b>int</b></span> <span class="bold"><b>const</b></span> ) ;
+};</pre></div>
+<div class="refsect1" lang="en">
+<a name="id507419"></a><h2>Description</h2>
+<p><tt class="computeroutput">time_series_facade&lt;&gt;</tt> is used to make a model of the <tt class="computeroutput">InfiniteRangeRunStorage</tt> concept a model of the <tt class="computeroutput">TimeSeries</tt> concept by providing a discretization, and also to provide a consistent interface constisting of additional helper functions not part of the <tt class="computeroutput">TimeSeries</tt> concept. </p>
+<div class="refsect2" lang="en">
+<a name="id507454"></a><h3>
+<a name="boost.time_series.time_series_facadeconstruct-copy-destruct"></a><tt class="computeroutput">time_series_facade</tt> construct/copy/destruct</h3>
+<div class="orderedlist"><ol type="1">
+<li>
+<pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Args&gt; <a name="id272803-bb"></a>time_series_facade(Args <span class="bold"><b>const</b></span> &amp; args);</pre>
+<p>Construct a <tt class="computeroutput">time_series_facade&lt;&gt;</tt> from an <tt class="computeroutput">ArgumentPack</tt>.</p>
+<p>Forwards the argument pack to the constructor of the underlying <tt class="computeroutput">InfiniteRangeRunStorage</tt> data member, after filtering out the discretization named parameter.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><tt class="computeroutput">args</tt></span></td>
+<td><p>A model of <tt class="computeroutput">ArgumentPack</tt> </p></td>
+</tr></tbody>
+</table></div></td>
+</tr></tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Series&gt; time_series_facade&amp; <a name="id272855-bb"></a><span class="bold"><b>operator</b></span>=(Series <span class="bold"><b>const</b></span> &amp; that);</pre>
+<p>Assign from a model of the <tt class="computeroutput">TimeSeries</tt> concept.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><tt class="computeroutput">that</tt></span></td>
+<td><p>The series to assign from. </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Requires:</span></td>
+<td>
+<p>Series is a model of the <tt class="computeroutput">TimeSeries</tt> concept. </p>
+<p><tt class="computeroutput">this-&gt;discretization() == that.discretization()</tt> </p>
+<p>There is a legal series conversion from <tt class="computeroutput">Series</tt> to <tt class="computeroutput">Derived</tt>. (Eg., A delta series cannot represent a dense series in general.) </p>
+<p><tt class="computeroutput">Storage</tt> is a model of <tt class="computeroutput">Mutable_InfiniteRangeRunStorage</tt> </p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ol></div>
+</div>
+<div class="refsect2" lang="en">
+<a name="id507717"></a><h3>
+<a name="id272667-bb"></a><tt class="computeroutput">time_series_facade</tt> public member functions</h3>
+<div class="orderedlist"><ol type="1">
+<li>
+<pre class="literallayout"><span class="type">reference</span> <a name="id272672-bb"></a><span class="bold"><b>operator</b></span>[](offset_type n) <span class="bold"><b>const</b></span>;</pre>
+<p>Return the value of the series at a particular offset.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><tt class="computeroutput">n</tt></span></td>
+<td><p>The offset. </p></td>
+</tr></tbody>
+</table></div></td>
+</tr>
+<tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p>The result of calling <tt class="computeroutput">range_run_storage::get_at()</tt> with the underlying <tt class="computeroutput">InfiniteRangeRunStorage</tt> and <tt class="computeroutput">n</tt> </p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<pre class="literallayout"><span class="type">discretization_type</span> <a name="id272719-bb"></a>discretization() <span class="bold"><b>const</b></span>;</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term">Returns:</span></td>
+<td><p>The value of the series' discretization. </p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li><pre class="literallayout"><span class="type"><span class="bold"><b>void</b></span></span> <a name="id272739-bb"></a>discretization(discretization_type disc) ;</pre></li>
+<li>
+<pre class="literallayout"><span class="type"><span class="bold"><b>void</b></span></span> <a name="id272760-bb"></a>swap(<a href="time_series_facade.html" title="Struct template time_series_facade">time_series_facade</a>&lt; Derived, Storage, Discretization &gt; &amp; that) ;</pre>
+<p>Swaps two <tt class="computeroutput">time_series_facade&lt;&gt;</tt> objects.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term">Parameters:</span></td>
+<td><div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><tt class="computeroutput">that</tt></span></td>
+<td><p>The <tt class="computeroutput">time_series_facade&lt;&gt;</tt> object to swap with. </p></td>
+</tr></tbody>
+</table></div></td>
+</tr></tbody>
+</table></div>
+</li>
+</ol></div>
+</div>
+<div class="refsect2" lang="en">
+<a name="id507980"></a><h3>
+<a name="id272929-bb"></a><tt class="computeroutput">time_series_facade</tt> private member functions</h3>
+<div class="orderedlist"><ol type="1">
+<li><pre class="literallayout"><span class="type">storage_type &amp;</span> <a name="id272933-bb"></a>data() ;</pre></li>
+<li><pre class="literallayout"><span class="type">storage_type <span class="bold"><b>const</b></span> &amp;</span> <a name="id272942-bb"></a>data() <span class="bold"><b>const</b></span>;</pre></li>
+<li><pre class="literallayout"><span class="bold"><b>template</b></span>&lt;<span class="bold"><b>typename</b></span> Archive&gt; 
+  <span class="type"><span class="bold"><b>void</b></span></span> <a name="id272952-bb"></a>serialize(Archive &amp; ar, <span class="bold"><b>unsigned</b></span> <span class="bold"><b>int</b></span> <span class="bold"><b>const</b></span>  version) ;</pre></li>
+</ol></div>
+</div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><small>Copyright © 2006 Eric Niebler</small></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="sparse_series.html"><img src="../../images/prev.png" alt="Prev"></a><a accesskey="u" href="../../time_series/reference.html#header.boost.time_series.time_series_facade.hpp"><img src="../../images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../images/home.png" alt="Home"></a><a accesskey="n" href="swap.html"><img src="../../images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

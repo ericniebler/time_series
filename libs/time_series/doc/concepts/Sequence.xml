@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+<concept name="Sequence" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="sequence-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A Sequence exposes an <code>elements</code> property map that models 
+    <conceptname>ReadablePropertyMap</conceptname> and <code>begin</code>
+    and <code>end</code> cursors that model 
+    <conceptname>ReadableIterator</conceptname> and
+    <conceptname>IncrementableIterator</conceptname>.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <associated-type name="elements">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::sequence::op::elements">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="S"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The type of the property map for accessing the elements in
+      the Sequence.</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="cursor">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::sequence::op::begin">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="S"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>Iter</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="end_cursor">
+    <get-member-type name="type">
+      <apply-template name="boost::result_of">
+        <apply-function name="boost::sequence::op::end">
+          <get-member-type name="type">
+            <apply-template name="boost::add_reference">
+              <type name="S"/>
+            </apply-template>
+          </get-member-type>
+        </apply-function>
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The end cursor doesn't have to have the same type as the begin
+      cursor, just as long as you can compare them.</simpara>
+    </description>
+  </associated-type>
+
+  <associated-type name="key_type">
+    <get-member-type name="reference">
+      <apply-template name="ReadableIterator">
+        <type name="cursor" />
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The key type of the cursor.</simpara>
+    </description>
+  </associated-type>
+  
+  <associated-type name="value_type">
+    <get-member-type name="type">
+      <apply-template name="property_map::traits::value_type">
+        <type name="elements" />
+        <type name="cursor" />
+      </apply-template>
+    </get-member-type>
+    <description>
+      <simpara>The value type of the <code>elements</code> property map.</simpara>
+    </description>
+  </associated-type>
+
+  <valid-expression name="Elements">
+    <apply-function name="boost::sequence::elements">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="elements"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns the <conceptname>ReadablePropertyMap</conceptname>
+    for accessing the elements of the <conceptname>Sequence</conceptname>
+    <code>s</code>.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Begin cursor">
+    <apply-function name="boost::sequence::begin">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="cursor"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns a cursor that, when used with the <code>elements</code>
+    property map, traverses the elements of the <conceptname>Sequence</conceptname>
+    <code>s</code>.</semantics>
+  </valid-expression>
+
+  <valid-expression name="End cursor">
+    <apply-function name="boost::sequence::end">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="end_cursor"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Returns a suitable cursor for terminating the traversal of
+    the <conceptname>Sequence</conceptname> <code>s</code>.</semantics>
+  </valid-expression>
+
+  <see-also name="ReadablePropertyMap"/>
+
+<!--  
+  <example-model>
+    <type name="int" />
+  </example-model>
+-->
+
+</concept>

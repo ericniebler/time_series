@@ -1,0 +1,68 @@
+# (C) Copyright 2006: Eric Niebler
+# Distributed under the Boost Software License, Version 1.0.
+# (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+# bring in rules for testing
+import testing ;
+import python ;
+
+project
+  : requirements
+        <include>../../..
+        <toolset>msvc:<define>_SCL_SECURE_NO_DEPRECATE
+        <toolset>msvc:<define>_CRT_SECURE_NO_DEPRECATE
+  ;
+
+rule run-time-series ( sources * : requirements * )
+{
+    return
+    [
+        run $(sources)
+          : # command
+          : # input files
+          : # build requirements
+            <library>/boost/test//boost_unit_test_framework
+            <link>static
+            $(requirements)
+    ] ;
+}
+
+test-suite "time_series"
+  : [ run-time-series adjacent_difference.cpp ]
+    [ run-time-series characteristic_series.cpp ]
+    [ run-time-series clip.cpp ]
+    [ run-time-series coarse_grain.cpp ]
+    [ run-time-series constant_series.cpp ]
+    [ run-time-series conversions.cpp ]
+    [ run-time-series delta_series.cpp ]
+    [ run-time-series dense_series.cpp ]
+    [ run-time-series divides.cpp ]
+    [ run-time-series fine_grain.cpp ]
+    [ run-time-series first_last.cpp ]
+    [ run-time-series heaviside_series.cpp ]
+    [ run-time-series integrate.cpp ]
+    [ run-time-series inverse_heaviside_series.cpp ]
+    [ run-time-series invert_elements.cpp ]
+    [ run-time-series invert_heaviside.cpp ]
+    [ run-time-series minus.cpp ]
+    [ run-time-series multiplies.cpp ]
+    [ run-time-series nested_series.cpp ]
+    [ run-time-series non_default_constructible.cpp ]
+    [ run-time-series period_sums.cpp ]
+    [ run-time-series partial_sum.cpp ]
+    [ run-time-series piecewise_constant_series.cpp ]
+    [ run-time-series piecewise_sample.cpp ]
+    [ run-time-series piecewise_surface_sample.cpp ]
+    [ run-time-series plus.cpp ]
+    [ run-time-series promotions.cpp ]
+    [ run-time-series rotate_left.cpp ]
+    [ run-time-series rotate_right.cpp ]
+    [ run-time-series serialization.cpp : <library>/boost/serialization//boost_serialization ]
+    [ run-time-series shift.cpp ]
+    [ run-time-series sparse_series.cpp ]
+    [ run-time-series subscript.cpp ]
+    [ run-time-series valarray.cpp ]
+    [ run-time-series variable_period_sums.cpp ]
+    [ run-time-series vector.cpp ]
+    [ bpl-test python_series ]
+  ;

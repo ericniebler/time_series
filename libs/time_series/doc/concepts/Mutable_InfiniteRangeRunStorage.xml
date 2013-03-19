@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<concept name="Mutable_InfiniteRangeRunStorage" category="utility">
+  <!--
+  Copyright 2006 Eric Niebler
+
+  Distributed under the Boost
+  Software License, Version 1.0. (See accompanying
+  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  -->
+  <param name="S" role="mutable-infinite-range-run-storage-type" />
+
+  <models-sentence>
+    The type <arg num="1" /> must be a model of <self/>.
+  </models-sentence>
+
+  <description>
+    <para>A Mutable_InfiniteRangeRunStorage is an <conceptname>InfiniteRangeRunStorage</conceptname> 
+    which can be modified.</para>
+  </description>
+
+  <notation variables="s">
+    <sample-value>
+      <type name="S" />
+    </sample-value>
+  </notation>
+
+  <notation variables="r">
+    <sample-value>
+      <type name="run_type" />
+    </sample-value>
+  </notation>
+
+  <notation variables="v">
+    <sample-value>
+      <type name="value_type" />
+    </sample-value>
+  </notation>
+
+  <refines const="no" concept="InfiniteRangeRunStorage"/>
+  <refines const="no" concept="Mutable_RangeRunStorage"/>
+
+  <valid-expression name="Set Pre-Value">
+    <apply-function name="boost::range_run_storage::pre_value">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+      <sample-value>
+        <type name="value_type" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="void"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Sets the value associated with the pre-run for the sequence.</semantics>
+  </valid-expression>
+
+  <valid-expression name="Set Post-Value">
+    <apply-function name="boost::range_run_storage::post_value">
+      <sample-value>
+        <type name="S" />
+      </sample-value>
+      <sample-value>
+        <type name="value_type" />
+      </sample-value>
+    </apply-function>
+    <return-type>
+      <require-same-type testable="yes">
+        <type name="void"/>
+      </require-same-type>
+    </return-type>
+    <semantics>Sets the value associated with the post-run for the sequence.</semantics>
+  </valid-expression>
+
+  <see-also name="Sequence" />
+  <see-also name="RangeRunStorage" />
+  <see-also name="ReadablePropertyMap" />
+
+  <example-model>
+    <type name="boost::time_series::dense_series&lt;double&gt;" />
+  </example-model>
+
+</concept>
